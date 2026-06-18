@@ -1,26 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hyunsuhahaha | Security Portfolio</title>
-  <meta name="description" content="이현수의 웹 보안, 백엔드, 클라우드 포트폴리오" />
+  <title>이현수 | Backend & Security Portfolio</title>
+  <meta name="description" content="이현수의 백엔드, 웹 보안, 클라우드 포트폴리오" />
 
   <style>
     :root {
-      --bg: #080b12;
-      --bg-soft: #0f1420;
-      --card: rgba(255, 255, 255, 0.06);
-      --card-border: rgba(255, 255, 255, 0.12);
-      --text: #e8edf7;
-      --muted: #9ca9bd;
-      --green: #39ff88;
-      --blue: #69a7ff;
-      --purple: #b388ff;
-      --red: #ff5c7a;
-      --yellow: #ffd166;
-      --shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+      --primary: #f7b500;
+      --primary-dark: #d99a00;
+      --black: #111111;
+      --text: #222222;
+      --muted: #777777;
+      --light: #f8f9fb;
+      --white: #ffffff;
+      --border: #eeeeee;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
     }
 
     * {
@@ -34,29 +30,10 @@
     }
 
     body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 20% 10%, rgba(57, 255, 136, 0.12), transparent 28%),
-        radial-gradient(circle at 80% 20%, rgba(105, 167, 255, 0.16), transparent 26%),
-        radial-gradient(circle at 50% 80%, rgba(179, 136, 255, 0.12), transparent 30%),
-        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Pretendard, "Noto Sans KR", sans-serif;
       color: var(--text);
-      font-family: Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, black, transparent 85%);
-      z-index: -1;
+      background: var(--white);
+      line-height: 1.7;
     }
 
     a {
@@ -69,365 +46,654 @@
       margin: 0 auto;
     }
 
-    header {
-      position: sticky;
+    .navbar {
+      position: fixed;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(18px);
-      background: rgba(8, 11, 18, 0.72);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
-    nav {
+    .nav-inner {
       height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .brand {
+      font-size: 22px;
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
     }
 
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--green), var(--blue));
-      box-shadow: 0 0 30px rgba(57, 255, 136, 0.35);
+    .brand span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--black);
     }
 
     .nav-links {
       display: flex;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 14px;
+      gap: 26px;
+      font-size: 15px;
+      color: #444;
     }
 
-    .nav-links a:hover {
-      color: var(--green);
+    .nav-links a {
+      position: relative;
+      font-weight: 600;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .hero {
-      min-height: calc(100vh - 72px);
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
+      min-height: 100vh;
+      padding-top: 72px;
+      display: flex;
       align-items: center;
-      padding: 80px 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(247, 181, 0, 0.16), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      position: relative;
+      overflow: hidden;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border: 1px solid rgba(57,255,136,0.24);
-      border-radius: 999px;
-      background: rgba(57,255,136,0.08);
-      color: var(--green);
-      font-size: 13px;
+    .hero::after {
+      content: "SECURITY";
+      position: absolute;
+      right: -40px;
+      bottom: 30px;
+      font-size: clamp(90px, 16vw, 220px);
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.035);
+      letter-spacing: -0.08em;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: 100%;
+    }
+
+    .eyebrow {
+      color: var(--primary-dark);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(54px, 10vw, 120px);
+      line-height: 1;
+      letter-spacing: -0.08em;
+      font-weight: 900;
+      margin-bottom: 24px;
+      color: var(--black);
+    }
+
+    .hero h2 {
+      font-size: clamp(22px, 4vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
       margin-bottom: 22px;
     }
 
-    .pulse {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 18px var(--green);
-    }
-
-    h1 {
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: 1.02;
-      letter-spacing: -0.07em;
-      margin-bottom: 24px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #ffffff 0%, var(--green) 45%, var(--blue) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .hero h2 span {
+      color: var(--primary-dark);
     }
 
     .hero p {
+      max-width: 720px;
+      margin: 0 auto 34px;
       color: var(--muted);
       font-size: 18px;
-      max-width: 660px;
-      margin-bottom: 32px;
     }
 
-    .hero-actions {
+    .buttons {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 13px 18px;
-      border-radius: 14px;
-      border: 1px solid var(--card-border);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
-
-    .btn.primary {
-      background: linear-gradient(135deg, var(--green), var(--blue));
-      color: #061018;
-      border: none;
-      box-shadow: 0 14px 40px rgba(57, 255, 136, 0.18);
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--black);
+      font-weight: 800;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transition: 0.2s;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      border-color: rgba(57,255,136,0.45);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
     }
 
-    .terminal {
-      border: 1px solid var(--card-border);
-      border-radius: 22px;
-      background: rgba(10, 15, 25, 0.84);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transform: rotate(1deg);
+    .btn.primary {
+      background: var(--primary);
+      border-color: var(--primary);
     }
 
-    .terminal-top {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 16px;
-      background: rgba(255,255,255,0.06);
-      border-bottom: 1px solid var(--card-border);
+    .mouse {
+      position: absolute;
+      left: 50%;
+      bottom: 34px;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 48px;
+      border: 2px solid #ddd;
+      border-radius: 999px;
     }
 
-    .dot {
-      width: 12px;
-      height: 12px;
+    .mouse::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      width: 5px;
+      height: 5px;
+      background: var(--primary);
       border-radius: 50%;
+      transform: translateX(-50%);
+      animation: wheel 1.6s infinite;
     }
 
-    .dot.red { background: #ff5f57; }
-    .dot.yellow { background: #ffbd2e; }
-    .dot.green { background: #28c840; }
-
-    .terminal-body {
-      padding: 24px;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-      font-size: 14px;
-      color: #d6ffe4;
+    @keyframes wheel {
+      0% { opacity: 1; transform: translate(-50%, 0); }
+      100% { opacity: 0; transform: translate(-50%, 18px); }
     }
 
-    .terminal-body .muted {
-      color: #708090;
+    section {
+      padding: 96px 0;
     }
 
-    .terminal-body .cmd {
-      color: var(--green);
+    .section-head {
+      text-align: center;
+      margin-bottom: 56px;
+      position: relative;
     }
 
-    .terminal-body .key {
-      color: var(--blue);
+    .section-head .big {
+      position: absolute;
+      left: 50%;
+      top: -50px;
+      transform: translateX(-50%);
+      font-size: clamp(70px, 12vw, 150px);
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      color: rgba(0, 0, 0, 0.045);
+      z-index: 0;
+      white-space: nowrap;
     }
 
-    .terminal-body .value {
-      color: var(--yellow);
+    .section-head h2 {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      margin-bottom: 14px;
     }
 
-    .section {
-      padding: 88px 0;
+    .section-head p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto;
     }
 
-    .section-title {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 28px;
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 54px;
+      align-items: center;
     }
 
-    h2 {
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.1;
+    .profile-card {
+      min-height: 460px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(247, 181, 0, 0.88), rgba(255, 214, 90, 0.72)),
+        url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::after {
+      content: "Backend · Security";
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 900;
+      color: var(--black);
+    }
+
+    .about-text h3 {
+      font-size: 32px;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .about-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .about-list li {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .about-list strong {
+      color: var(--black);
+    }
+
+    .about-list span {
+      color: var(--muted);
+    }
+
+    .stats {
+      background: var(--light);
+      padding: 64px 0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--primary-dark);
       letter-spacing: -0.05em;
     }
 
-    .section-title p {
+    .stat-card span {
       color: var(--muted);
-      max-width: 560px;
+      font-weight: 700;
     }
 
-    .grid {
+    .resume-layout {
       display: grid;
-      gap: 18px;
+      grid-template-columns: 220px 1fr;
+      gap: 44px;
+      align-items: start;
     }
 
-    .grid.cols-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid.cols-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .card {
-      position: relative;
-      padding: 24px;
-      border-radius: 22px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.18);
-      overflow: hidden;
-      transition: 0.2s ease;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(57,255,136,0.12), transparent 35%, rgba(105,167,255,0.08));
-      opacity: 0;
-      transition: 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(57,255,136,0.34);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .card h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      letter-spacing: -0.03em;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
+    .side-nav {
+      position: sticky;
+      top: 96px;
+      display: grid;
       gap: 8px;
-      margin-top: 18px;
     }
 
-    .tag {
-      padding: 6px 10px;
+    .side-nav a {
+      padding: 12px 16px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.09);
-      color: #cbd5e1;
-      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+      transition: 0.2s;
     }
 
-    .project {
-      min-height: 260px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .side-nav a:hover {
+      background: var(--primary);
+      color: var(--black);
     }
 
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
+    .resume-section {
+      margin-bottom: 56px;
     }
 
-    .project-num {
-      color: var(--green);
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 13px;
-    }
-
-    .status {
-      color: var(--blue);
-      font-size: 13px;
-      border: 1px solid rgba(105,167,255,0.22);
-      background: rgba(105,167,255,0.08);
-      border-radius: 999px;
-      padding: 5px 10px;
-      height: fit-content;
-    }
-
-    .timeline {
-      position: relative;
-      display: grid;
-      gap: 14px;
+    .resume-section h3 {
+      font-size: 32px;
+      letter-spacing: -0.05em;
+      margin-bottom: 22px;
     }
 
     .timeline-item {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 18px;
-      padding: 20px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid var(--card-border);
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px 26px 26px 76px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
     }
 
-    .timeline-date {
-      color: var(--green);
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 13px;
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 26px;
+      top: 28px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 8px rgba(247,181,0,0.16);
     }
 
-    .timeline-item h3 {
-      margin-bottom: 6px;
+    .date {
+      display: inline-block;
+      color: var(--primary-dark);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item h4 {
+      font-size: 22px;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+
+    .position {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
     .timeline-item p {
       color: var(--muted);
     }
 
-    .contact-box {
-      padding: 34px;
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(57,255,136,0.16), rgba(105,167,255,0.10)),
-        rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: var(--shadow);
+    .skill-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .skill-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
+    }
+
+    .skill-card h4 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #f3f3f3;
+      color: #444;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .projects {
+      background: var(--light);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .project-image {
+      height: 220px;
+      background:
+        linear-gradient(135deg, rgba(17,17,17,0.15), rgba(247,181,0,0.72)),
+        url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .project-image.security {
+      background:
+        linear-gradient(135deg, rgba(17,17,17,0.25), rgba(247,181,0,0.72)),
+        url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .project-image.cloud {
+      background:
+        linear-gradient(135deg, rgba(17,17,17,0.25), rgba(247,181,0,0.72)),
+        url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .project-image.research {
+      background:
+        linear-gradient(135deg, rgba(17,17,17,0.25), rgba(247,181,0,0.72)),
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .project-body {
+      padding: 26px;
+    }
+
+    .project-body h3 {
+      font-size: 24px;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .project-body p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .mini-btn {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .mini-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .blog-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
+      transition: 0.2s;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .blog-card .category {
+      color: var(--primary-dark);
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .blog-card h3 {
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .blog-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hire {
+      position: relative;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(0,0,0,0.76), rgba(0,0,0,0.72)),
+        url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+    }
+
+    .hire h2 {
+      font-size: clamp(34px, 5vw, 56px);
+      letter-spacing: -0.06em;
+      margin-bottom: 14px;
+    }
+
+    .hire h2 span {
+      color: var(--primary);
+    }
+
+    .hire p {
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 28px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      text-align: center;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
+    }
+
+    .contact-icon {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
       align-items: center;
-      gap: 24px;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .contact-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 14px;
+      word-break: break-word;
     }
 
     footer {
-      padding: 34px 0;
+      padding: 42px 0;
+      text-align: center;
       color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 14px;
+      background: #111;
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(16px);
-      transition: 0.6s ease;
+      transform: translateY(20px);
+      transition: 0.7s ease;
     }
 
     .reveal.visible {
@@ -435,344 +701,446 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 900px) {
-      .hero,
-      .grid.cols-2,
-      .grid.cols-3,
-      .contact-box {
-        grid-template-columns: 1fr;
-      }
-
+    @media (max-width: 920px) {
       .nav-links {
         display: none;
       }
 
-      .terminal {
-        transform: none;
+      .about-grid,
+      .resume-layout,
+      .project-grid,
+      .blog-grid,
+      .contact-grid,
+      .skill-grid,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-nav {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .hero h1 {
+        font-size: 64px;
+      }
+
+      .section-head .big {
+        font-size: 72px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 72px 0;
       }
 
       .timeline-item {
-        grid-template-columns: 1fr;
+        padding-left: 26px;
+      }
+
+      .timeline-item::before {
+        display: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#" class="logo">
-          <span class="logo-mark"></span>
-          <span>hyunsuhahaha</span>
-        </a>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand"><span>H</span>HyunSu</a>
 
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#security">Security Lab</a>
-          <a href="#contact">Contact</a>
-        </div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#resume">Resume</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero container">
-      <div class="reveal">
-        <div class="badge">
-          <span class="pulse"></span>
-          Web Security · Backend · Cloud
-        </div>
-
-        <h1>
-          Building systems.<br />
-          Breaking assumptions.<br />
-          <span class="gradient-text">Securing the gap.</span>
-        </h1>
-
+    <section class="hero" id="home">
+      <div class="container hero-content reveal">
+        <div class="eyebrow">Backend · Web Security · Cloud</div>
+        <h1>이현수</h1>
+        <h2>I'm a <span id="typing">Backend Developer</span></h2>
         <p>
-          컴퓨터공학을 기반으로 백엔드 서비스, 웹 보안, 클라우드 인프라를 공부하고 있습니다.
-          단순히 취약점을 아는 것을 넘어, 직접 만든 서비스에 대해 점검하고 개선하는 과정을 기록합니다.
+          컴퓨터공학을 기반으로 백엔드 서비스와 웹 보안을 공부하고 있습니다.
+          단순히 취약점 이름을 아는 것이 아니라, 직접 만든 서비스에 대해 점검하고 개선하는 과정을 기록합니다.
         </p>
 
-        <div class="hero-actions">
-          <a class="btn primary" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">
-            GitHub 보기
+        <div class="buttons">
+          <a class="btn primary" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://velog.io/@hyunsuhahaha" target="_blank" rel="noopener">Velog</a>
+          <a class="btn" href="#projects">Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <a href="#about" class="mouse" aria-label="scroll down"></a>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="big">About</div>
+          <h2>About Me</h2>
+          <p>개발과 보안을 함께 이해하는 백엔드/보안 지향 개발자를 목표로 합니다.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="profile-card reveal"></div>
+
+          <div class="about-text reveal">
+            <h3>서비스를 만들고, 직접 점검하고, 고쳐보는 사람</h3>
+            <p>
+              Spring Boot 기반 웹 서비스를 개발하며 인증, 권한, 데이터베이스, API 설계에 관심을 가지고 있습니다.
+              최근에는 OWASP Top 10을 기준으로 SQL Injection, XSS, IDOR, Path Traversal, File Upload 취약점을
+              실습하고, 이를 직접 만든 서비스에 적용해 점검하는 방식으로 공부하고 있습니다.
+            </p>
+
+            <ul class="about-list">
+              <li><strong>Name</strong><span>이현수</span></li>
+              <li><strong>Major</strong><span>Computer Science</span></li>
+              <li><strong>Email</strong><span>hyunsuhahaha@gmail.com</span></li>
+              <li><strong>GitHub</strong><span>github.com/hyunsuhahaha</span></li>
+              <li><strong>Blog</strong><span>velog.io/@hyunsuhahaha</span></li>
+              <li><strong>Interest</strong><span>Backend, Web Security, Cloud, Linux</span></li>
+            </ul>
+
+            <div class="buttons" style="justify-content:flex-start; margin-top:28px;">
+              <a class="btn primary" href="mailto:hyunsuhahaha@gmail.com">Contact Me</a>
+              <a class="btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">View GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="container stat-grid">
+        <div class="stat-card reveal">
+          <strong>1</strong>
+          <span>Main Project</span>
+        </div>
+        <div class="stat-card reveal">
+          <strong>8+</strong>
+          <span>Security Topics</span>
+        </div>
+        <div class="stat-card reveal">
+          <strong>2</strong>
+          <span>Certificates</span>
+        </div>
+        <div class="stat-card reveal">
+          <strong>∞</strong>
+          <span>Learning</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="resume">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="big">Resume</div>
+          <h2>Resume</h2>
+          <p>학습, 프로젝트, 기술 스택을 한눈에 볼 수 있도록 정리했습니다.</p>
+        </div>
+
+        <div class="resume-layout">
+          <nav class="side-nav reveal">
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#security-lab">Security Lab</a>
+          </nav>
+
+          <div>
+            <div class="resume-section" id="education">
+              <h3>Education</h3>
+
+              <div class="timeline-item reveal">
+                <span class="date">2022 - Present</span>
+                <h4>컴퓨터공학 전공</h4>
+                <span class="position">Dongguk University</span>
+                <p>
+                  운영체제, 네트워크, 데이터베이스, 자료구조, 알고리즘, 시스템소프트웨어, 컴퓨터보안 등을 학습했습니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="resume-section" id="experience">
+              <h3>Experience</h3>
+
+              <div class="timeline-item reveal">
+                <span class="date">2026.07 - 2026.12</span>
+                <h4>IT Department Intern</h4>
+                <span class="position">Noksu</span>
+                <p>
+                  ERP, 그룹웨어, 서버, DB, 네트워크 등 제조업 IT 운영 환경을 경험할 예정입니다.
+                  현장 운영 이슈를 기술적으로 이해하고 문제 해결 능력을 쌓는 것을 목표로 합니다.
+                </p>
+              </div>
+
+              <div class="timeline-item reveal">
+                <span class="date">Project</span>
+                <h4>BookClub Backend & Security Review</h4>
+                <span class="position">Personal Project</span>
+                <p>
+                  Spring Boot/JPA/PostgreSQL 기반 커뮤니티 서비스를 개발하고,
+                  인증/인가, XSS, IDOR, CSRF, File Upload 등 주요 보안 항목을 점검합니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="resume-section" id="skills">
+              <h3>Skills</h3>
+
+              <div class="skill-grid">
+                <div class="skill-card reveal">
+                  <h4>Backend</h4>
+                  <div class="tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Spring Security</span>
+                    <span class="tag">JPA</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">REST API</span>
+                  </div>
+                </div>
+
+                <div class="skill-card reveal">
+                  <h4>Security</h4>
+                  <div class="tags">
+                    <span class="tag">OWASP Top 10</span>
+                    <span class="tag">Burp Suite</span>
+                    <span class="tag">SQL Injection</span>
+                    <span class="tag">XSS</span>
+                    <span class="tag">IDOR</span>
+                    <span class="tag">CSRF</span>
+                    <span class="tag">Path Traversal</span>
+                  </div>
+                </div>
+
+                <div class="skill-card reveal">
+                  <h4>Infra & Tools</h4>
+                  <div class="tags">
+                    <span class="tag">Linux</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">GitHub Actions</span>
+                    <span class="tag">HTTP/DNS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="resume-section" id="security-lab">
+              <h3>Security Lab</h3>
+
+              <div class="timeline-item reveal">
+                <span class="date">STEP 01</span>
+                <h4>OWASP Top 10 기반 웹 취약점 실습</h4>
+                <span class="position">PortSwigger · Juice Shop · Personal Project</span>
+                <p>
+                  SQL Injection, XSS, IDOR, Path Traversal, File Upload 취약점을 실습하고
+                  재현 절차, 영향도, 원인, 대응 방안, 재검증 결과를 보고서 형식으로 정리합니다.
+                </p>
+              </div>
+
+              <div class="timeline-item reveal">
+                <span class="date">STEP 02</span>
+                <h4>BookClub 보안 점검 보고서</h4>
+                <span class="position">Portfolio Deliverable</span>
+                <p>
+                  직접 개발한 서비스에 대해 Burp Suite로 요청을 조작하고,
+                  인증/인가와 입력 검증이 정상적으로 동작하는지 확인합니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="big">Projects</div>
+          <h2>Projects</h2>
+          <p>개발 경험과 보안 점검 경험을 연결해서 보여주는 프로젝트입니다.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card reveal">
+            <div class="project-image"></div>
+            <div class="project-body">
+              <h3>BookClub</h3>
+              <p>
+                독서 기반 커뮤니티 웹 서비스입니다. 회원가입, 로그인, 댓글, 친구, 공개범위,
+                JWT 인증 구조를 구현했습니다.
+              </p>
+              <div class="tags">
+                <span class="tag">Spring Boot</span>
+                <span class="tag">JPA</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">JWT</span>
+                <span class="tag">React</span>
+              </div>
+              <div class="project-links">
+                <a class="mini-btn" href="https://github.com/hyunsuhahaha/book-club" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-image security"></div>
+            <div class="project-body">
+              <h3>BookClub Security Review</h3>
+              <p>
+                직접 만든 서비스를 대상으로 OWASP Top 10 기반 보안 점검을 수행하고,
+                취약점 재현, 원인 분석, 대응, 재검증까지 보고서화합니다.
+              </p>
+              <div class="tags">
+                <span class="tag">Burp Suite</span>
+                <span class="tag">XSS</span>
+                <span class="tag">IDOR</span>
+                <span class="tag">CSRF</span>
+                <span class="tag">File Upload</span>
+              </div>
+              <div class="project-links">
+                <a class="mini-btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">GitHub</a>
+                <a class="mini-btn" href="https://velog.io/@hyunsuhahaha" target="_blank" rel="noopener">Write-up</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-image cloud"></div>
+            <div class="project-body">
+              <h3>Linux & Cloud Study</h3>
+              <p>
+                Linux, 네트워크, AWS를 기반으로 서버 운영과 인프라 보안의 기초를 정리합니다.
+              </p>
+              <div class="tags">
+                <span class="tag">Linux</span>
+                <span class="tag">AWS</span>
+                <span class="tag">Network</span>
+                <span class="tag">Docker</span>
+              </div>
+              <div class="project-links">
+                <a class="mini-btn" href="https://velog.io/@hyunsuhahaha" target="_blank" rel="noopener">Velog</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-image research"></div>
+            <div class="project-body">
+              <h3>Provenance Signature Study</h3>
+              <p>
+                디지털 콘텐츠 출처 검증에서 서명 검증과 메타데이터 신뢰가 어떻게 분리되는지 정리한 연구 주제입니다.
+              </p>
+              <div class="tags">
+                <span class="tag">C2PA</span>
+                <span class="tag">Digital Signature</span>
+                <span class="tag">Metadata</span>
+                <span class="tag">Verification</span>
+              </div>
+              <div class="project-links">
+                <a class="mini-btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">Archive</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="big">Blog</div>
+          <h2>My Blog</h2>
+          <p>공부한 내용을 단순 요약이 아니라 실습, 원인 분석, 대응 방안 중심으로 정리합니다.</p>
+        </div>
+
+        <div class="blog-grid">
+          <a class="blog-card reveal" href="https://velog.io/@hyunsuhahaha" target="_blank" rel="noopener">
+            <div class="category">WEB SECURITY</div>
+            <h3>SQL Injection 원리와 PreparedStatement 방어</h3>
+            <p>쿼리 구조가 사용자 입력으로 변조되는 이유와 안전한 바인딩 방식을 정리합니다.</p>
           </a>
-          <a class="btn" href="#projects">프로젝트 보기</a>
-          <a class="btn" href="#security">보안 실습 보기</a>
-        </div>
-      </div>
 
-      <div class="terminal reveal">
-        <div class="terminal-top">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-        </div>
-
-        <div class="terminal-body">
-          <p><span class="muted">$</span> whoami</p>
-          <p><span class="cmd">이현수</span> / Computer Science Student</p>
-          <br />
-
-          <p><span class="muted">$</span> cat interests.json</p>
-          <p>{</p>
-          <p>&nbsp;&nbsp;<span class="key">"security"</span>: <span class="value">"web hacking, vulnerability analysis"</span>,</p>
-          <p>&nbsp;&nbsp;<span class="key">"backend"</span>: <span class="value">"Spring Boot, JPA, PostgreSQL"</span>,</p>
-          <p>&nbsp;&nbsp;<span class="key">"cloud"</span>: <span class="value">"AWS, Linux, networking"</span>,</p>
-          <p>&nbsp;&nbsp;<span class="key">"goal"</span>: <span class="value">"secure by design"</span></p>
-          <p>}</p>
-          <br />
-
-          <p><span class="muted">$</span> ./run_security_review.sh</p>
-          <p><span class="cmd">[OK]</span> OWASP Top 10 checklist loaded</p>
-          <p><span class="cmd">[OK]</span> Burp Suite proxy ready</p>
-          <p><span class="cmd">[OK]</span> Report mode enabled</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section container">
-      <div class="section-title reveal">
-        <h2>About</h2>
-        <p>
-          개발과 보안을 분리해서 보지 않고, 서비스 구조 안에서 취약점이 왜 발생하는지 이해하는 것을 목표로 합니다.
-        </p>
-      </div>
-
-      <div class="grid cols-3">
-        <div class="card reveal">
-          <h3>Backend</h3>
-          <p>
-            Spring Boot, JPA, PostgreSQL 기반의 웹 서비스를 설계하고 구현합니다.
-            인증, 권한, 데이터 모델링, API 구조에 관심이 있습니다.
-          </p>
-        </div>
-
-        <div class="card reveal">
-          <h3>Security</h3>
-          <p>
-            SQL Injection, XSS, IDOR, Path Traversal, File Upload 취약점을
-            실습하고 보고서 형태로 정리합니다.
-          </p>
-        </div>
-
-        <div class="card reveal">
-          <h3>Infrastructure</h3>
-          <p>
-            Linux, 네트워크, AWS를 기반으로 서비스 운영 환경과 보안 설정을 함께 공부하고 있습니다.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="section container">
-      <div class="section-title reveal">
-        <h2>Skills</h2>
-        <p>현재 공부하고 사용해본 기술 스택입니다.</p>
-      </div>
-
-      <div class="grid cols-3">
-        <div class="card reveal">
-          <h3>Development</h3>
-          <div class="tag-row">
-            <span class="tag">Java</span>
-            <span class="tag">Spring Boot</span>
-            <span class="tag">JPA</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">React</span>
-            <span class="tag">REST API</span>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <h3>Security</h3>
-          <div class="tag-row">
-            <span class="tag">OWASP Top 10</span>
-            <span class="tag">Burp Suite</span>
-            <span class="tag">SQL Injection</span>
-            <span class="tag">XSS</span>
-            <span class="tag">IDOR</span>
-            <span class="tag">CSRF</span>
-            <span class="tag">Path Traversal</span>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <h3>System & Cloud</h3>
-          <div class="tag-row">
-            <span class="tag">Linux</span>
-            <span class="tag">TCP/IP</span>
-            <span class="tag">DNS</span>
-            <span class="tag">HTTP</span>
-            <span class="tag">AWS</span>
-            <span class="tag">Docker</span>
-            <span class="tag">GitHub Actions</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section container">
-      <div class="section-title reveal">
-        <h2>Projects</h2>
-        <p>단순 구현보다 문제 정의, 구조 설계, 보안 개선 과정을 남기는 프로젝트를 지향합니다.</p>
-      </div>
-
-      <div class="grid cols-2">
-        <article class="card project reveal">
-          <div>
-            <div class="project-top">
-              <span class="project-num">PROJECT 01</span>
-              <span class="status">Main</span>
-            </div>
-            <h3>BookClub</h3>
-            <p>
-              독서 기반 커뮤니티 웹 서비스입니다. 회원가입, 로그인, 게시글, 댓글, 친구,
-              공개범위, JWT 인증 구조를 구현했습니다.
-            </p>
-            <div class="tag-row">
-              <span class="tag">Spring Boot</span>
-              <span class="tag">JPA</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">JWT</span>
-              <span class="tag">React</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project reveal">
-          <div>
-            <div class="project-top">
-              <span class="project-num">PROJECT 02</span>
-              <span class="status">Security</span>
-            </div>
-            <h3>BookClub Security Review</h3>
-            <p>
-              직접 개발한 BookClub 서비스를 대상으로 OWASP Top 10 기반 보안 점검을 수행하고,
-              취약 가능 지점과 개선 내역을 보고서화하는 프로젝트입니다.
-            </p>
-            <div class="tag-row">
-              <span class="tag">OWASP Top 10</span>
-              <span class="tag">Burp Suite</span>
-              <span class="tag">IDOR</span>
-              <span class="tag">XSS</span>
-              <span class="tag">CSRF</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project reveal">
-          <div>
-            <div class="project-top">
-              <span class="project-num">PROJECT 03</span>
-              <span class="status">System</span>
-            </div>
-            <h3>Linux & Network Practice</h3>
-            <p>
-              리눅스 명령어, 권한, 프로세스, 네트워크 기본 개념을 실습하며
-              서버 운영과 보안 점검의 기초를 쌓고 있습니다.
-            </p>
-            <div class="tag-row">
-              <span class="tag">Linux</span>
-              <span class="tag">Shell</span>
-              <span class="tag">Network</span>
-              <span class="tag">Log</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project reveal">
-          <div>
-            <div class="project-top">
-              <span class="project-num">PROJECT 04</span>
-              <span class="status">Research</span>
-            </div>
-            <h3>Provenance Signature Study</h3>
-            <p>
-              디지털 콘텐츠 출처 검증에서 서명 검증과 메타데이터 신뢰가 어떻게 분리되는지
-              연구 주제로 정리하고 있습니다.
-            </p>
-            <div class="tag-row">
-              <span class="tag">C2PA</span>
-              <span class="tag">Digital Signature</span>
-              <span class="tag">Metadata</span>
-              <span class="tag">Verification</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="security" class="section container">
-      <div class="section-title reveal">
-        <h2>Security Lab</h2>
-        <p>취약점 개념을 단순 암기가 아니라 재현, 원인 분석, 대응, 재검증 흐름으로 정리합니다.</p>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-date">STEP 01</div>
-          <div>
-            <h3>SQL Injection</h3>
-            <p>
-              인증 우회, UNION 기반 조회, Blind SQL Injection을 실습하고
-              PreparedStatement 기반 방어 방식을 정리합니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-date">STEP 02</div>
-          <div>
-            <h3>XSS</h3>
-            <p>
-              Stored, Reflected, DOM XSS의 차이를 정리하고,
-              출력 인코딩, CSP, HttpOnly Cookie 적용 여부를 점검합니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-date">STEP 03</div>
-          <div>
-            <h3>IDOR & Access Control</h3>
-            <p>
-              사용자 ID, 게시글 ID, 댓글 ID를 조작했을 때 권한 검증이 정상적으로 동작하는지 확인합니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-date">STEP 04</div>
-          <div>
-            <h3>Path Traversal & File Upload</h3>
-            <p>
-              파일 다운로드, 업로드 기능에서 경로 조작, 확장자 우회, MIME 타입 조작 가능성을 점검합니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section container">
-      <div class="contact-box reveal">
-        <div>
-          <h2>Let’s build securely.</h2>
-          <p style="color: var(--muted); margin-top: 10px;">
-            프로젝트, 보안 점검 기록, 학습 내용을 GitHub와 블로그에 정리합니다.
-          </p>
-        </div>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">
-            GitHub
+          <a class="blog-card reveal" href="https://velog.io/@hyunsuhahaha" target="_blank" rel="noopener">
+            <div class="category">WEB SECURITY</div>
+            <h3>XSS와 출력 인코딩, CSP, HttpOnly</h3>
+            <p>Stored/Reflected/DOM XSS의 차이와 실제 서비스에서의 방어 포인트를 정리합니다.</p>
           </a>
-          <a class="btn" href="mailto:hyunsuhahaha@gmail.com">
-            Email
+
+          <a class="blog-card reveal" href="https://velog.io/@hyunsuhahaha" target="_blank" rel="noopener">
+            <div class="category">PORTFOLIO</div>
+            <h3>BookClub 보안 점검 보고서 작성 과정</h3>
+            <p>직접 만든 서비스의 인증/인가, IDOR, CSRF, 파일 업로드 점검 과정을 기록합니다.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hire">
+      <div class="container reveal">
+        <h2>서비스를 만들고 <span>안전하게 개선하는</span> 개발자</h2>
+        <p>백엔드 개발 경험과 웹 보안 점검 경험을 연결해서 성장하고 있습니다.</p>
+        <div class="buttons">
+          <a class="btn primary" href="mailto:hyunsuhahaha@gmail.com">연락하기</a>
+          <a class="btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">GitHub 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="big">Contact</div>
+          <h2>Contact Me</h2>
+          <p>프로젝트, 보안 실습, 학습 기록은 GitHub와 Velog에 정리합니다.</p>
+        </div>
+
+        <div class="contact-grid">
+          <a class="contact-card reveal" href="mailto:hyunsuhahaha@gmail.com">
+            <div class="contact-icon">✉</div>
+            <h3>Email</h3>
+            <p>hyunsuhahaha@gmail.com</p>
+          </a>
+
+          <a class="contact-card reveal" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">
+            <div class="contact-icon">⌘</div>
+            <h3>GitHub</h3>
+            <p>github.com/hyunsuhahaha</p>
+          </a>
+
+          <a class="contact-card reveal" href="https://velog.io/@hyunsuhahaha" target="_blank" rel="noopener">
+            <div class="contact-icon">✍</div>
+            <h3>Velog</h3>
+            <p>velog.io/@hyunsuhahaha</p>
+          </a>
+
+          <a class="contact-card reveal" href="https://hyunsuhahaha.github.io" target="_blank" rel="noopener">
+            <div class="contact-icon">🌐</div>
+            <h3>Website</h3>
+            <p>hyunsuhahaha.github.io</p>
           </a>
         </div>
       </div>
@@ -781,11 +1149,50 @@
 
   <footer>
     <div class="container">
-      © <span id="year"></span> hyunsuhahaha. Built with HTML, CSS and caffeine.
+      Copyright © <span id="year"></span> HyunSu Lee. All rights reserved.
     </div>
   </footer>
 
   <script>
+    const words = [
+      "Backend Developer",
+      "Web Security Learner",
+      "Security-minded Engineer",
+      "Cloud & Linux Explorer"
+    ];
+
+    const typingTarget = document.getElementById("typing");
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function type() {
+      const current = words[wordIndex];
+
+      if (!deleting) {
+        typingTarget.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(type, 1000);
+          return;
+        }
+      } else {
+        typingTarget.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+
+      setTimeout(type, deleting ? 45 : 80);
+    }
+
+    type();
+
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const observer = new IntersectionObserver((entries) => {
