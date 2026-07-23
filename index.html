@@ -3,1207 +3,373 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>이현수 | Backend & Security Portfolio</title>
-  <meta name="description" content="이현수의 백엔드, 웹 보안, 클라우드 포트폴리오" />
-
-  <style>
-    :root {
-      --primary: #f7b500;
-      --primary-dark: #d99a00;
-      --black: #111111;
-      --text: #222222;
-      --muted: #777777;
-      --light: #f8f9fb;
-      --white: #ffffff;
-      --border: #eeeeee;
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Pretendard, "Noto Sans KR", sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.7;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .nav-inner {
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-
-    .brand span {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      margin-right: 8px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: var(--black);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 26px;
-      font-size: 15px;
-      color: #444;
-    }
-
-    .nav-links a {
-      position: relative;
-      font-weight: 600;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: 0.2s;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .hero {
-      min-height: 100vh;
-      padding-top: 72px;
-      display: flex;
-      align-items: center;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(247, 181, 0, 0.16), transparent 28%),
-        linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "SECURITY";
-      position: absolute;
-      right: -40px;
-      bottom: 30px;
-      font-size: clamp(90px, 16vw, 220px);
-      font-weight: 900;
-      color: rgba(0, 0, 0, 0.035);
-      letter-spacing: -0.08em;
-      z-index: 0;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      width: 100%;
-    }
-
-    .eyebrow {
-      color: var(--primary-dark);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      font-size: clamp(54px, 10vw, 120px);
-      line-height: 1;
-      letter-spacing: -0.08em;
-      font-weight: 900;
-      margin-bottom: 24px;
-      color: var(--black);
-    }
-
-    .hero h2 {
-      font-size: clamp(22px, 4vw, 38px);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      margin-bottom: 22px;
-    }
-
-    .hero h2 span {
-      color: var(--primary-dark);
-    }
-
-    .hero p {
-      max-width: 720px;
-      margin: 0 auto 34px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 20px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--white);
-      color: var(--black);
-      font-weight: 800;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn.primary {
-      background: var(--primary);
-      border-color: var(--primary);
-    }
-
-    .mouse {
-      position: absolute;
-      left: 50%;
-      bottom: 34px;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 48px;
-      border: 2px solid #ddd;
-      border-radius: 999px;
-    }
-
-    .mouse::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 10px;
-      width: 5px;
-      height: 5px;
-      background: var(--primary);
-      border-radius: 50%;
-      transform: translateX(-50%);
-      animation: wheel 1.6s infinite;
-    }
-
-    @keyframes wheel {
-      0% { opacity: 1; transform: translate(-50%, 0); }
-      100% { opacity: 0; transform: translate(-50%, 18px); }
-    }
-
-    section {
-      padding: 96px 0;
-    }
-
-    .section-head {
-      text-align: center;
-      margin-bottom: 56px;
-      position: relative;
-    }
-
-    .section-head .big {
-      position: absolute;
-      left: 50%;
-      top: -50px;
-      transform: translateX(-50%);
-      font-size: clamp(70px, 12vw, 150px);
-      font-weight: 900;
-      letter-spacing: -0.08em;
-      color: rgba(0, 0, 0, 0.045);
-      z-index: 0;
-      white-space: nowrap;
-    }
-
-    .section-head h2 {
-      position: relative;
-      z-index: 1;
-      font-size: clamp(34px, 5vw, 54px);
-      font-weight: 900;
-      letter-spacing: -0.06em;
-      margin-bottom: 14px;
-    }
-
-    .section-head p {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 54px;
-      align-items: center;
-    }
-
-    .profile-card {
-      min-height: 460px;
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(247, 181, 0, 0.88), rgba(255, 214, 90, 0.72)),
-        url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .profile-card::after {
-      content: "Backend · Security";
-      position: absolute;
-      left: 28px;
-      bottom: 28px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 12px 16px;
-      border-radius: 999px;
-      font-weight: 900;
-      color: var(--black);
-    }
-
-    .about-text h3 {
-      font-size: 32px;
-      letter-spacing: -0.05em;
-      margin-bottom: 16px;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-
-    .about-list {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .about-list li {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 16px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
-    }
-
-    .about-list strong {
-      color: var(--black);
-    }
-
-    .about-list span {
-      color: var(--muted);
-    }
-
-    .stats {
-      background: var(--light);
-      padding: 64px 0;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .stat-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 30px 20px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .stat-card strong {
-      display: block;
-      font-size: 42px;
-      font-weight: 900;
-      color: var(--primary-dark);
-      letter-spacing: -0.05em;
-    }
-
-    .stat-card span {
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .resume-layout {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 44px;
-      align-items: start;
-    }
-
-    .side-nav {
-      position: sticky;
-      top: 96px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .side-nav a {
-      padding: 12px 16px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-weight: 800;
-      transition: 0.2s;
-    }
-
-    .side-nav a:hover {
-      background: var(--primary);
-      color: var(--black);
-    }
-
-    .resume-section {
-      margin-bottom: 56px;
-    }
-
-    .resume-section h3 {
-      font-size: 32px;
-      letter-spacing: -0.05em;
-      margin-bottom: 22px;
-    }
-
-    .timeline-item {
-      position: relative;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 26px 26px 26px 76px;
-      margin-bottom: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: 26px;
-      top: 28px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 0 8px rgba(247,181,0,0.16);
-    }
-
-    .date {
-      display: inline-block;
-      color: var(--primary-dark);
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-
-    .timeline-item h4 {
-      font-size: 22px;
-      letter-spacing: -0.04em;
-      margin-bottom: 4px;
-    }
-
-    .position {
-      display: block;
-      color: var(--muted);
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .timeline-item p {
-      color: var(--muted);
-    }
-
-    .skill-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .skill-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 26px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
-    }
-
-    .skill-card h4 {
-      font-size: 20px;
-      margin-bottom: 16px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tag {
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: #f3f3f3;
-      color: #444;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .projects {
-      background: var(--light);
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .project-card {
-      background: var(--white);
-      border-radius: 26px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    .project-image {
-      height: 220px;
-      background:
-        linear-gradient(135deg, rgba(17,17,17,0.15), rgba(247,181,0,0.72)),
-        url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .project-image.security {
-      background:
-        linear-gradient(135deg, rgba(17,17,17,0.25), rgba(247,181,0,0.72)),
-        url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .project-image.cloud {
-      background:
-        linear-gradient(135deg, rgba(17,17,17,0.25), rgba(247,181,0,0.72)),
-        url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .project-image.research {
-      background:
-        linear-gradient(135deg, rgba(17,17,17,0.25), rgba(247,181,0,0.72)),
-        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .project-body {
-      padding: 26px;
-    }
-
-    .project-body h3 {
-      font-size: 24px;
-      letter-spacing: -0.04em;
-      margin-bottom: 8px;
-    }
-
-    .project-body p {
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .project-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .mini-btn {
-      display: inline-flex;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid #ddd;
-      font-size: 13px;
-      font-weight: 800;
-      transition: 0.2s;
-    }
-
-    .mini-btn:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-    }
-
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .blog-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 26px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
-      transition: 0.2s;
-    }
-
-    .blog-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
-
-    .blog-card .category {
-      color: var(--primary-dark);
-      font-weight: 900;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-
-    .blog-card h3 {
-      font-size: 20px;
-      line-height: 1.35;
-      letter-spacing: -0.04em;
-      margin-bottom: 12px;
-    }
-
-    .blog-card p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .hire {
-      position: relative;
-      color: var(--white);
-      background:
-        linear-gradient(135deg, rgba(0,0,0,0.76), rgba(0,0,0,0.72)),
-        url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-      text-align: center;
-    }
-
-    .hire h2 {
-      font-size: clamp(34px, 5vw, 56px);
-      letter-spacing: -0.06em;
-      margin-bottom: 14px;
-    }
-
-    .hire h2 span {
-      color: var(--primary);
-    }
-
-    .hire p {
-      color: rgba(255,255,255,0.72);
-      margin-bottom: 28px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .contact-card {
-      text-align: center;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 28px 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
-    }
-
-    .contact-icon {
-      width: 62px;
-      height: 62px;
-      margin: 0 auto 18px;
-      border-radius: 50%;
-      background: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-    }
-
-    .contact-card h3 {
-      font-size: 17px;
-      margin-bottom: 8px;
-    }
-
-    .contact-card p {
-      color: var(--muted);
-      font-size: 14px;
-      word-break: break-word;
-    }
-
-    footer {
-      padding: 42px 0;
-      text-align: center;
-      color: var(--muted);
-      background: #111;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 920px) {
-      .nav-links {
-        display: none;
-      }
-
-      .about-grid,
-      .resume-layout,
-      .project-grid,
-      .blog-grid,
-      .contact-grid,
-      .skill-grid,
-      .stat-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .side-nav {
-        position: static;
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .hero h1 {
-        font-size: 64px;
-      }
-
-      .section-head .big {
-        font-size: 72px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .hero h1 {
-        font-size: 48px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      section {
-        padding: 72px 0;
-      }
-
-      .timeline-item {
-        padding-left: 26px;
-      }
-
-      .timeline-item::before {
-        display: none;
-      }
-    }
-  </style>
+  <meta name="description" content="이현수의 백엔드, 보안, 이상징후 탐지 시스템 포트폴리오" />
+  <meta name="theme-color" content="#0a0a0b" />
+  <meta property="og:title" content="이현수 | Backend · Security · Detection" />
+  <meta property="og:description" content="현장의 데이터를 읽고 이상징후를 탐지하며, 서비스와 인프라를 안전하게 개선합니다." />
+  <meta property="og:type" content="website" />
+  <title>이현수 | Backend · Security · Detection</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
 </head>
-
 <body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#home" class="brand"><span>H</span>HyunSu</a>
+      <a class="brand" href="#home" aria-label="이현수 포트폴리오 홈">
+        <span class="brand-mark">H</span>
+        <span>HyunSu Lee</span>
+      </a>
 
-      <nav class="nav-links">
-        <a href="#home">Home</a>
+      <button class="menu-button" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+      <nav class="nav-links" aria-label="주요 메뉴">
         <a href="#about">About</a>
-        <a href="#resume">Resume</a>
+        <a href="#featured">Featured</a>
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
+        <a href="#skills">Skills</a>
+        <a class="nav-cta" href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero" id="home">
-      <div class="container hero-content reveal">
-        <div class="eyebrow">Backend · Web Security · Cloud</div>
-        <h1>이현수</h1>
-        <h2>I'm a <span id="typing">Backend Developer</span></h2>
-        <p>
-          컴퓨터공학을 기반으로 백엔드 서비스와 웹 보안을 공부하고 있습니다.
-          단순히 취약점 이름을 아는 것이 아니라, 직접 만든 서비스에 대해 점검하고 개선하는 과정을 기록합니다.
-        </p>
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Backend · Security · Anomaly Detection</div>
+          <h1>
+            현장의 데이터를 읽고,<br />
+            <span class="accent">이상징후를 탐지합니다.</span>
+          </h1>
+          <p class="hero-subtitle">
+            컴퓨터공학을 기반으로 <strong>백엔드 서비스, 웹·시스템 보안, 제조 데이터 분석</strong>을 공부합니다.
+            최근에는 생산관리 데이터를 수집·상관분석하여 입력 누락과 데이터 불일치를 탐지하는 시스템을 직접 기획하고 개발했습니다.
+          </p>
 
-        <div class="buttons">
-          <a class="btn primary" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener">Velog</a>
-          <a class="btn" href="#projects">Projects</a>
-          <a class="btn" href="#contact">Contact</a>
+          <div class="hero-actions">
+            <a class="btn primary" href="./projects/mes-anomaly-detection/">대표 프로젝트 보기 →</a>
+            <a class="btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener noreferrer">Velog</a>
+          </div>
+
+          <div class="hero-badges" aria-label="현재 주요 관심 분야">
+            <span class="badge">OT · Smart Factory Security</span>
+            <span class="badge">Web & System Security</span>
+            <span class="badge">Python · React · FastAPI</span>
+          </div>
+        </div>
+
+        <div class="hero-console reveal" aria-label="이상징후 탐지 대시보드 예시">
+          <div class="console-top">
+            <div class="console-dots"><i></i><i></i><i></i></div>
+            <span>production-anomaly-monitor</span>
+            <span>v1.0</span>
+          </div>
+          <div class="console-body">
+            <div class="metric-row">
+              <div class="metric"><span>수집 데이터</span><strong>12,804</strong></div>
+              <div class="metric"><span>탐지 건수</span><strong class="warn">23</strong></div>
+              <div class="metric"><span>상태</span><strong>RUNNING</strong></div>
+            </div>
+            <div class="log-list">
+              <div class="log-line"><span class="time">10:24:11</span><span>LINE-B2 생산실적 수집 완료</span><span class="status-pill ok">OK</span></div>
+              <div class="log-line"><span class="time">10:24:14</span><span>QR-DEMO-0184 매칭 데이터 없음</span><span class="status-pill warn">CHECK</span></div>
+              <div class="log-line"><span class="time">10:24:17</span><span>태그 현재값과 생산실적 불일치</span><span class="status-pill err">ANOMALY</span></div>
+              <div class="log-line"><span class="time">10:24:20</span><span>결과 보고서 및 로그 저장 완료</span><span class="status-pill ok">DONE</span></div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <a href="#about" class="mouse" aria-label="scroll down"></a>
     </section>
 
-    <section id="about">
+    <section class="section section-light" id="about">
+      <div class="container intro-grid">
+        <aside class="profile-panel reveal">
+          <div class="profile-symbol" aria-hidden="true"></div>
+          <dl class="profile-meta">
+            <div><dt>Name</dt><dd>이현수</dd></div>
+            <div><dt>Major</dt><dd>Computer Science</dd></div>
+            <div><dt>University</dt><dd>동국대학교</dd></div>
+            <div><dt>Focus</dt><dd>Security Engineering</dd></div>
+            <div><dt>Email</dt><dd>hyunsuhahaha@gmail.com</dd></div>
+          </dl>
+        </aside>
+
+        <div class="story reveal">
+          <div class="eyebrow">About Me</div>
+          <h3>기능을 만드는 데서 끝나지 않고,<br />데이터 흐름과 위험을 함께 봅니다.</h3>
+          <p>
+            Spring Boot와 React로 서비스를 구현하며 인증·인가, 입력 검증, 공개 범위와 같은 보안 경계를 고민해 왔습니다.
+            이후 PortSwigger와 워게임을 통해 웹 취약점뿐 아니라 버퍼 오버플로우, 카나리, NX·PIE, ROP 등 시스템 보안 영역까지 학습하고 있습니다.
+          </p>
+          <p>
+            제조기업 IT 부서 현장실습에서는 사내 인프라 구조를 파악하고 잠재적인 보안 위험 지점을 발견해 외부 권고와 연결한 개선안을 제시했습니다.
+            동시에 생산실적·태그·QR 데이터를 연계한 <strong>생산관리 데이터 기반 이상징후 실시간 자동탐지 시스템</strong>을 기획·개발하여 실제 업무에 적용했습니다.
+          </p>
+
+          <div class="principle-list">
+            <article class="principle">
+              <div class="principle-index">01</div>
+              <div><h4>문제부터 정의합니다.</h4><p>코드를 작성하기 전에 현장 업무 흐름, 데이터 생성 지점, 정상·비정상 기준을 먼저 분석합니다.</p></div>
+            </article>
+            <article class="principle">
+              <div class="principle-index">02</div>
+              <div><h4>원인을 추적할 수 있게 만듭니다.</h4><p>탐지 결과만 보여주지 않고 수집 단계, 판정 근거, 오류 로그를 남겨 검증 가능한 시스템을 지향합니다.</p></div>
+            </article>
+            <article class="principle">
+              <div class="principle-index">03</div>
+              <div><h4>공격과 방어를 함께 이해합니다.</h4><p>취약점 재현을 통해 구조적 원인을 이해하고, 실제 서비스와 인프라에 적용 가능한 방어 방법을 고민합니다.</p></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="featured">
       <div class="container">
         <div class="section-head reveal">
-          <div class="big">About</div>
-          <h2>About Me</h2>
-          <p>개발과 보안을 함께 이해하는 백엔드/보안 지향 개발자를 목표로 합니다.</p>
+          <div>
+            <div class="eyebrow">Featured Project</div>
+            <h2 class="section-title">현장 문제를 탐지 시스템으로 바꾸다.</h2>
+            <p class="section-copy">반복 조회를 대신하는 도구가 아니라, 서로 다른 생산 데이터를 연결해 입력 누락과 불일치를 조기에 발견하는 시스템을 만들었습니다.</p>
+          </div>
+          <div class="section-number">01</div>
         </div>
 
-        <div class="about-grid">
-          <div class="profile-card reveal"></div>
-
-          <div class="about-text reveal">
-            <h3>서비스를 만들고, 직접 점검하고, 고쳐보는 사람</h3>
+        <article class="featured-card reveal">
+          <div class="featured-copy">
+            <div class="project-kicker">Manufacturing · Detection Engineering</div>
+            <h3>생산관리 데이터 기반<br />이상징후 실시간 자동탐지 시스템</h3>
             <p>
-              Spring Boot 기반 웹 서비스를 개발하며 인증, 권한, 데이터베이스, API 설계에 관심을 가지고 있습니다.
-              최근에는 OWASP Top 10을 기준으로 SQL Injection, XSS, IDOR, Path Traversal, File Upload 취약점을
-              실습하고, 이를 직접 만든 서비스에 적용해 점검하는 방식으로 공부하고 있습니다.
+              MES 생산실적, 태그 데이터, QR 정보를 자동 수집하고 라인·품목·시간 기준으로 상관분석합니다.
+              입력 누락, 데이터 불일치, 수치 이상, 수집 오류를 규칙 기반으로 탐지하고 결과와 실행 로그를 제공합니다.
             </p>
 
-            <ul class="about-list">
-              <li><strong>Name</strong><span>이현수</span></li>
-              <li><strong>Major</strong><span>Computer Science</span></li>
-              <li><strong>Email</strong><span>hyunsuhahaha@gmail.com</span></li>
-              <li><strong>GitHub</strong><span>github.com/hyunsuhahaha</span></li>
-              <li><strong>Blog</strong><span>velog.io/@ffkdkshqw</span></li>
-              <li><strong>Interest</strong><span>Backend, Web Security, Cloud, Linux</span></li>
+            <div class="project-facts">
+              <div><span>ROLE</span><strong>기획 · 설계 · 개발 · 검증</strong></div>
+              <div><span>STATUS</span><strong>현장 실무 적용</strong></div>
+              <div><span>PERIOD</span><strong>2026.07 ~</strong></div>
+            </div>
+
+            <div class="inline-tags">
+              <span class="tag">Python</span><span class="tag">Playwright</span><span class="tag">FastAPI</span>
+              <span class="tag">React</span><span class="tag">Excel VBA</span><span class="tag">SQLite</span>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="./projects/mes-anomaly-detection/">프로젝트 상세 보기 →</a>
+            </div>
+          </div>
+
+          <div class="featured-visual" aria-hidden="true">
+            <div class="dashboard">
+              <div class="dashboard-head"><strong>Production Data Anomaly Monitor</strong><span class="live-indicator">LIVE</span></div>
+              <div class="dashboard-content">
+                <div class="mini-metrics">
+                  <div class="mini-metric"><span>검사 라인</span><strong>8</strong></div>
+                  <div class="mini-metric"><span>정상</span><strong>2,418</strong></div>
+                  <div class="mini-metric"><span>확인 필요</span><strong style="color:#f7c948">17</strong></div>
+                </div>
+                <div class="alert-table">
+                  <div class="alert-row header"><span>시간</span><span>라인</span><span>유형</span><span>상태</span></div>
+                  <div class="alert-row"><span>10:24</span><span>LINE-B2</span><span class="alert-type">QR 누락</span><span>확인</span></div>
+                  <div class="alert-row"><span>10:21</span><span>LINE-G1</span><span class="alert-type">수치 불일치</span><span>신규</span></div>
+                  <div class="alert-row"><span>10:18</span><span>LINE-B4</span><span class="alert-type">수집 오류</span><span>재시도</span></div>
+                  <div class="alert-row"><span>10:11</span><span>LINE-G2</span><span class="alert-type">태그 불일치</span><span>처리</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container experience-grid">
+        <div class="experience-summary reveal">
+          <div class="eyebrow">Experience</div>
+          <h3>넓게 연결하고,<br />근거를 남기는 경험</h3>
+          <p>작은 조직의 IT 환경에서 인프라, 보안, 업무시스템, 데이터 흐름을 함께 보며 문제를 직접 발굴하고 개선했습니다.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-card reveal">
+            <span class="date">2026.07 — PRESENT</span>
+            <h4>제조기업 IT 부서 현장실습</h4>
+            <p>생산관리 시스템과 사내 인프라를 분석하고, 이상징후 탐지 시스템 개발 및 보안 개선 업무를 수행했습니다.</p>
+            <ul>
+              <li>MES 생산실적·태그·QR 데이터의 상관관계와 이상 판정 기준 설계</li>
+              <li>Python·Playwright·FastAPI·React 기반 수집/탐지/시각화 시스템 구축</li>
+              <li>사내 네트워크·원격제어·인증·단말 보안 현황 점검 및 개선안 제시</li>
+              <li>외부 보안 권고를 사내 현황과 연결해 실제 정책 개선에 기여</li>
             </ul>
+          </article>
 
-            <div class="buttons" style="justify-content:flex-start; margin-top:28px;">
-              <a class="btn primary" href="mailto:hyunsuhahaha@gmail.com">Contact Me</a>
-              <a class="btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">View GitHub</a>
-            </div>
-          </div>
+          <article class="timeline-card reveal">
+            <span class="date">2026.06 — PRESENT</span>
+            <h4>웹·시스템 보안 실습</h4>
+            <p>PortSwigger, Dreamhack, TryHackMe 환경에서 취약점의 원인과 방어 구조를 학습하고 기록합니다.</p>
+            <ul>
+              <li>인증 우회, IDOR, Path Traversal, XSS, CSRF, Web Cache Deception</li>
+              <li>Buffer Overflow, Canary Leak, NX·PIE·RELRO, ROP x64</li>
+              <li>GDB, pwntools, checksec, objdump, readelf, ROPgadget 활용</li>
+            </ul>
+          </article>
+
+          <article class="timeline-card reveal">
+            <span class="date">PERSONAL PROJECT</span>
+            <h4>BookClub Secure Backend</h4>
+            <p>Spring Boot·JPA·PostgreSQL 기반 커뮤니티 서비스를 개발하고 보안 경계를 직접 설계했습니다.</p>
+            <ul>
+              <li>JWT Access/Refresh 구조와 HttpOnly 쿠키 적용</li>
+              <li>공개 범위 기반 인가, 입력 검증, 보안 헤더, Rate Limit</li>
+              <li>Refresh Token 재사용 탐지와 보안 테스트 시나리오 구성</li>
+            </ul>
+          </article>
+
+          <article class="timeline-card reveal">
+            <span class="date">ACADEMIC FOUNDATION</span>
+            <h4>컴퓨터공학 기반 학습</h4>
+            <p>운영체제, 네트워크, 데이터베이스, 시스템소프트웨어와 컴퓨터보안을 통해 시스템의 동작 원리를 학습했습니다.</p>
+            <ul>
+              <li>PintOS 동기화, 세마포어, 데드락 재현과 ordered locking 해결</li>
+              <li>TCP/IP, DNS, HTTP, 라우팅, 혼잡 제어, SDN</li>
+              <li>트랜잭션, 정규화, 메모리 보호 기법, 암호 기초</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
-    <div class="stats">
-      <div class="container stat-grid">
-        <div class="stat-card reveal">
-          <strong>1</strong>
-          <span>Main Project</span>
-        </div>
-        <div class="stat-card reveal">
-          <strong>8+</strong>
-          <span>Security Topics</span>
-        </div>
-        <div class="stat-card reveal">
-          <strong>2</strong>
-          <span>Certificates</span>
-        </div>
-        <div class="stat-card reveal">
-          <strong>∞</strong>
-          <span>Learning</span>
-        </div>
-      </div>
-    </div>
-
-    <section id="resume">
+    <section class="section section-light" id="projects">
       <div class="container">
         <div class="section-head reveal">
-          <div class="big">Resume</div>
-          <h2>Resume</h2>
-          <p>학습, 프로젝트, 기술 스택을 한눈에 볼 수 있도록 정리했습니다.</p>
-        </div>
-
-        <div class="resume-layout">
-          <nav class="side-nav reveal">
-            <a href="#education">Education</a>
-            <a href="#experience">Experience</a>
-            <a href="#skills">Skills</a>
-            <a href="#security-lab">Security Lab</a>
-          </nav>
-
           <div>
-            <div class="resume-section" id="education">
-              <h3>Education</h3>
-
-              <div class="timeline-item reveal">
-                <span class="date">2022 - Present</span>
-                <h4>컴퓨터공학 전공</h4>
-                <span class="position">Dongguk University</span>
-                <p>
-                  운영체제, 네트워크, 데이터베이스, 자료구조, 알고리즘, 시스템소프트웨어, 컴퓨터보안 등을 학습했습니다.
-                </p>
-              </div>
-            </div>
-
-            <div class="resume-section" id="experience">
-              <h3>Experience</h3>
-
-              <div class="timeline-item reveal">
-                <span class="date">2026.07 - 2026.12</span>
-                <h4>IT Department Intern</h4>
-                <span class="position">Noksu</span>
-                <p>
-                  ERP, 그룹웨어, 서버, DB, 네트워크 등 제조업 IT 운영 환경을 경험할 예정입니다.
-                  현장 운영 이슈를 기술적으로 이해하고 문제 해결 능력을 쌓는 것을 목표로 합니다.
-                </p>
-              </div>
-
-              <div class="timeline-item reveal">
-                <span class="date">Project</span>
-                <h4>BookClub Backend & Security Review</h4>
-                <span class="position">Personal Project</span>
-                <p>
-                  Spring Boot/JPA/PostgreSQL 기반 커뮤니티 서비스를 개발하고,
-                  인증/인가, XSS, IDOR, CSRF, File Upload 등 주요 보안 항목을 점검합니다.
-                </p>
-              </div>
-            </div>
-
-            <div class="resume-section" id="skills">
-              <h3>Skills</h3>
-
-              <div class="skill-grid">
-                <div class="skill-card reveal">
-                  <h4>Backend</h4>
-                  <div class="tags">
-                    <span class="tag">Java</span>
-                    <span class="tag">Spring Boot</span>
-                    <span class="tag">Spring Security</span>
-                    <span class="tag">JPA</span>
-                    <span class="tag">PostgreSQL</span>
-                    <span class="tag">REST API</span>
-                  </div>
-                </div>
-
-                <div class="skill-card reveal">
-                  <h4>Security</h4>
-                  <div class="tags">
-                    <span class="tag">OWASP Top 10</span>
-                    <span class="tag">Burp Suite</span>
-                    <span class="tag">SQL Injection</span>
-                    <span class="tag">XSS</span>
-                    <span class="tag">IDOR</span>
-                    <span class="tag">CSRF</span>
-                    <span class="tag">Path Traversal</span>
-                  </div>
-                </div>
-
-                <div class="skill-card reveal">
-                  <h4>Infra & Tools</h4>
-                  <div class="tags">
-                    <span class="tag">Linux</span>
-                    <span class="tag">AWS</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Git</span>
-                    <span class="tag">GitHub Actions</span>
-                    <span class="tag">HTTP/DNS</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="resume-section" id="security-lab">
-              <h3>Security Lab</h3>
-
-              <div class="timeline-item reveal">
-                <span class="date">STEP 01</span>
-                <h4>OWASP Top 10 기반 웹 취약점 실습</h4>
-                <span class="position">PortSwigger · Juice Shop · Personal Project</span>
-                <p>
-                  SQL Injection, XSS, IDOR, Path Traversal, File Upload 취약점을 실습하고
-                  재현 절차, 영향도, 원인, 대응 방안, 재검증 결과를 보고서 형식으로 정리합니다.
-                </p>
-              </div>
-
-              <div class="timeline-item reveal">
-                <span class="date">STEP 02</span>
-                <h4>BookClub 보안 점검 보고서</h4>
-                <span class="position">Portfolio Deliverable</span>
-                <p>
-                  직접 개발한 서비스에 대해 Burp Suite로 요청을 조작하고,
-                  인증/인가와 입력 검증이 정상적으로 동작하는지 확인합니다.
-                </p>
-              </div>
-            </div>
+            <div class="eyebrow">Projects & Study</div>
+            <h2 class="section-title">구현하고, 공격해 보고, 다시 고칩니다.</h2>
+            <p class="section-copy">프로젝트를 기능 목록보다 문제 정의, 설계 판단, 검증 과정 중심으로 정리했습니다.</p>
           </div>
+          <div class="section-number">02</div>
+        </div>
+
+        <div class="card-grid">
+          <a class="project-card reveal" href="./projects/mes-anomaly-detection/">
+            <div class="project-icon">AD</div>
+            <h3>Production Anomaly Detection</h3>
+            <p>생산실적·태그·QR 데이터를 연계해 입력 누락과 불일치를 탐지하는 제조 데이터 이상징후 탐지 시스템입니다.</p>
+            <div class="inline-tags"><span class="tag">Python</span><span class="tag">Playwright</span><span class="tag">FastAPI</span><span class="tag">React</span></div>
+            <div class="project-link">Case Study <span>→</span></div>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/hyunsuhahaha/book-club" target="_blank" rel="noopener noreferrer">
+            <div class="project-icon">BC</div>
+            <h3>BookClub Secure Backend</h3>
+            <p>독서 기반 커뮤니티 서비스에 인증·인가, 공개 범위, 입력 검증, 보안 헤더와 Refresh Token 재사용 탐지를 적용했습니다.</p>
+            <div class="inline-tags"><span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span></div>
+            <div class="project-link">GitHub <span>↗</span></div>
+          </a>
+
+          <a class="project-card reveal" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener noreferrer">
+            <div class="project-icon">PWN</div>
+            <h3>Web & Pwn Security Lab</h3>
+            <p>웹 취약점부터 버퍼 오버플로우와 ROP까지, 재현 절차·메모리 구조·보호 기법·대응 원리를 기록합니다.</p>
+            <div class="inline-tags"><span class="tag">PortSwigger</span><span class="tag">pwntools</span><span class="tag">GDB</span><span class="tag">ROP x64</span></div>
+            <div class="project-link">Write-ups <span>↗</span></div>
+          </a>
+
+          <article class="project-card reveal">
+            <div class="project-icon">OT</div>
+            <h3>Infrastructure Security Review</h3>
+            <p>제조기업의 네트워크·원격제어·인증·단말 설정을 수동 점검하고 외부 권고와 연결해 개선 우선순위를 제시했습니다.</p>
+            <div class="inline-tags"><span class="tag">Windows</span><span class="tag">Network</span><span class="tag">MFA</span><span class="tag">Hardening</span></div>
+            <div class="project-link">Internal experience</div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-icon">C2</div>
+            <h3>C2PA Provenance Study</h3>
+            <p>디지털 콘텐츠에서 파일 서명 유효성과 메타데이터 claim 신뢰를 분리해 해석하는 연구 주제를 실험했습니다.</p>
+            <div class="inline-tags"><span class="tag">C2PA</span><span class="tag">Digital Signature</span><span class="tag">Metadata</span><span class="tag">c2patool</span></div>
+            <div class="project-link">Research archive</div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-icon">OS</div>
+            <h3>PintOS Concurrency Labs</h3>
+            <p>락, 세마포어, 데드락을 직접 재현하고 ordered locking으로 해결하며 동시성 제어의 원리를 실습했습니다.</p>
+            <div class="inline-tags"><span class="tag">C</span><span class="tag">Threads</span><span class="tag">Semaphore</span><span class="tag">Deadlock</span></div>
+            <div class="project-link">Systems foundation</div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="projects" id="projects">
+    <section class="section" id="skills">
       <div class="container">
         <div class="section-head reveal">
-          <div class="big">Projects</div>
-          <h2>Projects</h2>
-          <p>개발 경험과 보안 점검 경험을 연결해서 보여주는 프로젝트입니다.</p>
+          <div>
+            <div class="eyebrow">Skills</div>
+            <h2 class="section-title">기술을 목적이 아니라<br />문제 해결 수단으로 사용합니다.</h2>
+          </div>
+          <div class="section-number">03</div>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card reveal">
-            <div class="project-image"></div>
-            <div class="project-body">
-              <h3>BookClub</h3>
-              <p>
-                독서 기반 커뮤니티 웹 서비스입니다. 회원가입, 로그인, 댓글, 친구, 공개범위,
-                JWT 인증 구조를 구현했습니다.
-              </p>
-              <div class="tags">
-                <span class="tag">Spring Boot</span>
-                <span class="tag">JPA</span>
-                <span class="tag">PostgreSQL</span>
-                <span class="tag">JWT</span>
-                <span class="tag">React</span>
-              </div>
-              <div class="project-links">
-                <a class="mini-btn" href="https://github.com/hyunsuhahaha/book-club" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
+        <div class="skill-columns">
+          <article class="skill-group reveal">
+            <h3>Detection & Automation</h3>
+            <div class="skill-list"><span class="skill-pill">Python</span><span class="skill-pill">Playwright</span><span class="skill-pill">Data Matching</span><span class="skill-pill">Rule-based Detection</span><span class="skill-pill">Excel VBA</span><span class="skill-pill">SQLite</span></div>
+            <p>여러 데이터 원천을 정규화하고 판정 규칙과 로그를 연결합니다.</p>
           </article>
+          <article class="skill-group reveal">
+            <h3>Backend & Frontend</h3>
+            <div class="skill-list"><span class="skill-pill">Java</span><span class="skill-pill">Spring Boot</span><span class="skill-pill">Spring Security</span><span class="skill-pill">JPA</span><span class="skill-pill">FastAPI</span><span class="skill-pill">React</span><span class="skill-pill">REST API</span></div>
+            <p>인증과 업무 로직을 API로 구성하고 사용자 화면까지 연결합니다.</p>
+          </article>
+          <article class="skill-group reveal">
+            <h3>Security</h3>
+            <div class="skill-list"><span class="skill-pill">OWASP Top 10</span><span class="skill-pill">Burp Suite</span><span class="skill-pill">GDB</span><span class="skill-pill">pwntools</span><span class="skill-pill">ROP</span><span class="skill-pill">Threat Review</span><span class="skill-pill">Hardening</span></div>
+            <p>공격 재현과 방어 검증을 통해 취약점의 구조적 원인을 학습합니다.</p>
+          </article>
+          <article class="skill-group reveal">
+            <h3>Systems & Infra</h3>
+            <div class="skill-list"><span class="skill-pill">Linux</span><span class="skill-pill">Windows</span><span class="skill-pill">TCP/IP</span><span class="skill-pill">DNS/HTTP</span><span class="skill-pill">AWS</span><span class="skill-pill">Docker</span><span class="skill-pill">Git</span></div>
+            <p>운영체제와 네트워크 기반으로 서비스와 인프라의 동작을 추적합니다.</p>
+          </article>
+        </div>
 
-          <article class="project-card reveal">
-            <div class="project-image security"></div>
-            <div class="project-body">
-              <h3>BookClub Security Review</h3>
-              <p>
-                직접 만든 서비스를 대상으로 OWASP Top 10 기반 보안 점검을 수행하고,
-                취약점 재현, 원인 분석, 대응, 재검증까지 보고서화합니다.
-              </p>
-              <div class="tags">
-                <span class="tag">Burp Suite</span>
-                <span class="tag">XSS</span>
-                <span class="tag">IDOR</span>
-                <span class="tag">CSRF</span>
-                <span class="tag">File Upload</span>
-              </div>
-              <div class="project-links">
-                <a class="mini-btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">GitHub</a>
-                <a class="mini-btn" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener">Write-up</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-image cloud"></div>
-            <div class="project-body">
-              <h3>Linux & Cloud Study</h3>
-              <p>
-                Linux, 네트워크, AWS를 기반으로 서버 운영과 인프라 보안의 기초를 정리합니다.
-              </p>
-              <div class="tags">
-                <span class="tag">Linux</span>
-                <span class="tag">AWS</span>
-                <span class="tag">Network</span>
-                <span class="tag">Docker</span>
-              </div>
-              <div class="project-links">
-                <a class="mini-btn" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener">Velog</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-image research"></div>
-            <div class="project-body">
-              <h3>Provenance Signature Study</h3>
-              <p>
-                디지털 콘텐츠 출처 검증에서 서명 검증과 메타데이터 신뢰가 어떻게 분리되는지 정리한 연구 주제입니다.
-              </p>
-              <div class="tags">
-                <span class="tag">C2PA</span>
-                <span class="tag">Digital Signature</span>
-                <span class="tag">Metadata</span>
-                <span class="tag">Verification</span>
-              </div>
-              <div class="project-links">
-                <a class="mini-btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">Archive</a>
-              </div>
-            </div>
-          </article>
+        <div class="cert-row">
+          <article class="cert-card reveal"><span>CERTIFICATE</span><strong>SQLD</strong><p>관계형 데이터 모델과 SQL 활용 역량을 검증했습니다.</p></article>
+          <article class="cert-card reveal"><span>CERTIFICATE</span><strong>AWS Certified Cloud Practitioner</strong><p>클라우드 서비스와 보안·운영의 기본 구조를 학습했습니다.</p></article>
+          <article class="cert-card reveal"><span>CURRENT DIRECTION</span><strong>OT · Smart Factory Security</strong><p>제조 데이터, 인프라, 이상징후 탐지 경험을 보안 엔지니어링으로 연결하고 있습니다.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="blog">
+    <section class="section compact section-light" id="contact">
       <div class="container">
-        <div class="section-head reveal">
-          <div class="big">Blog</div>
-          <h2>My Blog</h2>
-          <p>공부한 내용을 단순 요약이 아니라 실습, 원인 분석, 대응 방안 중심으로 정리합니다.</p>
-        </div>
-
-        <div class="blog-grid">
-          <a class="blog-card reveal" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener">
-            <div class="category">WEB SECURITY</div>
-            <h3>SQL Injection 원리와 PreparedStatement 방어</h3>
-            <p>쿼리 구조가 사용자 입력으로 변조되는 이유와 안전한 바인딩 방식을 정리합니다.</p>
-          </a>
-
-          <a class="blog-card reveal" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener">
-            <div class="category">WEB SECURITY</div>
-            <h3>XSS와 출력 인코딩, CSP, HttpOnly</h3>
-            <p>Stored/Reflected/DOM XSS의 차이와 실제 서비스에서의 방어 포인트를 정리합니다.</p>
-          </a>
-
-          <a class="blog-card reveal" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener">
-            <div class="category">PORTFOLIO</div>
-            <h3>BookClub 보안 점검 보고서 작성 과정</h3>
-            <p>직접 만든 서비스의 인증/인가, IDOR, CSRF, 파일 업로드 점검 과정을 기록합니다.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="hire">
-      <div class="container reveal">
-        <h2>서비스를 만들고 <span>안전하게 개선하는</span> 개발자</h2>
-        <p>백엔드 개발 경험과 웹 보안 점검 경험을 연결해서 성장하고 있습니다.</p>
-        <div class="buttons">
-          <a class="btn primary" href="mailto:hyunsuhahaha@gmail.com">연락하기</a>
-          <a class="btn" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">GitHub 보기</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="big">Contact</div>
-          <h2>Contact Me</h2>
-          <p>프로젝트, 보안 실습, 학습 기록은 GitHub와 Velog에 정리합니다.</p>
-        </div>
-
-        <div class="contact-grid">
-          <a class="contact-card reveal" href="mailto:hyunsuhahaha@gmail.com">
-            <div class="contact-icon">✉</div>
-            <h3>Email</h3>
-            <p>hyunsuhahaha@gmail.com</p>
-          </a>
-
-          <a class="contact-card reveal" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener">
-            <div class="contact-icon">⌘</div>
-            <h3>GitHub</h3>
-            <p>github.com/hyunsuhahaha</p>
-          </a>
-
-          <a class="contact-card reveal" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener">
-            <div class="contact-icon">✍</div>
-            <h3>Velog</h3>
-            <p>velog.io/@ffkdkshqw</p>
-          </a>
-
-          <a class="contact-card reveal" href="https://hyunsuhahaha.github.io" target="_blank" rel="noopener">
-            <div class="contact-icon">🌐</div>
-            <h3>Website</h3>
-            <p>hyunsuhahaha.github.io</p>
-          </a>
+        <div class="contact-panel reveal">
+          <div>
+            <h2>문제를 발견하고,<br />끝까지 추적합니다.</h2>
+            <p>백엔드, 보안, 제조 데이터 기반 이상징후 탐지 경험을 GitHub와 Velog에 계속 기록하고 있습니다.</p>
+          </div>
+          <div class="contact-links">
+            <a class="btn dark" href="mailto:hyunsuhahaha@gmail.com">Email</a>
+            <a class="btn dark" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="btn dark" href="https://velog.io/@ffkdkshqw/posts" target="_blank" rel="noopener noreferrer">Velog ↗</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      Copyright © <span id="year"></span> HyunSu Lee. All rights reserved.
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span data-current-year></span> HyunSu Lee</span>
+      <span>Built with semantic HTML, CSS and vanilla JavaScript.</span>
     </div>
   </footer>
 
-  <script>
-    const words = [
-      "Backend Developer",
-      "Web Security Learner",
-      "Security-minded Engineer",
-      "Cloud & Linux Explorer"
-    ];
-
-    const typingTarget = document.getElementById("typing");
-    let wordIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-
-    function type() {
-      const current = words[wordIndex];
-
-      if (!deleting) {
-        typingTarget.textContent = current.slice(0, charIndex + 1);
-        charIndex++;
-
-        if (charIndex === current.length) {
-          deleting = true;
-          setTimeout(type, 1000);
-          return;
-        }
-      } else {
-        typingTarget.textContent = current.slice(0, charIndex - 1);
-        charIndex--;
-
-        if (charIndex === 0) {
-          deleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
-        }
-      }
-
-      setTimeout(type, deleting ? 45 : 80);
-    }
-
-    type();
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-  </script>
+  <script src="./assets/app.js" defer></script>
 </body>
 </html>
