@@ -3,120 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="이현수의 개인, 팀, 회사 프로젝트를 정리한 기술 포트폴리오">
-  <meta name="theme-color" content="#ffffff">
-  <meta property="og:title" content="이현수 — Projects">
-  <meta property="og:description" content="개인, 팀, 회사 프로젝트와 공개 저장소를 한곳에 정리했습니다.">
-  <meta property="og:type" content="website">
-  <title>이현수 — Projects</title>
+  <meta name="description" content="보안, 데이터, 클라우드, AI, 게임 프로젝트를 네트워크 그래프로 탐색하는 이현수의 포트폴리오">
+  <meta name="theme-color" content="#f2f0ea">
+  <title>이현수 — Project Graph</title>
   <link rel="stylesheet" href="./assets/index.css">
 </head>
 <body>
-  <a class="skip-link" href="#projects">프로젝트로 바로가기</a>
-  <main class="index" id="projects">
-    <header class="identity">
-      <div>
-        <h1>이현수</h1>
-        <p>Computer Science, Dongguk University</p>
-      </div>
+  <main class="network-app">
+    <aside class="sidebar">
+      <header class="profile">
+        <h1><span aria-hidden="true"></span>이현수</h1>
+        <p>Computer Science<br>Dongguk University</p>
+      </header>
+      <nav class="legend" id="legend" aria-label="프로젝트 분야 필터"></nav>
       <nav aria-label="연락처">
-        <a href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-        <a href="mailto:hyunsuhahaha@gmail.com">Email <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="mailto:hyunsuhahaha@gmail.com">Email ↗</a>
       </nav>
-    </header>
+    </aside>
 
-    <section class="project-group" aria-labelledby="personal-projects">
-      <h2 id="personal-projects">개인 프로젝트</h2>
-      <details class="project">
-        <summary><span class="project-name">ShadowTrace</span><span class="project-summary">Passive pentest activity recorder</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Solo project</dd></div>
-          <div><dt>What I did</dt><dd>Kali Linux에서 승인된 침투 테스트 활동과 증적을 기록하는 로컬 워크스페이스를 구현했습니다. 프로세스·터미널·네트워크·파일 이벤트를 수집하고 타임라인과 증거로 연결합니다.</dd></div>
-          <div><dt>Stack</dt><dd>React · FastAPI · SQLite · eBPF · Kali Linux</dd></div>
-          <div><dt>Repository</dt><dd><a href="https://github.com/hyunsuhahaha/ShadowTrace" target="_blank" rel="noopener noreferrer">GitHub ↗</a></dd></div>
-        </dl></div>
-      </details>
-      <details class="project">
-        <summary><span class="project-name">OSCP Workspace</span><span class="project-summary">OSCP study reference</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Personal study fork</dd></div>
-          <div><dt>What I did</dt><dd>OSCP 준비 과정에서 필요한 열거, 취약점 분석, 권한 상승 명령과 체크리스트를 빠르게 찾을 수 있도록 관리하는 학습용 레퍼런스입니다.</dd></div>
-          <div><dt>Stack</dt><dd>Kali Linux · Network Enumeration · Privilege Escalation</dd></div>
-          <div><dt>Repository</dt><dd><a href="https://github.com/hyunsuhahaha/OSCP-CheatSheet" target="_blank" rel="noopener noreferrer">GitHub ↗</a></dd></div>
-        </dl></div>
-      </details>
-      <details class="project">
-        <summary><span class="project-name">AirPointer</span><span class="project-summary">Screen context and replay interface</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Solo project</dd></div>
-          <div><dt>What I did</dt><dd>현재 화면과 최근 화면 기록을 선택해 AI에 전달하고 근거 시점을 다시 확인할 수 있는 브라우저·Windows 도구를 구현했습니다. 제스처, 단축키, 화면 공유와 로컬 화면 기록을 지원합니다.</dd></div>
-          <div><dt>Stack</dt><dd>TypeScript · Next.js · Python · MediaPipe · Windows</dd></div>
-          <div><dt>Repository</dt><dd><a href="https://github.com/hyunsuhahaha/AirPointer" target="_blank" rel="noopener noreferrer">GitHub ↗</a></dd></div>
-        </dl></div>
-      </details>
-    </section>
+    <svg class="network" id="network" viewBox="0 0 1400 850" role="application" aria-label="프로젝트 네트워크 그래프. 노드를 드래그하고 프로젝트를 선택할 수 있습니다.">
+      <g id="viewport">
+        <g id="edges"></g>
+        <g id="nodes"></g>
+      </g>
+    </svg>
 
-    <section class="project-group team-projects" aria-labelledby="team-projects">
-      <h2 id="team-projects">팀 프로젝트</h2>
-      <details class="project">
-        <summary><span class="project-name">AI Generated Code Verification Pipeline</span><span class="project-summary">AI 코드 품질·보안 검증 파이프라인</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Team project</dd></div>
-          <div><dt>What I did</dt><dd>코드 변경의 의존 경로를 추적하고 발견한 데이터 정합성 문제를 테스트 DB에서 재현·검증하는 셀프 호스팅 PR 리뷰 파이프라인을 구성했습니다.</dd></div>
-          <div><dt>Stack</dt><dd>Python · Codex CLI · GitNexus · Gitea · Django</dd></div>
-          <div><dt>Repository</dt><dd><a href="https://github.com/hyunsuhahaha/gitea-auto-reviewer" target="_blank" rel="noopener noreferrer">GitHub ↗</a></dd></div>
-        </dl></div>
-      </details>
-      <details class="project">
-        <summary><span class="project-name">창의문제해결 프로젝트</span><span class="project-summary">C2PA 기반 콘텐츠 출처 검증 연구</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Academic team project</dd></div>
-          <div><dt>What I did</dt><dd>C2PA 기반 디지털 콘텐츠의 출처와 서명 정보를 검증하고, 파일 서명 유효성과 메타데이터 신뢰를 구분해 해석하는 방법을 연구했습니다.</dd></div>
-          <div><dt>Stack</dt><dd>Rust · C2PA · Digital Signature · Metadata</dd></div>
-          <div><dt>Repository</dt><dd><a href="https://github.com/hyunsuhahaha/c2pa-rs_dongguk" target="_blank" rel="noopener noreferrer">GitHub ↗</a></dd></div>
-        </dl></div>
-      </details>
-    </section>
+    <div class="graph-controls" aria-label="그래프 보기 조절">
+      <button type="button" id="zoom-out" aria-label="축소">−</button>
+      <button type="button" id="reset-view" aria-label="그래프 위치 초기화">○</button>
+      <button type="button" id="zoom-in" aria-label="확대">＋</button>
+    </div>
 
-    <section class="project-group" aria-labelledby="company-projects">
-      <h2 id="company-projects">회사 프로젝트</h2>
-      <details class="project">
-        <summary><span class="project-name">MES Production Data Automation</span><span class="project-summary">MES 생산 데이터 수집·검증 자동화</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Project owner · Company internship</dd></div>
-          <div><dt>What I did</dt><dd>MES 생산실적, 태그, QR 데이터를 수집·정규화하고 입력 누락과 불일치를 탐지하는 흐름을 설계했습니다. 수집, 판정, 보고와 운영 로그를 하나의 도구로 연결했습니다.</dd></div>
-          <div><dt>Stack</dt><dd>Python · Playwright · FastAPI · React · Excel</dd></div>
-          <div><dt>More</dt><dd><a href="./projects/mes-anomaly-detection/">Case study →</a><span class="privacy">Repository private</span></dd></div>
-        </dl></div>
-      </details>
-      <details class="project">
-        <summary><span class="project-name">CI/CD &amp; Deployment Automation</span><span class="project-summary">Build · test · deployment automation</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Company project</dd></div>
-          <div><dt>Scope</dt><dd>애플리케이션의 테스트와 배포 과정을 반복 가능한 파이프라인으로 정리한 내부 자동화 프로젝트입니다.</dd></div>
-          <div><dt>Stack</dt><dd>Internal infrastructure · Details undisclosed</dd></div>
-          <div><dt>Repository</dt><dd class="privacy">Private company repository</dd></div>
-        </dl></div>
-      </details>
-      <details class="project">
-        <summary><span class="project-name">DB Migration / Backup Automation</span><span class="project-summary">Schema migration · backup automation</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Company project</dd></div>
-          <div><dt>Scope</dt><dd>데이터베이스 스키마와 데이터의 마이그레이션, 동기화, 백업 절차를 자동화한 내부 프로젝트입니다.</dd></div>
-          <div><dt>Stack</dt><dd>Database tooling · Details undisclosed</dd></div>
-          <div><dt>Repository</dt><dd class="privacy">Private company repository</dd></div>
-        </dl></div>
-      </details>
-      <details class="project">
-        <summary><span class="project-name">Security Configuration Review</span><span class="project-summary">Server · infrastructure security review</span><span class="project-arrow" aria-hidden="true">→</span></summary>
-        <div class="project-detail"><dl>
-          <div><dt>Role</dt><dd>Company internship</dd></div>
-          <div><dt>What I did</dt><dd>사내 네트워크, 원격제어, 인증과 단말 설정을 점검하고 외부 보안 권고와 연결해 개선 우선순위를 정리했습니다.</dd></div>
-          <div><dt>Stack</dt><dd>Windows · Network · MFA · Hardening</dd></div>
-          <div><dt>Repository</dt><dd class="privacy">Private company repository</dd></div>
-        </dl></div>
-      </details>
-    </section>
+    <aside class="detail-panel" id="detail-panel" aria-live="polite" aria-hidden="true"></aside>
   </main>
+  <script src="./assets/index.js"></script>
 </body>
 </html>
