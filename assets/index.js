@@ -170,6 +170,8 @@ function syncMotion() {
 }
 
 svg.addEventListener("pointerdown",(event) => {
+  if (event.button !== 0) return;
+  event.preventDefault();
   const node = event.target.closest(".node");
   svg.setPointerCapture(event.pointerId);
   gesture = { node, startX:event.clientX, startY:event.clientY, lastX:event.clientX, lastY:event.clientY, moved:false };
