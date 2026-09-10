@@ -1,166 +1,91 @@
 ---
-name: HyunSu Lee Project Index
-description: A compact, document-like portfolio where the project record is the profile.
+name: HyunSu Lee Project Map
+description: A sparse interactive network graph connecting selected work across five disciplines.
 colors:
-  ink: "#151515"
-  muted: "#707070"
-  line: "#e7e7e7"
-  paper: "#ffffff"
-  focus: "#4a4a4a"
+  paper: "#fafaf8"
+  sidebar: "#fdfdfc"
+  ink: "#171817"
+  muted: "#8a8d92"
+  line: "#e2e2df"
+  blue: "#2867d8"
+  security: "#147a52"
+  data: "#1686ae"
+  infra: "#b26a10"
+  ai: "#6636c6"
+  game: "#b51f3d"
 typography:
-  display:
-    fontFamily: '"BIZ UDPGothic", "Helvetica Neue", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    fontSize: "clamp(2.15rem, 5vw, 3.05rem)"
-    fontWeight: 700
-    lineHeight: 1
-    letterSpacing: "-0.035em"
-  headline:
-    fontFamily: '"BIZ UDPGothic", "Helvetica Neue", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    fontSize: "1.45rem"
-    fontWeight: 700
-    lineHeight: 1.55
-    letterSpacing: "-0.02em"
-  title:
-    fontFamily: '"BIZ UDPGothic", "Helvetica Neue", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    fontSize: "1.12rem"
-    fontWeight: 700
-    lineHeight: 1.55
-    letterSpacing: "-0.015em"
-  body:
-    fontFamily: '"BIZ UDPGothic", "Helvetica Neue", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.55
-  label:
-    fontFamily: '"BIZ UDPGothic", "Helvetica Neue", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    fontSize: "0.82rem"
-    fontWeight: 400
-    lineHeight: 1.55
+  mapTitle: "clamp(2.8rem, 4.1vw, 4.9rem) / 700 / .83"
+  mobileTitle: "clamp(3.3rem, 15vw, 5.3rem) / 700 / .84"
+  panelTitle: "clamp(2rem, 2.7vw, 3.25rem) / 700 / .96"
+  identity: "1.22rem / 700 / 1.2"
+  body: ".82rem / 400 / 1.5"
+  projectLabel: "clamp(.66rem, .72vw, .78rem) / 700 / 1.2"
+  micro: ".63rem–.72rem / 400 / 1.5"
 rounded:
+  node: "50%"
+  tag: "999px"
   none: "0"
-spacing:
-  xs: "4px"
-  sm: "8px"
-  md: "12px"
-  row: "14px"
-  lg: "24px"
-  xl: "32px"
-  section: "58px"
-  header: "68px"
-components:
-  project-disclosure:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.none}"
-    padding: "14px 2px"
-    height: "59px"
-  skip-link:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.none}"
-    padding: "0.55rem 0.75rem"
 ---
 
-# Design System: HyunSu Lee Project Index
+# Design System: HyunSu Lee Project Map
 
-## Overview
+## Creative North Star
 
-**Creative North Star: "The Technical Index"**
+**The Knowledge Graph.** The portfolio is the graph itself: a near-white canvas, fine category-colored edges, large discipline hubs and small project nodes. The visual reference is a sparse technical knowledge atlas, not a dashboard or a prose-led portfolio.
 
-The root portfolio behaves like a concise project ledger: white paper, charcoal type, muted annotations, and hairline rules. The interface recedes so visitors can scan evidence quickly, then open only the records they need.
+## Composition
 
-It is compact without feeling compressed. Hierarchy comes from weight, spacing, and alignment—not decoration—and the project itself remains the profile.
+Desktop uses a two-part, full-height composition:
 
-**Key Characteristics:**
+- A 215px left index contains identity, five discipline filters and contact links.
+- The remaining viewport is a draggable, pannable and zoomable SVG network.
+- A right detail sheet appears only after a project node is selected.
 
-- A centered single-column index with a firm 900px ceiling.
-- Project names lead; summaries and metadata remain quiet.
-- Native disclosure behavior with one restrained arrow gesture.
-- Flat, square, monochrome construction throughout.
+The graph has a composed initial topology but every node can be dragged. Empty-space drag pans the canvas, and wheel or controls change zoom. Mobile keeps the graph and converts the sidebar into a compact top rail; project detail becomes a bottom sheet.
 
-## Colors
+## Color
 
-The palette is strictly neutral: paper creates openness, ink establishes hierarchy, and two grays separate annotation from structure.
+The foundation is near-white and cool neutral: `paper`, `sidebar`, `ink`, `muted`, and `line`. Color has one job—discipline identity. Security is green, AI violet, Game red, Data cyan-blue and Cloud / Infra amber. Blue is reserved for focus, the identity marker and repository links.
 
-### Primary
-
-- **Charcoal Ink:** Primary text, headings, selection fill, and the skip-link surface.
-
-### Neutral
-
-- **White Paper:** The only page and component background.
-- **Annotation Gray:** Supporting summaries, labels, affiliation, and privacy status.
-- **Hairline Gray:** Project-row dividers only.
-- **Focus Graphite:** High-contrast keyboard focus outlines.
-
-**The No Accent Rule.** Do not introduce brand, status, or decorative color into this index.
+All body-size category colors maintain at least 4.5:1 contrast on paper. Lines remain neutral until a category or project selection gives color semantic meaning.
 
 ## Typography
 
-**Display Font:** BIZ UDPGothic with a system sans-serif fallback stack  
-**Body Font:** The same sans-serif stack
+One Korean-safe sans-serif stack keeps the system coherent. The oversized, tightly tracked `Project Map` title provides the editorial gesture; project names and interface copy remain compact. Metadata is uppercase and micro-sized only where it acts as coordinate or document notation. Body copy stays at normal tracking.
 
-**Character:** Direct, contemporary, and documentation-like. A single family keeps Korean and English records visually continuous; size and weight carry the hierarchy.
+## Interaction
 
-### Hierarchy
-
-- **Display** (700, fluid 2.15–3.05rem, 1): Owner name only.
-- **Headline** (700, 1.45rem): Project-group headings.
-- **Title** (700, 1.12rem): Project names in disclosure rows.
-- **Body** (400, 1rem, 1.55): Summaries and general reading text; detail copy steps down to 0.9rem.
-- **Label** (400, 0.82rem): Definition terms and privacy metadata.
-
-**The Weight Before Ornament Rule.** Establish hierarchy with weight and scale; underlining appears only as an interaction cue.
-
-## Layout
-
-The index is centered at a maximum width of 900px with 40px total desktop gutter and generous vertical edges. Identity and contact links share the first row; project groups follow at 58px intervals. Each desktop project summary uses three columns—name, summary, arrow—and detail content is capped at 720px with a 120px label column.
-
-At 700px and below, the gutter contracts to 28px, identity and navigation stack, project summaries become a two-column name/arrow layout with the summary below, and definition rows collapse to one column. Word breaks stay phrase-aware for Korean copy.
-
-## Elevation & Depth
-
-There are no shadows, overlays, gradients, or raised surfaces. Depth is intentionally absent; section spacing and one-pixel rules create all separation.
-
-**The Flat Ledger Rule.** Every project remains on the shared paper plane in every state.
-
-## Shapes
-
-The system is rectilinear and unboxed. Corners have no radius, rows have no enclosing cards, and one-pixel horizontal rules are the only recurring geometry.
+- Every discipline and project node supports mouse or touch dragging; connected lines update continuously.
+- Dragging empty canvas pans the viewport; wheel and bottom controls change zoom or reset the view.
+- Selecting a discipline emphasizes its connected projects and lines while dimming the rest.
+- Selecting a project emphasizes every discipline it touches and opens the evidence rail.
+- The close control clears the selection and restores the full topology.
+- A single line-arrival animation introduces the map. Panel content uses one short upward settle; reduced-motion removes both.
+- Keyboard focus uses a 2px ink outline with a 4px offset.
 
 ## Components
 
-### Identity Header
+### Discipline Hub
 
-The owner name and affiliation anchor the left edge while plain GitHub and Email links sit opposite. Links underline on hover and stack beneath the identity on mobile.
+A large, double-ring circle carrying the category color and label. Its scale makes the hierarchy obvious without an explanatory legend.
 
-### Project Disclosure
+### Project Point
 
-Each project is a native `details` record with a three-column desktop summary. Hover underlines the project name and translates the arrow 4px; the open state rotates the same arrow 90 degrees. The 180ms ease-out transition is removed for reduced-motion users.
+A small colored point paired with a balanced text label. It has no card surface. Projects with several disciplines receive several lines but one point.
 
-Expanded content uses a compact definition list for role, work, stack, and repository status. Public evidence is a bold link; unavailable repositories are muted text, never fabricated calls to action.
+### Evidence Rail
 
-### Skip Link
+A flat side rail showing project type, name, summary, disciplines, role, work, stack and a verified repository or case-study link. Private company repositories are identified as private and never receive fabricated URLs.
 
-The keyboard skip link is fixed off-canvas until focus, then appears as white text on charcoal with a square silhouette.
+### Mobile Graph
 
-### Focus State
+The same graph remains interactive below the compact top identity and horizontal discipline filters. Project details open as a bottom sheet.
 
-All focus-visible elements receive a 2px graphite outline with 4px offset. Focus remains structural and monochrome.
+## Rules
 
-## Do's and Don'ts
-
-### Do:
-
-- **Do** keep the root index within its 900px single-column frame.
-- **Do** use hairline rules, spacing, and typographic weight to express structure.
-- **Do** preserve native `details`/`summary` behavior and the single arrow interaction.
-- **Do** keep private project evidence visibly private and non-clickable.
-
-### Don't:
-
-- **Don't** introduce cards, shadows, rounded corners, gradients, imagery, or accent colors.
-- **Don't** add ornamental motion beyond arrow translation and rotation.
-- **Don't** apply this root-index system to the legacy MES case-study stylesheet.
-- **Don't** invent controls or component variants absent from the implementation.
+- Keep discipline hubs larger than every project point.
+- Preserve the initial topology unless projects are added or relationships change; user-dragged positions remain session-local.
+- Use color only to encode disciplines and active relationships.
+- Keep project type in detail metadata, not as competing graph hubs.
+- Do not add marketing copy, helper sentences, cards, 3D physics, search, or external graph libraries.
+- Do not expose company infrastructure, data, identifiers or private repository locations.
