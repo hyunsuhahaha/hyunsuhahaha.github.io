@@ -5,7 +5,7 @@ colors:
   paper: "#fafaf8"
   sidebar: "#fdfdfc"
   ink: "#171817"
-  muted: "#8a8d92"
+  muted: "#6f7278"
   line: "#e2e2df"
   blue: "#2867d8"
   security: "#147a52"
@@ -56,9 +56,11 @@ One Korean-safe sans-serif stack keeps the system coherent. The oversized, tight
 ## Interaction
 
 - Every discipline and project node supports mouse or touch dragging; connected lines update continuously.
+- Nodes drift by 2–4 graph units at independent slow phases so the network feels alive without losing label legibility; reduced-motion keeps them still.
 - Dragging empty canvas pans the viewport; wheel and bottom controls change zoom or reset the view.
 - Selecting a discipline emphasizes its connected projects and lines while dimming the rest.
 - Selecting a project emphasizes every discipline it touches and opens the evidence rail.
+- Clicking empty canvas, an edge, or non-interactive chrome clears the current selection.
 - The close control clears the selection and restores the full topology.
 - A single line-arrival animation introduces the map. Panel content uses one short upward settle; reduced-motion removes both.
 - Keyboard focus uses a 2px ink outline with a 4px offset.
