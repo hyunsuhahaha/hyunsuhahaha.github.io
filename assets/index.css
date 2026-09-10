@@ -1,6 +1,6 @@
 :root {
   color-scheme:light;
-  --paper:#fafaf8; --sidebar:#fdfdfc; --ink:#171817; --muted:#8a8d92; --line:#e2e2df; --blue:#2867d8;
+  --paper:#fafaf8; --sidebar:#fdfdfc; --ink:#171817; --muted:#6f7278; --line:#e2e2df; --blue:#2867d8;
   --security:#147a52; --data:#1686ae; --infra:#b26a10; --ai:#6636c6; --game:#b51f3d;
   --font:Inter,"Helvetica Neue",Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
@@ -24,10 +24,11 @@ button { cursor:pointer; }
 .legend { display:grid; padding:14px 10px; }
 .legend button { --category:var(--ink); display:grid; grid-template-columns:8px 1fr auto; gap:8px; align-items:center; min-height:31px; padding:4px 0; border:0; background:transparent; color:#555962; font-size:.7rem; text-align:left; }
 .legend button::before { width:7px; height:7px; border-radius:50%; background:var(--category); content:""; }
-.legend button::after { color:#a1a4a9; font-size:.62rem; font-variant-numeric:tabular-nums; content:attr(data-count); }
+.legend button::after { color:#73767c; font-size:.62rem; font-variant-numeric:tabular-nums; content:attr(data-count); }
 .legend button:hover,.legend button[aria-pressed="true"] { color:var(--category); }
 .legend button[aria-pressed="true"] { font-weight:700; }
 .network { position:absolute; inset:0 0 0 215px; display:block; width:calc(100% - 215px); height:100%; touch-action:none; cursor:grab; }
+.canvas-background { fill:#fff; fill-opacity:0; pointer-events:all; }
 .network.is-panning { cursor:grabbing; }
 .edge { stroke:var(--category); stroke-width:1.1; opacity:.28; vector-effect:non-scaling-stroke; transition:opacity 180ms ease,stroke-width 180ms ease; }
 .edge.is-active { stroke-width:2; opacity:.85; }
@@ -41,7 +42,7 @@ button { cursor:pointer; }
 .category-node:hover .halo,.category-node[aria-pressed="true"] .halo { fill:color-mix(in srgb,var(--category) 18%,var(--paper)); }
 .project-node .ring { fill:color-mix(in srgb,var(--category) 14%,var(--paper)); }
 .project-node .dot { fill:var(--category); stroke:var(--paper); stroke-width:2; vector-effect:non-scaling-stroke; }
-.project-node .label { fill:#8b8e92; font-size:11px; font-weight:600; dominant-baseline:middle; pointer-events:none; paint-order:stroke; stroke:var(--paper); stroke-width:4px; stroke-linejoin:round; }
+.project-node .label { fill:var(--muted); font-size:11px; font-weight:600; dominant-baseline:middle; pointer-events:none; paint-order:stroke; stroke:var(--paper); stroke-width:4px; stroke-linejoin:round; }
 .project-node:hover .label,.project-node[aria-pressed="true"] .label { fill:var(--ink); }
 .project-node:hover .dot,.project-node[aria-pressed="true"] .dot { stroke-width:5; }
 .graph-controls { position:absolute; z-index:8; right:18px; bottom:14px; display:flex; align-items:center; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.94); }

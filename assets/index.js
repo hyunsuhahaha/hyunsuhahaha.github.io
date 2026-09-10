@@ -12,7 +12,7 @@ const projects = [
   { id:"security-review", name:"Security Configuration Review", summary:"Server and infrastructure assessment", type:"회사 프로젝트", role:"Company internship", categories:["security","infra"], primary:"security", x:485, y:420, work:"사내 네트워크, 원격제어, 인증과 단말 설정을 점검하고 외부 보안 권고를 기준으로 개선 우선순위를 도출했습니다.", stack:"Windows · Network · MFA · Hardening", private:true },
   { id:"ai-review", name:"AI Code Verification", summary:"AI 코드 품질·보안 검증 파이프라인", type:"팀 프로젝트", role:"Team project", categories:["ai","security"], primary:"ai", x:500, y:110, work:"코드 변경의 의존 경로를 추적하고 발견한 데이터 정합성 문제를 테스트 DB에서 재현·검증하는 셀프 호스팅 PR 리뷰 파이프라인을 구성했습니다.", stack:"Python · Codex CLI · GitNexus · Gitea · Django", href:"https://github.com/hyunsuhahaha/gitea-auto-reviewer" },
   { id:"airpointer", name:"AirPointer", summary:"Screen context and gesture interface", type:"개인 프로젝트", role:"Solo project", categories:["ai"], primary:"ai", x:870, y:105, work:"현재 화면과 최근 기록을 AI에 전달하고 근거 시점을 다시 확인하는 브라우저·Windows 도구를 구현했습니다. 제스처, 단축키와 화면 기록을 지원합니다.", stack:"TypeScript · Next.js · Python · MediaPipe · Windows", href:"https://github.com/hyunsuhahaha/AirPointer" },
-  { id:"c2pa", name:"C2PA Provenance Study", summary:"콘텐츠 출처·서명 검증 연구", type:"팀 프로젝트", role:"Academic team project", categories:["ai","data","security"], primary:"ai", x:700, y:440, work:"C2PA 기반 디지털 콘텐츠의 출처와 서명 정보를 검증하고, 파일 서명 유효성과 메타데이터 신뢰를 구분해 해석하는 방법을 연구했습니다.", stack:"Rust · C2PA · Digital Signature · Metadata", href:"https://github.com/hyunsuhahaha/c2pa-rs_dongguk" },
+  { id:"c2pa", name:"C2PA Provenance Study", summary:"콘텐츠 출처·서명 검증 연구", type:"팀 프로젝트", role:"Academic team project", categories:["ai","data","security"], primary:"ai", x:760, y:430, work:"C2PA 기반 디지털 콘텐츠의 출처와 서명 정보를 검증하고, 파일 서명 유효성과 메타데이터 신뢰를 구분해 해석하는 방법을 연구했습니다.", stack:"Rust · C2PA · Digital Signature · Metadata", href:"https://github.com/hyunsuhahaha/c2pa-rs_dongguk" },
   { id:"last-haul", name:"LAST HAUL", summary:"벌목 기록전과 무한 디펜스 게임", type:"개인 프로젝트", role:"Game design & development", categories:["game"], primary:"game", x:1220, y:185, align:"end", work:"숲의 재생 속도를 따라잡으며 나무를 제거하는 LÖVE2D 게임입니다. 기록전, 무한 디펜스, 영구 연구, 잡 마스터와 플레이테스트 계측을 설계했습니다.", stack:"Lua · LÖVE2D · Game Systems · Pixel Art", href:"https://github.com/hyunsuhahaha/def_game" },
   { id:"keystroke-guitar", name:"KEYSTROKE / Guitar", summary:"Keyboard-playable 6-string instrument", type:"개인 프로젝트", role:"Game & audio development", categories:["game"], primary:"game", x:1230, y:570, align:"end", work:"키보드로 스트로크, 일렉 리드와 사용자 코드를 연주하는 6현 기타를 만들었습니다. 각 줄은 독립적인 Karplus–Strong 합성 음성으로 동작합니다.", stack:"Lua · LÖVE2D · Karplus–Strong Synthesis", href:"https://github.com/hyunsuhahaha/keystroke-guitar" },
   { id:"mes", name:"MES Data Automation", summary:"생산 데이터 수집·검증 자동화", type:"회사 프로젝트", role:"Project owner · Company internship", categories:["data","infra"], primary:"data", x:265, y:745, work:"MES 생산실적, 태그, QR 데이터를 수집·정규화하고 입력 누락과 불일치를 탐지하는 흐름을 설계했습니다. 수집, 판정, 보고를 하나의 도구로 연결했습니다.", stack:"Python · Playwright · FastAPI · React · Excel", href:"./projects/mes-anomaly-detection/", linkLabel:"Case study" },
@@ -31,6 +31,10 @@ let selectedCategory = null;
 let selectedProject = null;
 let view = { x:0,y:0,scale:1 };
 let gesture = null;
+let ignoreCanvasClick = false;
+let nodeById = new Map();
+let animationFrame = null;
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function renderLegend() {
   document.querySelector("#legend").innerHTML = categories.map((category) => {
@@ -53,14 +57,15 @@ function renderGraph() {
     return `<g class="node project-node" data-project="${project.id}" role="button" tabindex="0" aria-label="${project.name}" aria-pressed="false" style="--category:${color}" transform="translate(${project.x} ${project.y})"><circle class="hit" r="30"></circle><circle class="ring" r="16"></circle><circle class="dot" r="9"></circle><text class="label" x="${labelX}" y="1" text-anchor="${anchor}">${project.name}</text></g>`;
   }).join("");
   nodeLayer.innerHTML = categoryNodes + projectNodes;
+  nodeById = new Map([...categories,...projects].map((item) => [item.id,nodeLayer.querySelector(`[data-${categoryById[item.id] ? "category" : "project"}="${item.id}"]`)]));
 }
 
 function updateEdges() {
   document.querySelectorAll(".edge").forEach((edge) => {
     const project = projects.find((item) => item.id === edge.dataset.project);
     const category = categoryById[edge.dataset.category];
-    edge.setAttribute("x1",project.x); edge.setAttribute("y1",project.y);
-    edge.setAttribute("x2",category.x); edge.setAttribute("y2",category.y);
+    edge.setAttribute("x1",project.renderX ?? project.x); edge.setAttribute("y1",project.renderY ?? project.y);
+    edge.setAttribute("x2",category.renderX ?? category.x); edge.setAttribute("y2",category.renderY ?? category.y);
   });
 }
 
@@ -133,8 +138,35 @@ function moveNode(element,clientX,clientY) {
   const point = graphPoint(clientX,clientY);
   const item = element.dataset.project ? projects.find((entry) => entry.id === element.dataset.project) : categoryById[element.dataset.category];
   item.x = point.x; item.y = point.y;
+  item.renderX = point.x; item.renderY = point.y;
   element.setAttribute("transform",`translate(${point.x} ${point.y})`);
   updateEdges();
+}
+
+function drawMotion(time = 0) {
+  const items = [...categories,...projects];
+  items.forEach((item,index) => {
+    const isCategory = Boolean(categoryById[item.id]);
+    const isDragged = gesture?.node === nodeById.get(item.id);
+    const amplitude = motionPreference.matches || isDragged ? 0 : isCategory ? 2.2 : 3.8;
+    const speed = .00016 + index % 5 * .000018;
+    item.renderX = item.x + Math.sin(time * speed + index * 1.73) * amplitude;
+    item.renderY = item.y + Math.cos(time * speed * .83 + index * 1.21) * amplitude;
+    nodeById.get(item.id)?.setAttribute("transform",`translate(${item.renderX} ${item.renderY})`);
+  });
+  updateEdges();
+}
+
+function animate(time) {
+  drawMotion(time);
+  animationFrame = requestAnimationFrame(animate);
+}
+
+function syncMotion() {
+  if (animationFrame) cancelAnimationFrame(animationFrame);
+  animationFrame = null;
+  if (motionPreference.matches || document.hidden) drawMotion();
+  else animationFrame = requestAnimationFrame(animate);
 }
 
 svg.addEventListener("pointerdown",(event) => {
@@ -159,14 +191,24 @@ svg.addEventListener("pointermove",(event) => {
 });
 
 svg.addEventListener("pointerup",(event) => {
-  if (gesture && !gesture.moved && gesture.node) {
-    if (gesture.node.dataset.project) selectProject(gesture.node.dataset.project);
+  ignoreCanvasClick = Boolean(gesture?.moved || gesture?.node);
+  if (ignoreCanvasClick) setTimeout(() => { ignoreCanvasClick = false; },0);
+  if (gesture && !gesture.moved) {
+    if (!gesture.node) clearSelection();
+    else if (gesture.node.dataset.project) selectProject(gesture.node.dataset.project);
     else selectCategory(gesture.node.dataset.category);
   }
   gesture = null;
   svg.classList.remove("is-panning");
   if (svg.hasPointerCapture(event.pointerId)) svg.releasePointerCapture(event.pointerId);
 });
+
+svg.addEventListener("click",(event) => {
+  if (ignoreCanvasClick) { ignoreCanvasClick = false; return; }
+  if (!event.target.closest(".node")) clearSelection();
+});
+document.querySelector(".canvas-background").addEventListener("click",clearSelection);
+edgeLayer.addEventListener("click",clearSelection);
 
 svg.addEventListener("wheel",(event) => {
   event.preventDefault();
@@ -187,6 +229,12 @@ document.querySelector("#legend").addEventListener("click",(event) => {
   if (button) selectCategory(button.dataset.category);
 });
 
+document.addEventListener("click",(event) => {
+  if (!selectedCategory && !selectedProject) return;
+  if (event.target.closest("#network,#legend,#detail-panel,.graph-controls,a")) return;
+  clearSelection();
+});
+
 function zoom(multiplier) {
   view.scale = Math.min(1.8,Math.max(.55,view.scale * multiplier));
   updateTransform();
@@ -203,3 +251,6 @@ document.querySelector("#reset-view").addEventListener("click",() => {
 
 renderLegend();
 renderGraph();
+syncMotion();
+motionPreference.addEventListener("change",syncMotion);
+document.addEventListener("visibilitychange",syncMotion);
