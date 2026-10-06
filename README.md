@@ -8,3 +8,11 @@
 - `assets/styles.css`, `assets/app.js`: 기존 케이스 스터디 공통 자산
 
 공개 저장소만 GitHub로 연결하며 회사 프로젝트 저장소와 민감 정보는 공개하지 않습니다.
+
+## 로컬 미리보기
+
+```bash
+python -m http.server 8000
+```
+
+브라우저에서 http://localhost:8000 을 엽니다.
