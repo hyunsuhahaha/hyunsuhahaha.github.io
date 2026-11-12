@@ -241,3 +241,65 @@
 .node-title a:hover{color:#9dffc4}
 .bio h3 a{display:inline-flex;align-items:center;gap:6px}.bio h3 a:hover{color:#9dffc4}
 @media(max-width:700px){.milestone[data-side="left"] p.work-chips{justify-content:flex-start}}
+/* KOR / ENG: each text exists in both languages; only the active one renders. */
+html[lang="ko"] .t[lang="en"],html[lang="en"] .t[lang="ko"]{display:none}
+/* Display settings in the header: language and dark mode. */
+.header nav{margin-left:auto}
+.prefs{display:flex;align-items:center;gap:8px;margin-left:26px}
+.lang-switch{display:flex;border:1px solid var(--line);border-radius:999px;padding:2px}
+.lang-switch button,.theme-switch{font:600 10px/1 Plex,monospace;letter-spacing:.04em;color:var(--muted);background:none;border:0;cursor:pointer}
+.lang-switch button{padding:6px 9px;border-radius:999px}
+.lang-switch button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.theme-switch{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);border-radius:50%;color:var(--ink)}
+.theme-switch svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.lang-switch button:hover,.theme-switch:hover{color:var(--accent)}
+.lang-switch button[aria-pressed="true"]:hover{color:var(--bg)}
+html[data-theme="dark"] .icon-sun,html[data-theme="light"] .icon-moon{display:none}
+@media(max-width:700px){.prefs{margin-left:12px;gap:6px}.lang-switch button{padding:5px 7px;font-size:9px}.theme-switch{width:28px;height:28px}}
+/* Light theme. The ASCII canvases are painted for a dark ground, so they are inverted with hue kept. */
+html[data-theme="light"]{color-scheme:light;--bg:#e9eefa;--ink:#141a17;--muted:#56645c;--accent:#0f7a46;--line:#cdd3df}
+html[data-theme="light"] body{background:var(--bg)}
+html[data-theme="light"] #scene,html[data-theme="light"] #timeline-art,html[data-theme="light"] .ascii-emblem,html[data-theme="light"] #commit-stream,html[data-theme="light"] #tech-fruits{filter:invert(1) hue-rotate(180deg)}
+html[data-theme="light"] .milestone-art,html[data-theme="light"] .milestone.is-current .milestone-art{filter:none}
+html[data-theme="light"] .ascii-rifle{color:#3f4a3b}
+html[data-theme="light"] .header nav a,html[data-theme="light"] .explore{color:#33413a}
+html[data-theme="light"] .role{color:#33413a}
+html[data-theme="light"] .profile{color:#3f5047}
+html[data-theme="light"] .filetype{color:#56645c;border-color:#b9c2cf}
+html[data-theme="light"] .motion{color:#3f5047;border-color:#b9c2cf}
+html[data-theme="light"] .milestone h3,html[data-theme="light"] .milestone h3.node-title{color:#141a17}
+html[data-theme="light"] .milestone p,html[data-theme="light"] .milestone.branch-event p{color:#36443c}
+html[data-theme="light"] .milestone p.coursework{color:#1f2b24}
+html[data-theme="light"] .milestone-date,html[data-theme="light"] .node-meta,html[data-theme="light"] .node-meta time{color:#4a5a51}
+html[data-theme="light"] .milestone.is-current{--tone:#0f7a46}
+html[data-theme="light"] .milestone.is-current h3{color:#0b3d22;text-shadow:none}
+html[data-theme="light"] .milestone.is-current .milestone-date{text-shadow:none}
+html[data-theme="light"] .milestone.is-current::before{background:radial-gradient(ellipse,#0f7a4614,transparent 70%)}
+html[data-theme="light"] .branch-event[data-branch="algorithm"]{--branch:#946500}
+html[data-theme="light"] .branch-event[data-branch="certs"]{--branch:#0a6aa3}
+html[data-theme="light"] .branch-event[data-branch="security"]{--branch:#bf3426}
+html[data-theme="light"] .branch-event[data-branch="ci-cd"]{--branch:#b04f00}
+html[data-theme="light"] .branch-event[data-branch="infra"]{--branch:#0f7a3c}
+html[data-theme="light"] .branch-event[data-branch="open-source"]{--branch:#6638c4}
+html[data-theme="light"] .node-icon{filter:none}
+html[data-theme="light"] .main-compact .node-icon{--icon:#0f7a46}
+html[data-theme="light"] .milestone[data-tone="gold"] .node-icon{--icon:#946500}
+html[data-theme="light"] .pr-chip{color:var(--branch)}
+html[data-theme="light"] .context-tag[data-context="personal"]{color:#1d58b8}
+html[data-theme="light"] .context-tag[data-context="team"]{color:#a14f00}
+html[data-theme="light"] .context-tag[data-context="company"]{color:#0f7a46}
+html[data-theme="light"] .context-tag[data-context="oss"]{color:#6638c4}
+html[data-theme="light"] .work-chip{background:#0f7a4614;border-color:#0f7a4666;color:#0f6a3d}
+html[data-theme="light"] .work-more,html[data-theme="light"] .node-title a:hover,html[data-theme="light"] .bio h3 a:hover{color:#0f6a3d}
+html[data-theme="light"] .work-more{border-color:#0f7a4666}
+html[data-theme="light"] .resume-link{color:#141a17}
+html[data-theme="light"] .bio h3{color:#141a17}
+html[data-theme="light"] .bio p{color:#36443c}
+html[data-theme="light"] .bio dt{color:#56645c}
+html[data-theme="light"] .bio-meta{color:#1f2b24}
+html[data-theme="light"] .footer{background:#dde3f0}
+html[data-theme="light"] .contact>span,html[data-theme="light"] .footer-bottom{color:#4a5a51}
+html[data-theme="light"] .footer-bottom a:hover{color:var(--accent)}
+html[data-theme="light"] .milestone.is-past .milestone-date{color:#3f4f46}
+html[data-theme="light"] .robot canvas{filter:drop-shadow(0 0 1px #1d2a3f) drop-shadow(0 0 1px #1d2a3f80)}
+@media(max-width:560px){.header nav{display:none}.prefs{margin-left:auto}}
