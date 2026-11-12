@@ -20,6 +20,17 @@
     ignition=null; entries.forEach(e=>e.classList.remove('is-igniting')); schedule();
   });
   const colors={mint:'#a3d7b8',blue:'#99c8da',gold:'#d2bd91'};
+  // Study and project branches. slot: lane beside the trunk (+ right, - left); forkAt: index of the
+  // main milestone a branch leaves from (otherwise it forks just above its first event).
+  const branches={
+    algorithm:{color:'#f1c95e',slot:1,forkAt:0},
+    certs:{color:'#99c8da',slot:-1},
+    security:{color:'#e58b7c',slot:2,ongoing:true},
+    'ci-cd':{color:'#c5b38b',slot:1,ongoing:true},
+    infra:{color:'#a1d4ae',slot:-1,ongoing:true},
+    'open-source':{color:'#b3a5ce',slot:-2,ongoing:true}};
+  entries.forEach(entry=>{const b=branches[entry.dataset.branch];if(b)entry.dataset.side=b.slot<0?'left':'right';});
+  let lanes=[];
   function layout() {
     width=section.clientWidth; height=section.clientHeight;
     const mobile=width<=700;
@@ -29,13 +40,26 @@
     canvas.width=Math.round(width*dpr); canvas.height=Math.round(height*dpr);
     ctx.setTransform(dpr,0,0,dpr,0,0);
     const bounds=section.getBoundingClientRect();
+    const laneX=slot=>mobile ? axis+16+((Math.abs(slot)-1)*2+(slot<0?1:0))*13 : axis+slot*26;
     nodes=entries.map((entry,i)=>{
-      const content=entry.querySelector('.milestone-copy').getBoundingClientRect();
-      return {y:content.top-bounds.top+content.height/2,
-        side:mobile||i%2===0 ? 1 : -1,
-        reach:mobile ? 28 : width<=1000 ? 54 : 78,
-        tone:colors[entry.dataset.tone]};
+      const copy=entry.querySelector('.milestone-copy'), content=copy.getBoundingClientRect();
+      const name=entry.dataset.branch, branch=branches[name];
+      const declared=entry.dataset.side;
+      const side=mobile ? 1 : declared==='left' ? -1 : declared==='right' ? 1 : i%2===0 ? 1 : -1;
+      const x=branch ? laneX(branch.slot) : axis;
+      const inset=branch&&!mobile ? parseFloat(getComputedStyle(copy)[side>0?'paddingLeft':'paddingRight'])||0 : 0;
+      const left=content.left-bounds.left, textEdge=side>0 ? left+inset : left+content.width-inset;
+      return {y:content.top-bounds.top+content.height/2, x, side, branch:branch?name:null,
+        reach:Math.max(22,Math.abs(textEdge-x)-12),
+        tone:branch ? branch.color : colors[entry.dataset.tone]};
     });
+    lanes=Object.entries(branches).map(([name,b])=>{
+      const own=nodes.filter(n=>n.branch===name);
+      if(!own.length) return null;
+      const x=own[0].x, first=own[0].y, last=own[own.length-1].y;
+      const forkY=b.forkAt!=null&&nodes[b.forkAt] ? nodes[b.forkAt].y : first-70;
+      return {x,color:b.color,forkY,bendY:forkY+Math.min(46,Math.abs(x-axis)*1.1+12),last,ongoing:!!b.ongoing};
+    }).filter(Boolean);
     draw();
   }
   function draw(now=performance.now()) {
@@ -93,18 +117,35 @@
       glyph(':',axis-14+weave,y,'#325346',passed ? .85 : .5);
       glyph('.',axis+15-weave,y,'#527e68',passed ? .7 : .4);
     }
+    // Branch lanes leave the trunk diagonally, run beside it and stay open while still active.
+    for(const lane of lanes) {
+      line([axis,lane.forkY],[lane.x,lane.bendY],lane.color,lane.forkY<=focus ? .8 : .45);
+      const stop=lane.ongoing ? height-80 : lane.last;
+      for(let y=lane.bendY+10;y<stop;y+=10) {
+        const tail=y>lane.last;
+        const fade=tail ? Math.max(.12,.5-(y-lane.last)/600) : y<=focus ? .8 : .42;
+        glyph(tail ? ':' : '|',lane.x,y,lane.color,fade);
+      }
+    }
     nodes.forEach((n,i)=>{
       const active=i===current&&inBand;
       const alpha=active ? 1 : i<current ? .85 : .65;
       const paint=active?'#8bffac':n.tone;
-      const stemStart=[axis,n.y+26], elbow=[axis+n.side*25,n.y], tip=[axis+n.side*n.reach,n.y];
-      line(stemStart,elbow,paint,alpha);line(elbow,tip,paint,alpha);
+      const tip=[n.x+n.side*n.reach,n.y];
+      if(n.branch) {
+        line([n.x+n.side*12,n.y],tip,paint,alpha*.85);
+        glyph('(',n.x-6,n.y,paint,alpha);glyph('o',n.x,n.y,paint,active ? 1 : .9);glyph(')',n.x+6,n.y,paint,alpha);
+      } else {
+        const stemStart=[n.x,n.y+26], elbow=[n.x+n.side*25,n.y];
+        line(stemStart,elbow,paint,alpha);line(elbow,tip,paint,alpha);
+        const node=['  .  ',' / \ ','< + >',' \ / ','  \u0027  '];
+        node.forEach((row,j)=>[...row].forEach((char,k)=>{if(char!==' ') glyph(char,n.x+(k-2)*6,n.y+(j-2)*10,paint,active ? 1 : .65);}));
+      }
       glyph('+',tip[0],tip[1],paint,alpha);
-      const node=['  .  ',' / \\ ','< + >',' \\ / ','  \u0027  '];
-      node.forEach((row,j)=>[...row].forEach((char,k)=>{if(char!==' ') glyph(char,axis+(k-2)*6,n.y+(j-2)*10,paint,active ? 1 : .65);}));
       if(active) {
-        glyph('[',axis-24,n.y,paint);glyph(']',axis+24,n.y,paint);
-        for(let j=0;j<3;j++) glyph('.',axis+n.side*(n.reach+6),n.y-10+j*10,paint,.5);
+        const pad=n.branch ? 14 : 24;
+        glyph('[',n.x-pad,n.y,paint);glyph(']',n.x+pad,n.y,paint);
+        for(let j=0;j<3;j++) glyph('.',n.x+n.side*(n.reach+6),n.y-10+j*10,paint,.5);
       }
     });
     const signal=Math.max(joinY,Math.min(end,focus));
@@ -112,7 +153,7 @@
     if(ignition) {
       const n=nodes[ignition.index],age=(now-ignition.start)/duration;
       const envelope=Math.sin(Math.min(1,age*2)*Math.PI*.5)*(1-age);
-      const pulseX=axis+n.side*n.reach*Math.min(1,age/.22);
+      const pulseX=n.x+n.side*n.reach*Math.min(1,age/.22);
       // Current travels down the backbone and out through the branch.
       ctx.shadowColor='#8bffac';ctx.shadowBlur=12;
       for(let k=0;k<7;k++) glyph(k===0?'*':'+',pulseX-n.side*k*6,n.y,'#8bffac',(1-k/8)*envelope);
