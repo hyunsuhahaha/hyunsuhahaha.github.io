@@ -5,16 +5,19 @@
   const ctx = canvas.getContext('2d', {alpha: true});
   const entries = [...section.querySelectorAll('.milestone')];
   let width=0, height=0, axis=0, nodes=[], pending=false, dpr=1;
+  // Only entries left visible by the timeline filter are drawn; leaving entries drop out at once.
+  let shown=entries;
+  const isShown=entry=>!entry.hidden&&!entry.classList.contains('is-leaving');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let powered=-1, ignition=null, previousFrame=-100;
   const duration=1050;
   function ignite(index,now) {
     if(index===powered) return;
-    if(powered>=0) entries[powered].classList.remove('is-igniting');
+    if(powered>=0&&shown[powered]) shown[powered].classList.remove('is-igniting');
     powered=index;
     if(reduced.matches) {ignition=null;return;}
     ignition={index,start:now};
-    entries[index].classList.add('is-igniting');
+    shown[index].classList.add('is-igniting');
   }
   reduced.addEventListener('change',()=>{
     ignition=null; entries.forEach(e=>e.classList.remove('is-igniting')); schedule();
@@ -41,7 +44,13 @@
     ctx.setTransform(dpr,0,0,dpr,0,0);
     const bounds=section.getBoundingClientRect();
     const laneX=slot=>mobile ? axis+16+((Math.abs(slot)-1)*2+(slot<0?1:0))*13 : axis+slot*26;
-    nodes=entries.map((entry,i)=>{
+    const next=entries.filter(isShown);
+    if(next.length!==shown.length||next.some((e,i)=>e!==shown[i])) {
+      entries.forEach(e=>{e.classList.remove('is-igniting','is-current');e.removeAttribute('aria-current');});
+      powered=-1; ignition=null;
+    }
+    shown=next;
+    nodes=shown.map((entry,i)=>{
       const copy=entry.querySelector('.milestone-copy'), content=copy.getBoundingClientRect();
       const name=entry.dataset.branch, branch=branches[name];
       const declared=entry.dataset.side;
@@ -49,7 +58,7 @@
       const x=branch ? laneX(branch.slot) : axis;
       const inset=branch&&!mobile ? parseFloat(getComputedStyle(copy)[side>0?'paddingLeft':'paddingRight'])||0 : 0;
       const left=content.left-bounds.left, textEdge=side>0 ? left+inset : left+content.width-inset;
-      return {y:content.top-bounds.top+content.height/2, x, side, branch:branch?name:null,
+      return {entry, y:content.top-bounds.top+content.height/2, x, side, branch:branch?name:null,
         reach:Math.max(22,Math.abs(textEdge-x)-12),
         tone:branch ? branch.color : colors[entry.dataset.tone]};
     });
@@ -57,7 +66,8 @@
       const own=nodes.filter(n=>n.branch===name);
       if(!own.length) return null;
       const x=own[0].x, first=own[0].y, last=own[own.length-1].y;
-      const forkY=b.forkAt!=null&&nodes[b.forkAt] ? nodes[b.forkAt].y : first-48;
+      const forkNode=b.forkAt!=null ? nodes.find(n=>n.entry===entries[b.forkAt]) : null;
+      const forkY=forkNode ? forkNode.y : first-48;
       return {x,color:b.color,forkY,bendY:forkY+Math.min(36,Math.abs(x-axis)*1.1+10),last,ongoing:!!b.ongoing,upstream:b.upstream?own:null};
     }).filter(Boolean);
     draw();
@@ -66,9 +76,9 @@
     pending=false;
     now=Number.isFinite(now)?now:performance.now();
     const bounds=section.getBoundingClientRect();
-    if(bounds.bottom<0 || bounds.top>innerHeight || document.hidden) {
-      if(ignition) entries[ignition.index].classList.remove('is-igniting');
-      ignition=null; return;
+    if(bounds.bottom<0 || bounds.top>innerHeight || document.hidden || !nodes.length) {
+      if(ignition&&shown[ignition.index]) shown[ignition.index].classList.remove('is-igniting');
+      ignition=null; if(!nodes.length) ctx.clearRect(0,0,width,height); return;
     }
     ctx.clearRect(0,0,width,height);
     ctx.font='10px Plex, Consolas, monospace';ctx.textAlign='center';
@@ -78,9 +88,9 @@
     const inBand=Math.abs(nodes[current].y-focus)<=Math.min(150,innerHeight*.19);
     if(inBand) ignite(current,now);
     if(ignition && now-ignition.start>=duration) {
-      entries[ignition.index].classList.remove('is-igniting'); ignition=null;
+      shown[ignition.index].classList.remove('is-igniting'); ignition=null;
     }
-    entries.forEach((entry,i)=>{
+    shown.forEach((entry,i)=>{
       entry.classList.toggle('is-current',i===current&&inBand);
       entry.classList.toggle('is-past',nodes[i].y<focus);
       if(i===current&&inBand) entry.setAttribute('aria-current','step');
@@ -163,7 +173,7 @@
       // Current travels down the backbone and out through the branch.
       ctx.shadowColor='#8bffac';ctx.shadowBlur=12;
       for(let k=0;k<7;k++) glyph(k===0?'*':'+',pulseX-n.side*k*6,n.y,'#8bffac',(1-k/8)*envelope);
-      const entry=entries[ignition.index];
+      const entry=shown[ignition.index];
       const targets=[entry.querySelector('.milestone-copy'),entry.querySelector('.milestone-art')].filter(Boolean);
       for(const [targetIndex,target] of targets.entries()) {
         const box=target.getBoundingClientRect(),localY=box.top-bounds.top;
@@ -205,6 +215,7 @@
   function schedule() { if(!pending) {pending=true;requestAnimationFrame(draw);} }
   addEventListener('scroll',schedule,{passive:true});
   addEventListener('resize',layout);
+  addEventListener('timeline-filter',layout);
   if(typeof ResizeObserver!=='undefined') new ResizeObserver(layout).observe(section);
   document.fonts.ready.then(layout);
   layout();
