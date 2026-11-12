@@ -12,12 +12,15 @@
       button.setAttribute('aria-pressed', String(!light));
       button.setAttribute('aria-label', root.lang === 'ko' ? (light ? '다크 모드 켜기' : '다크 모드 끄기') : (light ? 'Turn dark mode on' : 'Turn dark mode off'));
     }
+    for (const el of document.querySelectorAll('[data-aria-en]')) {
+      el.setAttribute('aria-label', root.lang === 'ko' ? el.dataset.ariaKo : el.dataset.ariaEn);
+    }
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = light ? '#f7f2e7' : '#080d18';
   }
   document.addEventListener('click', event => {
     const lang = event.target.closest('[data-set-lang]');
-    if (lang) { root.lang = lang.dataset.setLang; save('lang', root.lang); sync(); dispatchEvent(new Event('resize')); return; }
+    if (lang) { root.lang = lang.dataset.setLang; save('lang', root.lang); sync(); dispatchEvent(new Event('langchange')); dispatchEvent(new Event('resize')); return; }
     if (event.target.closest('[data-toggle-theme]')) {
       root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
       save('theme', root.dataset.theme); sync();

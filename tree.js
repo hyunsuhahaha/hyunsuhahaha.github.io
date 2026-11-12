@@ -524,11 +524,13 @@ addEventListener('resize',resize);
 const motionButton = document.getElementById('motion');
 function syncMotion() {
   motionButton.setAttribute('aria-pressed', String(paused));
-  motionButton.setAttribute('aria-label', paused ? '트리 애니메이션 재생' : '트리 애니메이션 일시정지');
+  const ko = (document.documentElement || {}).lang === 'ko';
+  motionButton.setAttribute('aria-label', paused ? (ko ? '트리 애니메이션 재생' : 'Play tree animation') : (ko ? '트리 애니메이션 일시정지' : 'Pause tree animation'));
   motionButton.innerHTML = paused
     ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6Z"/></svg>'
     : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>';
 }
 motionButton.addEventListener('click', () => { paused=!paused; syncMotion(); });
+addEventListener('langchange', syncMotion);
 if(typeof IntersectionObserver !== 'undefined') new IntersectionObserver(([entry]) => { sceneVisible=entry.isIntersecting; }).observe(canvas);
 syncMotion(); resize(); requestAnimationFrame(frame);
