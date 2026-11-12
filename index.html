@@ -9,38 +9,39 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preload" href="assets/SpaceGrotesk.ttf" as="font" type="font/ttf" crossorigin>
 <script>(()=>{let l,t;try{l=localStorage.getItem("lang");t=localStorage.getItem("theme")}catch(e){}const d=document.documentElement;d.lang=l==="en"?"en":"ko";d.dataset.theme=t==="light"?"light":"dark"})()</script>
-<link rel="stylesheet" href="style.css">
-<script src="prefs.js" defer></script>
-<script src="tree.js" defer></script>
-<script src="companions.js" defer></script>
-<script src="timeline.js" defer></script>
-<script src="emblems.js" defer></script>
+<style>html[lang="ko"] .t[lang="en"],html[lang="en"] .t[lang="ko"]{display:none}</style>
+<link rel="stylesheet" href="style.css?v=20261112b">
+<script src="prefs.js?v=20261112b" defer></script>
+<script src="tree.js?v=20261112b" defer></script>
+<script src="companions.js?v=20261112b" defer></script>
+<script src="timeline.js?v=20261112b" defer></script>
+<script src="emblems.js?v=20261112b" defer></script>
 </head>
 <body>
 <a class="skip" href="#journey"><span class="t" lang="en">Skip to timeline</span><span class="t" lang="ko">타임라인으로 바로 이동</span></a>
 <header class="header">
-  <a class="identity" href="#top" aria-label="이현수, 처음으로"><svg viewBox="0 0 30 32" aria-hidden="true"><path d="M7 27V6m0 11 16-9M7 23l16-9M23 3v17"/><circle cx="7" cy="5" r="3"/><circle cx="23" cy="5" r="3"/><circle cx="23" cy="23" r="3"/></svg><span>hyunsu<span class="muted">.lee</span></span></a>
-  <nav aria-label="주 메뉴"><a href="#journey"><span class="t" lang="en">Journey</span><span class="t" lang="ko">여정</span></a><a href="#work"><span class="t" lang="en">Experience</span><span class="t" lang="ko">경력</span></a><a href="assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener"><span class="t" lang="en">Résumé</span><span class="t" lang="ko">이력서</span> <span class="filetype">PDF</span></a><a href="mailto:hyunsuhahaha@gmail.com"><span class="t" lang="en">Contact</span><span class="t" lang="ko">연락처</span> <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></nav><div class="prefs" role="group" aria-label="Display settings"><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-set-lang="ko">KOR</button><button type="button" data-set-lang="en">ENG</button></div><button type="button" class="theme-switch" data-toggle-theme aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button></div>
+  <a class="identity" href="#top" aria-label="이현수, 처음으로" data-aria-ko="이현수, 처음으로" data-aria-en="Hyunsu Lee, back to top"><svg viewBox="0 0 30 32" aria-hidden="true"><path d="M7 27V6m0 11 16-9M7 23l16-9M23 3v17"/><circle cx="7" cy="5" r="3"/><circle cx="23" cy="5" r="3"/><circle cx="23" cy="23" r="3"/></svg><span>hyunsu<span class="muted">.lee</span></span></a>
+  <nav aria-label="주 메뉴" data-aria-ko="주 메뉴" data-aria-en="Main menu"><a href="#journey"><span class="t" lang="en">Journey</span><span class="t" lang="ko">여정</span></a><a href="#work"><span class="t" lang="en">Experience</span><span class="t" lang="ko">경력</span></a><a href="assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener"><span class="t" lang="en">Résumé</span><span class="t" lang="ko">이력서</span> <span class="filetype">PDF</span></a><a href="mailto:hyunsuhahaha@gmail.com"><span class="t" lang="en">Contact</span><span class="t" lang="ko">연락처</span> <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></nav><div class="prefs" role="group" aria-label="Display settings"><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-set-lang="ko">KOR</button><button type="button" data-set-lang="en">ENG</button></div><button type="button" class="theme-switch" data-toggle-theme aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button></div>
 </header>
 <main>
   <section class="hero" id="top" aria-labelledby="name">
-    <canvas id="scene" role="img" aria-label="서버 노드와 회로 같은 가지와 주요 기술 스택 17개의 ASCII 열매로 이루어진 천천히 회전하는 ASCII 트리"></canvas>
-    <nav id="tech-fruits" aria-label="기술 스택 열매"></nav>
+    <canvas id="scene" role="img" aria-label="서버 노드와 회로 같은 가지와 주요 기술 스택 17개의 ASCII 열매로 이루어진 천천히 회전하는 ASCII 트리" data-aria-ko="서버 노드와 회로 같은 가지와 주요 기술 스택 17개의 ASCII 열매로 이루어진 천천히 회전하는 ASCII 트리" data-aria-en="A slowly rotating ASCII tree with server-node branches and 17 technology fruit"></canvas>
+    <nav id="tech-fruits" aria-label="기술 스택 열매" data-aria-ko="기술 스택 열매" data-aria-en="Technology fruit"></nav>
     <div class="intro">
       <h1 id="name"><span class="t" lang="en">Hyunsu<br>Lee</span><span class="t" lang="ko">이현수</span><span class="name-dot">.</span></h1>
       <p class="role"><span class="t" lang="en">Backend &amp;<br>Infrastructure.</span><span class="t" lang="ko">백엔드 &amp;<br>인프라.</span></p>
       <a class="profile" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">github / hyunsuhahaha <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
     </div>
-    <div class="tree-companions" aria-label="노트북으로 일하는 AI 친구들">
-      <figure class="robot codex-robot" tabindex="0" role="img" aria-label="GPT / Codex, 울면서 타이핑하고 나무에 커밋을 보내는 작은 AI 로봇">
+    <div class="tree-companions" aria-label="노트북으로 일하는 AI 친구들" data-aria-ko="노트북으로 일하는 AI 친구들" data-aria-en="AI companions working on laptops">
+      <figure class="robot codex-robot" tabindex="0" role="img" aria-label="GPT / Codex, 울면서 타이핑하고 나무에 커밋을 보내는 작은 AI 로봇" data-aria-ko="GPT / Codex, 울면서 타이핑하고 나무에 커밋을 보내는 작은 AI 로봇" data-aria-en="GPT / Codex, a small AI robot typing through tears and pushing commits to the tree">
         <canvas data-companion="codex" width="352" height="336" aria-hidden="true"></canvas>
         <figcaption class="robot-name" aria-hidden="true">GPT / Codex</figcaption>
       </figure>
-      <figure class="robot claude-robot" tabindex="0" role="img" aria-label="Claude, 눈물을 닦으며 타이핑하고 나무에 커밋을 보내는 작은 AI 로봇">
+      <figure class="robot claude-robot" tabindex="0" role="img" aria-label="Claude, 눈물을 닦으며 타이핑하고 나무에 커밋을 보내는 작은 AI 로봇" data-aria-ko="Claude, 눈물을 닦으며 타이핑하고 나무에 커밋을 보내는 작은 AI 로봇" data-aria-en="Claude, a small AI robot wiping tears while typing and pushing commits to the tree">
         <canvas data-companion="claude" width="352" height="336" aria-hidden="true"></canvas>
         <figcaption class="robot-name" aria-hidden="true">Claude</figcaption>
       </figure>
-      <figure class="robot gemini-robot" tabindex="0" role="img" aria-label="Gemini, 노트북으로 충돌을 해결하고 나무에 커밋을 보내는 작은 AI 로봇">
+      <figure class="robot gemini-robot" tabindex="0" role="img" aria-label="Gemini, 노트북으로 충돌을 해결하고 나무에 커밋을 보내는 작은 AI 로봇" data-aria-ko="Gemini, 노트북으로 충돌을 해결하고 나무에 커밋을 보내는 작은 AI 로봇" data-aria-en="Gemini, a small AI robot resolving conflicts and pushing commits to the tree">
         <canvas data-companion="gemini" width="352" height="336" aria-hidden="true"></canvas>
         <figcaption class="robot-name" aria-hidden="true">Gemini</figcaption>
       </figure>
