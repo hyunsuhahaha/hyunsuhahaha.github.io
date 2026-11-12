@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="이현수 — public-api-monitor(pamon): 외부 API 장애 원인 추적용 SRE 모니터. Go, SQLite, GCP, Cloudflare Workers.">
+<title>public-api-monitor (pamon) — Hyunsu Lee</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script>(()=>{let l,t;try{l=localStorage.getItem("lang");t=localStorage.getItem("theme")}catch(e){}const d=document.documentElement;d.lang=l==="ko"?"ko":"en";d.dataset.theme=t==="light"?"light":"dark"})()</script>
+<style>html[lang="ko"] .t[lang="en"],html[lang="en"] .t[lang="ko"]{display:none}</style>
+<link rel="stylesheet" href="../../assets/detail.css?v=20261113a">
+<script src="../../prefs.js?v=20261113a" defer></script>
+<script src="../../assets/detail.js?v=20261113a" defer></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../../#journey"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg><span class="t" lang="en">Back to timeline</span><span class="t" lang="ko">타임라인으로</span></a>
+    <div class="top-right"><a class="btn ghost" href="https://pamon.hyunsuhahaha.workers.dev/" target="_blank" rel="noopener noreferrer"><span class="t" lang="en">Live</span><span class="t" lang="ko">라이브</span> <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn" href="https://github.com/hyunsuhahaha/public-api-monitor" target="_blank" rel="noopener noreferrer">GitHub <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><div class="prefs" role="group" aria-label="Display settings"><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-set-lang="ko">KOR</button><button type="button" data-set-lang="en">ENG</button></div><button type="button" class="theme-switch" data-toggle-theme aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button></div></div>
+  </div>
+  <header class="hero">
+    <p class="eyebrow"><span class="t" lang="en">Personal project</span><span class="t" lang="ko">개인 프로젝트</span></p>
+    <h1>public-api-monitor</h1>
+    <p class="role"><span class="t" lang="en">pamon — an SRE monitor for tracing external API failures</span><span class="t" lang="ko">pamon — 외부 API 장애 원인 추적용 SRE 모니터</span></p>
+    <p class="lede"><span class="t" lang="en">A monitoring service that tells you where the problem is when a public API is slow or down. Public APIs often answer HTTP 200 even when they fail, so a simple liveness check misses outages. It calls each API on a schedule, decides whether it is failing, and shows where the cause is, with the evidence.</span><span class="t" lang="ko">공공 API가 느리거나 죽었을 때, 어디가 문제인지 알려주는 모니터링 서비스. 공공 API는 실패해도 HTTP 200을 주는 경우가 많아 단순 생존 확인으로는 장애를 잡지 못합니다. 주기적으로 API를 호출해 장애 여부를 판정하고, 원인이 어디인지 근거와 함께 보여줍니다.</span></p>
+    <dl class="facts"><div class=""><dt><span class="t" lang="en">Type</span><span class="t" lang="ko">유형</span></dt><dd><span class="t" lang="en">Personal project</span><span class="t" lang="ko">개인 프로젝트</span></dd></div><div class=""><dt><span class="t" lang="en">Period</span><span class="t" lang="ko">기간</span></dt><dd>2026.10</dd></div><div class="wide"><dt><span class="t" lang="en">Stack</span><span class="t" lang="ko">기술</span></dt><dd>Go · SQLite · Litestream · GCP · Docker · Caddy · Cloudflare Workers · D1 · GitHub Actions</dd></div><div class="full"><dt><span class="t" lang="en">Links</span><span class="t" lang="ko">링크</span></dt><dd><a href="https://github.com/hyunsuhahaha/public-api-monitor" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://pamon.hyunsuhahaha.workers.dev/" target="_blank" rel="noopener noreferrer">pamon.hyunsuhahaha.workers.dev</a></dd></div></dl>
+  </header>
+  <div class="layout">
+    <nav class="toc" aria-label="Contents"><p><span class="t" lang="en">Contents</span><span class="t" lang="ko">목차</span></p><ol><li><a href="#architecture"><span>01</span><span><span class="t" lang="en">Architecture</span><span class="t" lang="ko">구조</span></span></a></li><li><a href="#verdict"><span>02</span><span><span class="t" lang="en">Failure verdict</span><span class="t" lang="ko">장애 판정</span></span></a></li><li><a href="#cause"><span>03</span><span><span class="t" lang="en">Root cause</span><span class="t" lang="ko">원인 추적</span></span></a></li><li><a href="#slo"><span>04</span><span><span class="t" lang="en">SLO &amp; response</span><span class="t" lang="ko">SLO·대응</span></span></a></li><li><a href="#operations"><span>05</span><span><span class="t" lang="en">Operations</span><span class="t" lang="ko">운영</span></span></a></li></ol></nav>
+    <main>
+    <section class="item" id="architecture">
+      <div class="item-head"><span class="num">01</span><div class="tags"><span class="tag gray">Architecture</span></div></div>
+      <h2><span class="t" lang="en">How it is put together</span><span class="t" lang="ko">구조</span></h2><figure class="figure"><figcaption><span><span class="t" lang="en">pamon architecture</span><span class="t" lang="ko">pamon 구조</span></span><span>stack-diagram</span></figcaption><iframe class="stack-frame" src="diagrams/architecture.html" title="pamon architecture diagram" loading="lazy"></iframe><p class="note"><span class="t" lang="en">A Go scheduler on one GCP VM probes every target every 5 minutes, with a second vantage point pushing its results in; SQLite is replicated by Litestream, Prometheus watches the monitor itself, and the public site is served through a Cloudflare Worker.</span><span class="t" lang="ko">GCP VM 한 대의 Go 스케줄러가 5분마다 모든 대상을 확인하고, 다른 위치의 감시기가 결과를 보내옵니다. SQLite는 Litestream으로 복제되고, Prometheus가 모니터 자체를 감시하며, 공개 사이트는 Cloudflare Worker를 거쳐 제공됩니다.</span></p></figure>
+    </section>
+    <section class="item" id="verdict">
+      <div class="item-head"><span class="num">02</span><div class="tags"><span class="tag blue">Detection</span></div></div>
+      <h2><span class="t" lang="en">Failure verdict</span><span class="t" lang="ko">장애 판정</span></h2><p class="summary"><span class="t" lang="en">Reads the result code inside the response body to decide whether it is a real outage, and excludes cases that are not the API’s own fault, such as an unregistered key or an exceeded call quota.</span><span class="t" lang="ko">응답 본문의 결과 코드까지 읽어 실제 장애인지 판정하고, 호출 키 미등록·호출 한도 초과처럼 API 자체의 문제가 아닌 경우는 제외.</span></p>
+    </section>
+    <section class="item" id="cause">
+      <div class="item-head"><span class="num">03</span><div class="tags"><span class="tag yellow">Tracing</span></div></div>
+      <h2><span class="t" lang="en">Root-cause tracing</span><span class="t" lang="ko">원인 추적</span></h2><p class="summary"><span class="t" lang="en">Splits each request into DNS, TCP, TLS and server-wait phases to record where it stalled, and compares it with other APIs from the same agency to tell an agency-server problem from a network problem.</span><span class="t" lang="ko">요청을 DNS·TCP·TLS·서버 대기 구간으로 나눠 어디서 멈췄는지 기록하고, 같은 기관의 다른 API와 비교해 기관 서버 문제인지 네트워크 문제인지 구분.</span></p>
+    </section>
+    <section class="item" id="slo">
+      <div class="item-head"><span class="num">04</span><div class="tags"><span class="tag green">SRE</span></div></div>
+      <h2><span class="t" lang="en">SLOs &amp; incident response</span><span class="t" lang="ko">SLO·장애 대응</span></h2><p class="summary"><span class="t" lang="en">Calculates SLOs and error budgets per API, and provides incident records, postmortem drafts and runbooks.</span><span class="t" lang="ko">API별 SLO와 에러 버짓을 계산하고, 장애 기록·포스트모템 초안·런북을 제공.</span></p>
+    </section>
+    <section class="item" id="operations">
+      <div class="item-head"><span class="num">05</span><div class="tags"><span class="tag gray">Operations</span></div></div>
+      <h2><span class="t" lang="en">Running it</span><span class="t" lang="ko">운영</span></h2><p class="summary"><span class="t" lang="en">Checks every 5 minutes from a single GCP VM, and the results are public on the website.</span><span class="t" lang="ko">GCP VM 한 대에서 5분마다 검사하고, 결과는 공개 웹사이트로 확인 가능.</span></p><figure class="figure"><figcaption><span class="window"><i></i><i></i><i></i></span><span><span class="t" lang="en">Live status board</span><span class="t" lang="ko">실시간 상태판</span></span></figcaption><img src="dashboard.png" alt="pamon status board listing public APIs with availability, error budget, burn rate and p95 latency" width="1600" height="1000" loading="lazy"><p class="note"><span class="t" lang="en">The running status board (2026-10-19).</span><span class="t" lang="ko">실제 운영 화면(2026-10-19).</span></p></figure>
+    </section>
+    </main>
+  </div>
+  
+  <footer><span>© 2026 Hyunsu Lee</span><a href="../../#journey"><span class="t" lang="en">Back to timeline</span><span class="t" lang="ko">타임라인으로</span></a><a href="mailto:hyunsuhahaha@gmail.com">hyunsuhahaha@gmail.com</a></footer>
+</div>
+</body>
+</html>

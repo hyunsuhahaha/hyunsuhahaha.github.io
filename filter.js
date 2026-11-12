@@ -8,7 +8,13 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const LEAVE = 320;
   let timer = 0;
-  const matches = (li, kind) => kind === 'all' || (li.dataset.cat || '').split(' ').includes(kind);
+  // "career" is the résumé view: work, team competitions and open source. It is the default.
+  const GROUPS = {career: ['work', 'team', 'oss']};
+  const matches = (li, kind) => {
+    if (kind === 'all') return true;
+    const cats = (li.dataset.cat || '').split(' ');
+    return (GROUPS[kind] || [kind]).some(k => cats.includes(k));
+  };
 
   for (const button of bar.querySelectorAll('[data-filter]')) {
     const kind = button.dataset.filter, count = button.querySelector('.count');
