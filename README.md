@@ -1,18 +1,43 @@
-# hyunsuhahaha.github.io
+# Hyunsu Lee — portfolio
 
-개인·팀·회사 프로젝트를 한 줄 목록으로 정리한 GitHub Pages 포트폴리오입니다.
+[hyunsuhahaha.github.io](https://hyunsuhahaha.github.io/)
 
-- `index.html`: 프로젝트 인덱스와 펼침형 상세 정보
-- `assets/index.css`: 메인 인덱스 전용 스타일
-- `projects/mes-anomaly-detection/`: MES 자동화 프로젝트 케이스 스터디
-- `assets/styles.css`, `assets/app.js`: 기존 케이스 스터디 공통 자산
+Static HTML/CSS/JavaScript portfolio: an animated ASCII technology tree, chronological journey, public project links and three tiny AI workers.
 
-공개 저장소만 GitHub로 연결하며 회사 프로젝트 저장소와 민감 정보는 공개하지 않습니다.
+## Preview
 
-## 로컬 미리보기
-
-```bash
-python -m http.server 8000
+```sh
+python -m http.server 8000 --bind 127.0.0.1
 ```
 
-브라우저에서 http://localhost:8000 을 엽니다.
+Open http://127.0.0.1:8000. No install or build step is required.
+
+## Checks
+
+```sh
+node check-tree.cjs
+node check-timeline.cjs
+node check-companions.cjs
+```
+
+## Structure
+
+- `index.html`, `style.css`: identity, journey, projects and contact.
+- `tree.js`: rotating ASCII tree and seventeen technology fruit; names appear on hover/focus.
+- `timeline.js`, `emblems.js`: chronological milestones, ASCII symbols and electrical accents.
+- `companions.js`: GPT/Codex, Claude and Gemini typing, stashing, resolving conflicts and pushing little commits to the tree. These are visual events; no Git commands execute.
+- `assets/`: self-hosted fonts, resume, technology icons and companion marks.
+- `projects/mes-anomaly-detection/`, `index/`: retained previous project/index URLs.
+
+GitHub Pages serves the repository root on `main`. `.nojekyll` bypasses Jekyll processing. Previous versions remain in Git history.
+
+## Asset sources
+
+- Space Grotesk and IBM Plex Mono: Google Fonts; OFL licenses included.
+- Technology icons: [Devicon](https://github.com/devicons/devicon), MIT license included. Converted into colored ASCII glyphs in the browser.
+- Claude mark: [Simple Icons](https://github.com/simple-icons/simple-icons/blob/develop/icons/claude.svg).
+- GPT/Codex knot: installed OpenAI desktop application icon.
+- Gemini: unmodified official four-color sparkle linked by [Gemini](https://gemini.google.com/).
+- Dongguk symbol: [official university UI](https://www.dongguk.edu/page/103).
+- Army emblem: [ROK Army official profile](https://x.com/ROK_Army).
+- Flag reference: [Ministry of the Interior and Safety](https://www.mois.go.kr/chd/sub/a05/birth/screen.do).

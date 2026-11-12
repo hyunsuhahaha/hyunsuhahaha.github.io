@@ -1,43 +1,116 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="보안, 데이터, 클라우드, AI, 게임 프로젝트를 네트워크 그래프로 탐색하는 이현수의 포트폴리오">
-  <meta name="theme-color" content="#f2f0ea">
-  <title>이현수 — Project Graph</title>
-  <link rel="stylesheet" href="./assets/index.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<meta name="description" content="이현수 — Backend & Infrastructure. Lily, pamon, gitea-auto-reviewer, and OpenTelemetry contributions.">
+<title>Hyunsu Lee — Backend & Infrastructure</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preload" href="assets/SpaceGrotesk.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="tree.js" defer></script>
+<script src="companions.js" defer></script>
+<script src="timeline.js" defer></script>
+<script src="emblems.js" defer></script>
 </head>
 <body>
-  <main class="network-app">
-    <aside class="sidebar">
-      <header class="profile">
-        <h1><span aria-hidden="true"></span>이현수</h1>
-        <p>Computer Science<br>Dongguk University</p>
-      </header>
-      <nav class="legend" id="legend" aria-label="프로젝트 분야 필터"></nav>
-      <nav aria-label="연락처">
-        <a href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-        <a href="mailto:hyunsuhahaha@gmail.com">Email ↗</a>
-      </nav>
-    </aside>
-
-    <svg class="network" id="network" viewBox="0 0 1400 850" role="application" aria-label="프로젝트 네트워크 그래프. 노드를 드래그하고 프로젝트를 선택할 수 있습니다.">
-      <rect class="canvas-background" width="1400" height="850"></rect>
-      <g id="viewport">
-        <g id="edges"></g>
-        <g id="nodes"></g>
-      </g>
-    </svg>
-
-    <div class="graph-controls" aria-label="그래프 보기 조절">
-      <button type="button" id="zoom-out" aria-label="축소">−</button>
-      <button type="button" id="reset-view" aria-label="그래프 위치 초기화">○</button>
-      <button type="button" id="zoom-in" aria-label="확대">＋</button>
+<a class="skip" href="#journey">타임라인으로 바로 이동</a>
+<header class="header">
+  <a class="identity" href="#top" aria-label="이현수, 처음으로"><svg viewBox="0 0 30 32" aria-hidden="true"><path d="M7 27V6m0 11 16-9M7 23l16-9M23 3v17"/><circle cx="7" cy="5" r="3"/><circle cx="23" cy="5" r="3"/><circle cx="23" cy="23" r="3"/></svg><span>hyunsu<span class="muted">.lee</span></span></a>
+  <nav aria-label="주 메뉴"><a href="#journey">Journey</a><a href="#work">Work</a><a href="assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener">Résumé <span class="filetype">PDF</span></a><a href="mailto:hyunsuhahaha@gmail.com">Contact <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></nav>
+</header>
+<main>
+  <section class="hero" id="top" aria-labelledby="name">
+    <canvas id="scene" role="img" aria-label="서버 노드와 회로 같은 가지와 주요 기술 스택 17개의 ASCII 열매로 이루어진 천천히 회전하는 ASCII 트리"></canvas>
+    <nav id="tech-fruits" aria-label="기술 스택 열매"></nav>
+    <div class="intro">
+      <h1 id="name">Hyunsu<br>Lee<span class="name-dot">.</span></h1>
+      <p class="role">Backend &amp;<br>Infrastructure.</p>
+      <a class="profile" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">github / hyunsuhahaha <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
     </div>
-
-    <aside class="detail-panel" id="detail-panel" aria-live="polite" aria-hidden="true"></aside>
-  </main>
-  <script src="./assets/index.js"></script>
+    <div class="tree-companions" aria-label="노트북으로 일하는 AI 친구들">
+      <figure class="robot codex-robot" tabindex="0" role="img" aria-label="GPT / Codex, 울면서 타이핑하고 나무에 커밋을 보내는 작은 AI 로봇">
+        <canvas data-companion="codex" width="352" height="336" aria-hidden="true"></canvas>
+        <figcaption class="robot-name" aria-hidden="true">GPT / Codex</figcaption>
+      </figure>
+      <figure class="robot claude-robot" tabindex="0" role="img" aria-label="Claude, 눈물을 닦으며 타이핑하고 나무에 커밋을 보내는 작은 AI 로봇">
+        <canvas data-companion="claude" width="352" height="336" aria-hidden="true"></canvas>
+        <figcaption class="robot-name" aria-hidden="true">Claude</figcaption>
+      </figure>
+      <figure class="robot gemini-robot" tabindex="0" role="img" aria-label="Gemini, 노트북으로 충돌을 해결하고 나무에 커밋을 보내는 작은 AI 로봇">
+        <canvas data-companion="gemini" width="352" height="336" aria-hidden="true"></canvas>
+        <figcaption class="robot-name" aria-hidden="true">Gemini</figcaption>
+      </figure>
+    </div>
+    <div class="hero-bottom"><a class="explore" href="#journey"><span class="small-line"></span>Follow the roots<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a><button id="motion" class="motion" type="button" aria-label="트리 애니메이션 일시정지" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg></button></div>
+  </section>
+  <section class="journey section" id="journey" aria-labelledby="journey-title">
+    <canvas id="timeline-art" aria-hidden="true"></canvas>
+    <div class="section-heading journey-heading"><h2 id="journey-title">Along the way<span class="punctuation">.</span></h2><span class="section-note">2022 — 2026</span></div>
+    <ol class="timeline-list">
+      <li class="milestone with-emblem" data-tone="mint"><div class="milestone-art"><canvas class="ascii-emblem school-emblem" data-emblem="dongguk" width="240" height="240" aria-hidden="true"></canvas></div><div class="milestone-copy">
+        <time class="milestone-date" datetime="2022">2022</time>
+        <h3 class="latin-title">Dongguk<br>University</h3><p>컴퓨터·AI학부 입학</p>
+      </div></li>
+      <li class="milestone with-emblem army-milestone" data-tone="blue"><div class="milestone-art army-art"><canvas class="ascii-emblem army-emblem" data-emblem="roka" width="192" height="240" aria-hidden="true"></canvas><div class="field-marks"><canvas class="ascii-emblem flag-emblem" data-emblem="flag" width="180" height="120" aria-hidden="true"></canvas><pre class="ascii-rifle" aria-hidden="true">       __
+  ____/==|_________________,
+ |____.==|_:::::::::::::::::>
+   \  /_-/ \___/
+    \/ /    |__|
+       \_\</pre></div></div><div class="milestone-copy">
+        <div class="milestone-date"><time datetime="2023-02">2023.02</time><span class="date-dash">—</span><time datetime="2024-08">2024.08</time></div>
+        <h3 class="latin-title">Republic of<br>Korea Army</h3><p>통신병 복무</p>
+      </div></li>
+      <li class="milestone with-emblem" data-tone="mint"><div class="milestone-art"><canvas class="ascii-emblem school-emblem" data-emblem="dongguk" width="240" height="240" aria-hidden="true"></canvas></div><div class="milestone-copy">
+        <time class="milestone-date" datetime="2025-03">2025.03</time>
+        <h3 class="latin-title">Dongguk<br>University</h3><p>복학 · 컴퓨터·AI학부</p>
+      </div></li>
+      <li class="milestone" data-tone="gold"><div class="milestone-copy">
+        <time class="milestone-date" datetime="2025-09-19">2025.09.19</time>
+        <h3 class="latin-title">SQLD</h3><p>SQL 개발자 자격 취득</p>
+      </div></li>
+      <li class="milestone" data-tone="gold"><div class="milestone-copy">
+        <time class="milestone-date" datetime="2026-02-17">2026.02.17</time>
+        <h3 class="latin-title">AWS Certified<br>Cloud Practitioner</h3><p>자격 취득</p>
+      </div></li>
+      <li class="milestone" data-tone="mint"><div class="milestone-copy">
+        <time class="milestone-date" datetime="2026-07">2026.07</time>
+        <h3 class="latin-title">NoxGlobal</h3><p>IT Team Intern</p>
+      </div></li>
+    </ol>
+    <a class="timeline-next" href="#work">On to the work<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+  </section>
+  <section class="work section" id="work" aria-labelledby="work-title">
+    <div class="section-heading"><h2 id="work-title">Selected work<span class="punctuation">.</span></h2><span class="section-note">Projects &amp; open source</span></div>
+    <div class="project-list" id="projects">
+      <a class="project" href="https://github.com/SoftBank-team-lily" target="_blank" rel="noopener noreferrer" style="--project:#a1d4ae">
+        <svg class="branch-mark" viewBox="0 0 44 52" aria-hidden="true"><path d="M12 45V8m0 27c0-11 20-5 20-19V8"/><circle cx="12" cy="8" r="4"/><circle cx="12" cy="45" r="4"/><circle cx="32" cy="8" r="4"/></svg>
+        <div class="project-name"><h3>Lily</h3><span>Hybrid deployment platform</span></div><span class="project-tech">k3s / Cloudflare / PostgreSQL</span><span class="project-link">GitHub<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span>
+      </a>
+      <a class="project" href="https://github.com/hyunsuhahaha/public-api-monitor" target="_blank" rel="noopener noreferrer" style="--project:#85bdcc">
+        <svg class="branch-mark" viewBox="0 0 44 52" aria-hidden="true"><path d="M12 45V8m0 27c0-11 20-5 20-19V8"/><circle cx="12" cy="8" r="4"/><circle cx="12" cy="45" r="4"/><circle cx="32" cy="8" r="4"/></svg>
+        <div class="project-name"><h3>pamon</h3><span>API reliability &amp; observability</span></div><span class="project-tech">Go / GCP / SQLite</span><span class="project-link">GitHub<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span>
+      </a>
+      <a class="project" href="https://github.com/hyunsuhahaha/gitea-auto-reviewer" target="_blank" rel="noopener noreferrer" style="--project:#c5b38b">
+        <svg class="branch-mark" viewBox="0 0 44 52" aria-hidden="true"><path d="M12 45V8m0 27c0-11 20-5 20-19V8"/><circle cx="12" cy="8" r="4"/><circle cx="12" cy="45" r="4"/><circle cx="32" cy="8" r="4"/></svg>
+        <div class="project-name"><h3>gitea-auto-reviewer</h3><span>AI-assisted code review</span></div><span class="project-tech">Python / Codex / Gitea</span><span class="project-link">GitHub<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span>
+      </a>
+      <a class="project" href="https://github.com/open-telemetry/opentelemetry-kotlin/pull/1542" target="_blank" rel="noopener noreferrer" style="--project:#b3a5ce">
+        <svg class="branch-mark" viewBox="0 0 44 52" aria-hidden="true"><path d="M12 45V8m20 0v8c0 13-20 7-20 19"/><circle cx="12" cy="8" r="4"/><circle cx="12" cy="45" r="4"/><circle cx="32" cy="8" r="4"/></svg>
+        <div class="project-name"><h3>OpenTelemetry <span class="variant">Kotlin</span></h3><span>Multiple SpanProcessor support</span></div><span class="project-tech">Kotlin / Tracing SDK</span><span class="project-link">PR #1542<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span>
+      </a>
+      <a class="project" href="https://github.com/open-telemetry/opentelemetry-android/pull/2227" target="_blank" rel="noopener noreferrer" style="--project:#b3a5ce">
+        <svg class="branch-mark" viewBox="0 0 44 52" aria-hidden="true"><path d="M12 45V8m20 0v8c0 13-20 7-20 19"/><circle cx="12" cy="8" r="4"/><circle cx="12" cy="45" r="4"/><circle cx="32" cy="8" r="4"/></svg>
+        <div class="project-name"><h3>OpenTelemetry <span class="variant">Android</span></h3><span>Local &amp; CI coverage configuration</span></div><span class="project-tech">Gradle / Kover</span><span class="project-link">PR #2227<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span>
+      </a>
+    </div>
+    <div class="experience"><div><span class="experience-label">Experience</span><span class="company">NoxGlobal <span>IT Intern</span></span></div><div class="experience-right"><span>Backend · Deployment · Operations</span><a href="assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener">View résumé<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div></div>
+  </section>
+</main>
+<footer class="footer section" id="contact">
+  <div class="contact"><span>Get in touch</span><a href="mailto:hyunsuhahaha@gmail.com">hyunsuhahaha@gmail.com<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+  <div class="footer-bottom"><span>© 2026 Hyunsu Lee</span><a href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">GitHub<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a><a href="#top">Back to top<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a></div>
+</footer>
 </body>
 </html>
