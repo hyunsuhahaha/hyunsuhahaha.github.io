@@ -8,25 +8,27 @@
 <title>Hyunsu Lee — Backend & Infrastructure</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preload" href="assets/SpaceGrotesk.ttf" as="font" type="font/ttf" crossorigin>
+<script>(()=>{let l,t;try{l=localStorage.getItem("lang");t=localStorage.getItem("theme")}catch(e){}const d=document.documentElement;d.lang=l==="en"?"en":"ko";d.dataset.theme=t==="light"?"light":"dark"})()</script>
 <link rel="stylesheet" href="style.css">
+<script src="prefs.js" defer></script>
 <script src="tree.js" defer></script>
 <script src="companions.js" defer></script>
 <script src="timeline.js" defer></script>
 <script src="emblems.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#journey">타임라인으로 바로 이동</a>
+<a class="skip" href="#journey"><span class="t" lang="en">Skip to timeline</span><span class="t" lang="ko">타임라인으로 바로 이동</span></a>
 <header class="header">
   <a class="identity" href="#top" aria-label="이현수, 처음으로"><svg viewBox="0 0 30 32" aria-hidden="true"><path d="M7 27V6m0 11 16-9M7 23l16-9M23 3v17"/><circle cx="7" cy="5" r="3"/><circle cx="23" cy="5" r="3"/><circle cx="23" cy="23" r="3"/></svg><span>hyunsu<span class="muted">.lee</span></span></a>
-  <nav aria-label="주 메뉴"><a href="#journey">Journey</a><a href="#work">Experience</a><a href="assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener">Résumé <span class="filetype">PDF</span></a><a href="mailto:hyunsuhahaha@gmail.com">Contact <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></nav>
+  <nav aria-label="주 메뉴"><a href="#journey"><span class="t" lang="en">Journey</span><span class="t" lang="ko">여정</span></a><a href="#work"><span class="t" lang="en">Experience</span><span class="t" lang="ko">경력</span></a><a href="assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener"><span class="t" lang="en">Résumé</span><span class="t" lang="ko">이력서</span> <span class="filetype">PDF</span></a><a href="mailto:hyunsuhahaha@gmail.com"><span class="t" lang="en">Contact</span><span class="t" lang="ko">연락처</span> <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></nav><div class="prefs" role="group" aria-label="Display settings"><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-set-lang="ko">KOR</button><button type="button" data-set-lang="en">ENG</button></div><button type="button" class="theme-switch" data-toggle-theme aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button></div>
 </header>
 <main>
   <section class="hero" id="top" aria-labelledby="name">
     <canvas id="scene" role="img" aria-label="서버 노드와 회로 같은 가지와 주요 기술 스택 17개의 ASCII 열매로 이루어진 천천히 회전하는 ASCII 트리"></canvas>
     <nav id="tech-fruits" aria-label="기술 스택 열매"></nav>
     <div class="intro">
-      <h1 id="name">Hyunsu<br>Lee<span class="name-dot">.</span></h1>
-      <p class="role">Backend &amp;<br>Infrastructure.</p>
+      <h1 id="name"><span class="t" lang="en">Hyunsu<br>Lee</span><span class="t" lang="ko">이현수</span><span class="name-dot">.</span></h1>
+      <p class="role"><span class="t" lang="en">Backend &amp;<br>Infrastructure.</span><span class="t" lang="ko">백엔드 &amp;<br>인프라.</span></p>
       <a class="profile" href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">github / hyunsuhahaha <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
     </div>
     <div class="tree-companions" aria-label="노트북으로 일하는 AI 친구들">
@@ -43,15 +45,15 @@
         <figcaption class="robot-name" aria-hidden="true">Gemini</figcaption>
       </figure>
     </div>
-    <div class="hero-bottom"><a class="explore" href="#journey"><span class="small-line"></span>Follow the roots<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a><button id="motion" class="motion" type="button" aria-label="트리 애니메이션 일시정지" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg></button></div>
+    <div class="hero-bottom"><a class="explore" href="#journey"><span class="small-line"></span><span class="t" lang="en">Follow the roots</span><span class="t" lang="ko">뿌리를 따라가기</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a><button id="motion" class="motion" type="button" aria-label="트리 애니메이션 일시정지" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg></button></div>
   </section>
   <section class="journey section" id="journey" aria-labelledby="journey-title">
     <canvas id="timeline-art" aria-hidden="true"></canvas>
-    <div class="section-heading journey-heading"><h2 id="journey-title">Along the way<span class="punctuation">.</span></h2><span class="section-note">2022 — 2026</span></div>
+    <div class="section-heading journey-heading"><h2 id="journey-title"><span class="t" lang="en">Along the way</span><span class="t" lang="ko">지나온 길</span><span class="punctuation">.</span></h2><span class="section-note">2022 — 2026</span></div>
     <ol class="timeline-list">
       <li data-side="right" class="milestone with-emblem" data-tone="mint"><div class="milestone-art"><canvas class="ascii-emblem school-emblem" data-emblem="dongguk" width="240" height="240" aria-hidden="true"></canvas></div><div class="milestone-copy">
         <time class="milestone-date" datetime="2022">2022</time>
-        <h3 class="latin-title">Dongguk<br>University</h3><p>컴퓨터·AI학부 입학</p><p class="coursework">C Programming · Discrete Math · Calculus · Linear Algebra · Algorithms</p>
+        <h3 class="latin-title"><span class="t" lang="en">Dongguk<br>University</span><span class="t" lang="ko">동국대학교</span></h3><p><span class="t" lang="en">Enrolled · Computer Science &amp; AI</span><span class="t" lang="ko">컴퓨터·AI학부 입학</span></p><p class="coursework"><span class="t" lang="en">C Programming · Discrete Math · Calculus · Linear Algebra · Algorithms</span><span class="t" lang="ko">C 프로그래밍 · 이산수학 · 미적분학 · 선형대수 · 알고리즘</span></p>
       </div></li>
       <li data-side="left" class="milestone with-emblem army-milestone" data-tone="blue"><div class="milestone-art army-art"><canvas class="ascii-emblem army-emblem" data-emblem="roka" width="192" height="240" aria-hidden="true"></canvas><div class="field-marks"><canvas class="ascii-emblem flag-emblem" data-emblem="flag" width="180" height="120" aria-hidden="true"></canvas><pre class="ascii-rifle" aria-hidden="true">       __
   ____/==|_________________,
@@ -60,90 +62,90 @@
     \/ /    |__|
        \_\</pre></div></div><div class="milestone-copy">
         <div class="milestone-date"><time datetime="2023-02">2023.02</time><span class="date-dash">—</span><time datetime="2024-08">2024.08</time></div>
-        <h3 class="latin-title">Republic of<br>Korea Army</h3><p>통신병 복무</p>
+        <h3 class="latin-title"><span class="t" lang="en">Republic of<br>Korea Army</span><span class="t" lang="ko">대한민국<br>육군</span></h3><p><span class="t" lang="en">Signal corps soldier</span><span class="t" lang="ko">통신병 복무</span></p>
       </div></li>
       <li data-side="right" class="milestone main-compact" data-tone="mint"><div class="milestone-copy">
         <time class="milestone-date" datetime="2025-03">2025.03</time>
-        <h3 class="latin-title node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.6c1.4 1.5 3.3 2.4 5.5 2.4s4.1-.9 5.5-2.4V11M21.5 9v5.5"/></svg><span>Dongguk University</span></h3><p>복학 · 컴퓨터·AI학부</p><p class="coursework">Operating Systems · Computer Networks · System Software · Database · Computer Security</p>
+        <h3 class="latin-title node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.6c1.4 1.5 3.3 2.4 5.5 2.4s4.1-.9 5.5-2.4V11M21.5 9v5.5"/></svg><span><span class="t" lang="en">Dongguk University</span><span class="t" lang="ko">동국대학교</span></span></h3><p><span class="t" lang="en">Returned · Computer Science &amp; AI</span><span class="t" lang="ko">복학 · 컴퓨터·AI학부</span></p><p class="coursework"><span class="t" lang="en">Operating Systems · Computer Networks · System Software · Database · Computer Security</span><span class="t" lang="ko">운영체제 · 컴퓨터네트워크 · 시스템소프트웨어 · 데이터베이스 · 컴퓨터보안</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="algorithm"><div class="milestone-copy">
         <div class="node-meta"><span class="branch-tag">algorithm</span><time datetime="2025-04">2025.04</time></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true" style="--icon:#ec9a00"><path d="M12 2.5 20.5 7.3v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="m8 14 4-4 4 4"/></svg><span>BOJ Gold</span></h3><p>백준 Gold 달성</p>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true" style="--icon:#ec9a00"><path d="M12 2.5 20.5 7.3v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="m8 14 4-4 4 4"/></svg><span>BOJ Gold</span></h3><p><span class="t" lang="en">Reached Gold on Baekjoon</span><span class="t" lang="ko">백준 Gold 달성</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="certs"><div class="milestone-copy">
         <div class="node-meta"><span class="branch-tag">certs</span><time datetime="2025-09-19">2025.09.19</time></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="m8.8 13.4-1.8 8.1 5-2.8 5 2.8-1.8-8.1"/><path d="m10 9 1.4 1.4L14.2 7.6"/></svg><span>SQLD</span></h3><p>SQL 개발자 자격 취득</p>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="m8.8 13.4-1.8 8.1 5-2.8 5 2.8-1.8-8.1"/><path d="m10 9 1.4 1.4L14.2 7.6"/></svg><span>SQLD</span></h3><p><span class="t" lang="en">SQL Developer certification</span><span class="t" lang="ko">SQL 개발자 자격 취득</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="algorithm"><div class="milestone-copy">
         <div class="node-meta"><span class="branch-tag">algorithm</span><time datetime="2026-02">2026.02</time></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true" style="--icon:#27e2a4"><path d="M12 2.5 20.5 7.3v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="m8 14 4-4 4 4"/></svg><span>BOJ Platinum</span></h3><p>백준 Platinum 달성</p>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true" style="--icon:#27e2a4"><path d="M12 2.5 20.5 7.3v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="m8 14 4-4 4 4"/></svg><span>BOJ Platinum</span></h3><p><span class="t" lang="en">Reached Platinum on Baekjoon</span><span class="t" lang="ko">백준 Platinum 달성</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="certs"><div class="milestone-copy">
         <div class="node-meta"><span class="branch-tag">certs</span><time datetime="2026-02-17">2026.02.17</time></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="m8.8 13.4-1.8 8.1 5-2.8 5 2.8-1.8-8.1"/><path d="m10 9 1.4 1.4L14.2 7.6"/></svg><span>AWS Certified Cloud Practitioner</span></h3><p>자격 취득</p>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="m8.8 13.4-1.8 8.1 5-2.8 5 2.8-1.8-8.1"/><path d="m10 9 1.4 1.4L14.2 7.6"/></svg><span>AWS Certified Cloud Practitioner</span></h3><p><span class="t" lang="en">Certified</span><span class="t" lang="ko">자격 취득</span></p>
       </div></li>
       <li data-side="left" class="milestone main-compact" data-tone="gold"><div class="milestone-copy">
-        <time class="milestone-date" datetime="2026-03">2026 Spring</time>
-        <h3 class="latin-title node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="5.5"/><path d="m8.5 2.5 3.5 7 3.5-7"/><path d="m12 12.4.9 1.8 2 .3-1.5 1.4.4 2-1.8-1-1.8 1 .4-2-1.5-1.4 2-.3z"/></svg><span>Merit Scholarship</span></h3><p>2026-1학기 성적장학금</p>
+        <time class="milestone-date" datetime="2026-03"><span class="t" lang="en">2026 Spring</span><span class="t" lang="ko">2026-1학기</span></time>
+        <h3 class="latin-title node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="5.5"/><path d="m8.5 2.5 3.5 7 3.5-7"/><path d="m12 12.4.9 1.8 2 .3-1.5 1.4.4 2-1.8-1-1.8 1 .4-2-1.5-1.4 2-.3z"/></svg><span><span class="t" lang="en">Merit Scholarship</span><span class="t" lang="ko">성적장학금</span></span></h3><p><span class="t" lang="en">Spring semester 2026</span><span class="t" lang="ko">2026-1학기 성적장학금</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="security"><div class="milestone-copy">
         <div class="node-meta"><span class="branch-tag">security</span><time datetime="2026-03">2026.03</time></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 4.8 5.6v5.9c0 4.6 3 7.9 7.2 9.7 4.2-1.8 7.2-5.1 7.2-9.7V5.6z"/><path d="m8.8 11.9 2.2 2.2 4.3-4.3"/></svg><span>PortSwigger · Hack The Box</span></h3><p>Web Security Academy·HTB 머신 실습</p>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 4.8 5.6v5.9c0 4.6 3 7.9 7.2 9.7 4.2-1.8 7.2-5.1 7.2-9.7V5.6z"/><path d="m8.8 11.9 2.2 2.2 4.3-4.3"/></svg><span>PortSwigger · Hack The Box</span></h3><p><span class="t" lang="en">Web Security Academy and HTB machine practice</span><span class="t" lang="ko">Web Security Academy·HTB 머신 실습</span></p>
       </div></li>
       <li data-side="left" class="milestone main-compact" data-tone="mint"><div class="milestone-copy">
         <time class="milestone-date" datetime="2026-07">2026.07</time>
-        <h3 class="latin-title node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8.5 7V4h7v3M3 12.5h18"/></svg><a href="work/noxglobal/">NoxGlobal</a></h3><p>IT Team Intern</p><p class="work-chips"><span class="work-chip">Performance</span><span class="work-chip">Incident Response</span><span class="work-chip">Monitoring</span><span class="work-chip">Zero-downtime Deploy</span><span class="work-chip">CI/CD</span></p><a class="work-more" href="work/noxglobal/">What I did at NoxGlobal<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+        <h3 class="latin-title node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8.5 7V4h7v3M3 12.5h18"/></svg><a href="work/noxglobal/">NoxGlobal</a></h3><p><span class="t" lang="en">IT Team Intern</span><span class="t" lang="ko">IT팀 인턴</span></p><p class="work-chips"><span class="work-chip">Performance</span><span class="work-chip">Incident Response</span><span class="work-chip">Monitoring</span><span class="work-chip">Zero-downtime Deploy</span><span class="work-chip">CI/CD</span></p><a class="work-more" href="work/noxglobal/"><span class="t" lang="en">What I did at NoxGlobal</span><span class="t" lang="ko">NoxGlobal에서 한 일</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
       </div></li>
       <li class="milestone branch-event" data-branch="ci-cd"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">ci-cd</span><time datetime="2026-08">2026.08</time><span class="context-tag" data-context="company">Used at NoxGlobal</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5h16v11.5H9.5L4 20.5z"/><path d="m8.6 10.3 2.2 2.2 4.4-4.4"/></svg><a href="https://github.com/hyunsuhahaha/gitea-auto-reviewer" target="_blank" rel="noopener noreferrer">gitea-auto-reviewer</a></h3><p>AI-assisted code review</p>
+        <div class="node-meta"><span class="branch-tag">ci-cd</span><time datetime="2026-08">2026.08</time><span class="context-tag" data-context="company"><span class="t" lang="en">Used at NoxGlobal</span><span class="t" lang="ko">NoxGlobal에서 사용</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5h16v11.5H9.5L4 20.5z"/><path d="m8.6 10.3 2.2 2.2 4.4-4.4"/></svg><a href="https://github.com/hyunsuhahaha/gitea-auto-reviewer" target="_blank" rel="noopener noreferrer">gitea-auto-reviewer</a></h3><p><span class="t" lang="en">AI-assisted code review</span><span class="t" lang="ko">AI 코드 리뷰 자동화</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="security"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">security</span><time datetime="2026-08">2026.08</time><span class="context-tag" data-context="personal">Personal</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg><a href="https://github.com/hyunsuhahaha/ShadowTrace" target="_blank" rel="noopener noreferrer">ShadowTrace</a></h3><p>Passive pentest activity recorder</p>
+        <div class="node-meta"><span class="branch-tag">security</span><time datetime="2026-08">2026.08</time><span class="context-tag" data-context="personal"><span class="t" lang="en">Personal</span><span class="t" lang="ko">개인</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg><a href="https://github.com/hyunsuhahaha/ShadowTrace" target="_blank" rel="noopener noreferrer">ShadowTrace</a></h3><p><span class="t" lang="en">Passive pentest activity recorder</span><span class="t" lang="ko">침투 테스트 활동 기록 도구</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="infra"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">infra</span><time datetime="2026-09">2026.09</time><span class="context-tag" data-context="team">Team · SoftBank Hackathon</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 21.5v-18"/><path d="M5.5 4h12.5l-2.6 4.3 2.6 4.3H5.5"/></svg><a href="https://github.com/SoftBank-team-lily" target="_blank" rel="noopener noreferrer">SoftBank Hackathon Preliminary</a></h3><p>Team Lily · hybrid deployment across AWS, GCP and on-prem</p>
+        <div class="node-meta"><span class="branch-tag">infra</span><time datetime="2026-09">2026.09</time><span class="context-tag" data-context="team"><span class="t" lang="en">Team · SoftBank Hackathon</span><span class="t" lang="ko">팀 · 소프트뱅크 해커톤</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 21.5v-18"/><path d="M5.5 4h12.5l-2.6 4.3 2.6 4.3H5.5"/></svg><a href="https://github.com/SoftBank-team-lily" target="_blank" rel="noopener noreferrer"><span class="t" lang="en">SoftBank Hackathon Preliminary</span><span class="t" lang="ko">소프트뱅크 해커톤 예선</span></a></h3><p><span class="t" lang="en">Team Lily · hybrid deployment across AWS, GCP and on-prem</span><span class="t" lang="ko">Team Lily · AWS·GCP·온프레미스 하이브리드 배포</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="ci-cd"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">ci-cd</span><time datetime="2026-10">2026.10</time><span class="context-tag" data-context="team">Team · Dongguk Creative Fusion Contest</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5.5" r="2.4"/><circle cx="6" cy="18.5" r="2.4"/><circle cx="18" cy="18.5" r="2.4"/><path d="M6 7.9v8.2M18 16.1V9.5a3 3 0 0 0-3-3h-4.5"/><path d="m12.5 4-2.5 2.5L12.5 9"/></svg><a href="https://github.com/dongguk-creative-fusion-2026" target="_blank" rel="noopener noreferrer">PR Guard</a></h3><p>AI 코드 PR 검증 계층</p>
+        <div class="node-meta"><span class="branch-tag">ci-cd</span><time datetime="2026-10">2026.10</time><span class="context-tag" data-context="team"><span class="t" lang="en">Team · Dongguk Creative Fusion Contest</span><span class="t" lang="ko">팀 · 동국대 창의융합경진대회</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5.5" r="2.4"/><circle cx="6" cy="18.5" r="2.4"/><circle cx="18" cy="18.5" r="2.4"/><path d="M6 7.9v8.2M18 16.1V9.5a3 3 0 0 0-3-3h-4.5"/><path d="m12.5 4-2.5 2.5L12.5 9"/></svg><a href="https://github.com/dongguk-creative-fusion-2026" target="_blank" rel="noopener noreferrer">PR Guard</a></h3><p><span class="t" lang="en">PR verification layer for AI-written code</span><span class="t" lang="ko">AI 코드 PR 검증 계층</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="infra"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">infra</span><time datetime="2026-10">2026.10</time><span class="context-tag" data-context="personal">Personal</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12h4.2l2.3-6.5 4.5 13 2.4-6.5h5.6"/></svg><a href="https://github.com/hyunsuhahaha/public-api-monitor" target="_blank" rel="noopener noreferrer">public-api-monitor</a></h3><p>API reliability &amp; observability</p>
+        <div class="node-meta"><span class="branch-tag">infra</span><time datetime="2026-10">2026.10</time><span class="context-tag" data-context="personal"><span class="t" lang="en">Personal</span><span class="t" lang="ko">개인</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12h4.2l2.3-6.5 4.5 13 2.4-6.5h5.6"/></svg><a href="https://github.com/hyunsuhahaha/public-api-monitor" target="_blank" rel="noopener noreferrer">public-api-monitor</a></h3><p><span class="t" lang="en">API reliability &amp; observability</span><span class="t" lang="ko">API 안정성·관측</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="infra"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">infra</span><time datetime="2026-11">2026.11</time><span class="context-tag" data-context="team">Team · SoftBank Hackathon</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 3.5h9v5.5a4.5 4.5 0 0 1-9 0z"/><path d="M7.5 5.5h-3a3.5 3.5 0 0 0 3.6 4.7M16.5 5.5h3a3.5 3.5 0 0 1-3.6 4.7M12 13.5v4M8 21h8M9.5 17.5h5"/></svg><a href="https://github.com/SoftBank-2026-Hackathon-Foxtrot" target="_blank" rel="noopener noreferrer">SoftBank Hackathon Final</a></h3><p>Team Foxtrot · zero-downtime migration of stateful services across clouds</p>
+        <div class="node-meta"><span class="branch-tag">infra</span><time datetime="2026-11">2026.11</time><span class="context-tag" data-context="team"><span class="t" lang="en">Team · SoftBank Hackathon</span><span class="t" lang="ko">팀 · 소프트뱅크 해커톤</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 3.5h9v5.5a4.5 4.5 0 0 1-9 0z"/><path d="M7.5 5.5h-3a3.5 3.5 0 0 0 3.6 4.7M16.5 5.5h3a3.5 3.5 0 0 1-3.6 4.7M12 13.5v4M8 21h8M9.5 17.5h5"/></svg><a href="https://github.com/SoftBank-2026-Hackathon-Foxtrot" target="_blank" rel="noopener noreferrer"><span class="t" lang="en">SoftBank Hackathon Final</span><span class="t" lang="ko">소프트뱅크 해커톤 본선</span></a></h3><p><span class="t" lang="en">Team Foxtrot · zero-downtime migration of stateful services across clouds</span><span class="t" lang="ko">Team Foxtrot · 상태 있는 서비스의 클라우드 간 무중단 이전</span></p>
       </div></li>
       <li class="milestone branch-event" data-branch="open-source"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">open-source</span><time datetime="2026-11">2026.11</time><span class="context-tag" data-context="oss">Open source</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M6 7.4v9.2M6 7.4c0 3.8 3.2 4.6 9.6 4.6"/></svg><a href="https://github.com/open-telemetry/opentelemetry-kotlin/pull/1542" target="_blank" rel="noopener noreferrer">OpenTelemetry Kotlin</a></h3><p>Multiple SpanProcessor support</p><span class="pr-chip">open-telemetry/opentelemetry-kotlin #1542</span>
+        <div class="node-meta"><span class="branch-tag">open-source</span><time datetime="2026-11">2026.11</time><span class="context-tag" data-context="oss"><span class="t" lang="en">Open source</span><span class="t" lang="ko">오픈소스</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M6 7.4v9.2M6 7.4c0 3.8 3.2 4.6 9.6 4.6"/></svg><a href="https://github.com/open-telemetry/opentelemetry-kotlin/pull/1542" target="_blank" rel="noopener noreferrer">OpenTelemetry Kotlin</a></h3><p><span class="t" lang="en">Multiple SpanProcessor support</span><span class="t" lang="ko">여러 SpanProcessor 지원</span></p><span class="pr-chip">open-telemetry/opentelemetry-kotlin #1542</span>
       </div></li>
       <li class="milestone branch-event" data-branch="open-source"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">open-source</span><time datetime="2026-11">2026.11</time><span class="context-tag" data-context="oss">Open source</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M6 7.4v9.2M6 7.4c0 3.8 3.2 4.6 9.6 4.6"/></svg><a href="https://github.com/open-telemetry/opentelemetry-android/pull/2227" target="_blank" rel="noopener noreferrer">OpenTelemetry Android</a></h3><p>Local &amp; CI coverage configuration</p><span class="pr-chip">open-telemetry/opentelemetry-android #2227</span>
+        <div class="node-meta"><span class="branch-tag">open-source</span><time datetime="2026-11">2026.11</time><span class="context-tag" data-context="oss"><span class="t" lang="en">Open source</span><span class="t" lang="ko">오픈소스</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M6 7.4v9.2M6 7.4c0 3.8 3.2 4.6 9.6 4.6"/></svg><a href="https://github.com/open-telemetry/opentelemetry-android/pull/2227" target="_blank" rel="noopener noreferrer">OpenTelemetry Android</a></h3><p><span class="t" lang="en">Local &amp; CI coverage configuration</span><span class="t" lang="ko">로컬·CI 커버리지 설정</span></p><span class="pr-chip">open-telemetry/opentelemetry-android #2227</span>
       </div></li>
       <li class="milestone branch-event" data-branch="open-source"><div class="milestone-copy">
-        <div class="node-meta"><span class="branch-tag">open-source</span><time datetime="2026-11">2026.11</time><span class="context-tag" data-context="oss">Open source</span></div>
-        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M6 7.4v9.2M6 7.4c0 3.8 3.2 4.6 9.6 4.6"/></svg><a href="https://github.com/open-telemetry/opentelemetry-kotlin/pull/1554" target="_blank" rel="noopener noreferrer">OpenTelemetry Kotlin</a></h3><p>Concurrent flush and shutdown with a configurable timeout</p><span class="pr-chip">open-telemetry/opentelemetry-kotlin #1554</span>
+        <div class="node-meta"><span class="branch-tag">open-source</span><time datetime="2026-11">2026.11</time><span class="context-tag" data-context="oss"><span class="t" lang="en">Open source</span><span class="t" lang="ko">오픈소스</span></span></div>
+        <h3 class="node-title"><svg class="node-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2.4"/><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M6 7.4v9.2M6 7.4c0 3.8 3.2 4.6 9.6 4.6"/></svg><a href="https://github.com/open-telemetry/opentelemetry-kotlin/pull/1554" target="_blank" rel="noopener noreferrer">OpenTelemetry Kotlin</a></h3><p><span class="t" lang="en">Concurrent flush and shutdown with a configurable timeout</span><span class="t" lang="ko">flush·shutdown 동시 처리와 타임아웃 설정</span></p><span class="pr-chip">open-telemetry/opentelemetry-kotlin #1554</span>
       </div></li>
     </ol>
-    <a class="timeline-next" href="#work">On to experience<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+    <a class="timeline-next" href="#work"><span class="t" lang="en">On to experience</span><span class="t" lang="ko">경력으로</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
   </section>
   <section class="work section" id="work" aria-labelledby="work-title">
-    <div class="section-heading"><h2 id="work-title">Experience<span class="punctuation">.</span></h2><a class="resume-link" href="assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener">Résumé PDF<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+    <div class="section-heading"><h2 id="work-title"><span class="t" lang="en">Experience</span><span class="t" lang="ko">경력</span><span class="punctuation">.</span></h2><a class="resume-link" href="assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener"><span class="t" lang="en">Résumé PDF</span><span class="t" lang="ko">이력서 PDF</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
     <dl class="bio">
-      <div class="bio-row"><dt>Work</dt><dd><h3><a href="work/noxglobal/">NoxGlobal<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></h3><p>IT Team Intern · Backend, deployment &amp; operations</p></dd><dd class="bio-meta">2026.07 — Present</dd></div>
-      <div class="bio-row"><dt>Education</dt><dd><h3>Dongguk University</h3><p>Computer Science &amp; AI</p></dd><dd class="bio-meta">GPA 4.1 / 4.5</dd></div>
+      <div class="bio-row"><dt><span class="t" lang="en">Work</span><span class="t" lang="ko">경력</span></dt><dd><h3><a href="work/noxglobal/">NoxGlobal<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></h3><p><span class="t" lang="en">IT Team Intern · MES development and deployment &amp; operations infrastructure</span><span class="t" lang="ko">IT팀 인턴 · MES 개발과 배포·운영 인프라</span></p></dd><dd class="bio-meta"><span class="t" lang="en">2026.07 — 2026.12 (expected)</span><span class="t" lang="ko">2026.07 — 2026.12 (종료 예정)</span></dd></div>
+      <div class="bio-row"><dt><span class="t" lang="en">Education</span><span class="t" lang="ko">학력</span></dt><dd><h3><span class="t" lang="en">Dongguk University</span><span class="t" lang="ko">동국대학교</span></h3><p><span class="t" lang="en">Computer Science &amp; AI</span><span class="t" lang="ko">컴퓨터·AI학부</span></p></dd><dd class="bio-meta">GPA 4.1 / 4.5</dd></div>
     </dl>
   </section>
 </main>
 <footer class="footer section" id="contact">
-  <div class="contact"><span>Get in touch</span><a href="mailto:hyunsuhahaha@gmail.com">hyunsuhahaha@gmail.com<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
-  <div class="footer-bottom"><span>© 2026 Hyunsu Lee</span><a href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">GitHub<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a><a href="#top">Back to top<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a></div>
+  <div class="contact"><span><span class="t" lang="en">Get in touch</span><span class="t" lang="ko">연락하기</span></span><a href="mailto:hyunsuhahaha@gmail.com">hyunsuhahaha@gmail.com<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+  <div class="footer-bottom"><span>© 2026 Hyunsu Lee</span><a href="https://github.com/hyunsuhahaha" target="_blank" rel="noopener noreferrer">GitHub<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a><a href="#top"><span class="t" lang="en">Back to top</span><span class="t" lang="ko">맨 위로</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a></div>
 </footer>
 </body>
 </html>

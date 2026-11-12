@@ -1,200 +1,83 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080d18">
-<meta name="description" content="이현수 — NoxGlobal IT Team Intern. MES 운영 인프라: 성능 개선, 장애 분석, 무중단 배포, CI/CD, 모니터링.">
+<meta name="description" content="이현수 — NoxGlobal IT팀 인턴. MES 개발과 배포·운영 인프라: 성능 최적화, 장애 분석, 블루그린 배포, CI/CD, 모니터링.">
 <title>NoxGlobal — Hyunsu Lee</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
-<style>
-@font-face{font-family:Space;src:url('../../assets/SpaceGrotesk.ttf') format('truetype');font-weight:300 700;font-display:swap}
-@font-face{font-family:Plex;src:url('../../assets/IBMPlexMono-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
-:root{color-scheme:dark;--bg:#080d18;--panel:#0e1524;--ink:#f3f8f4;--body:#cbd8cf;--muted:#a3b5aa;--line:#24313a;--accent:#7dffb0;
-  --perf:#ffcf3f;--incident:#ff6f5e;--monitor:#5cc8ff;--deploy:#ff9b4a;--data:#b88cff;--migrate:#4fe08a;--security:#ff6f9a;
-  --gutter:clamp(18px,5vw,72px)}
-*{box-sizing:border-box}
-html{background:var(--bg);color:var(--ink);font-family:Space,Arial,sans-serif;font-synthesis:none;scroll-behavior:smooth;scroll-padding-top:24px}
-body{margin:0;background:var(--bg)}
-a{color:inherit;text-decoration:none}
-a:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gutter)}
-.top{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
-.back{display:inline-flex;gap:10px;align-items:center;font:12px Plex,monospace;color:var(--body)}
-.back:hover{color:var(--accent)}
-.back svg,.ext svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
-.resume{display:inline-flex;gap:8px;align-items:center;padding:8px 13px;border:1px solid var(--line);border-radius:3px;font:12px Plex,monospace;color:#dbe8df}
-.resume:hover{border-color:var(--accent);color:var(--accent)}
-.hero{padding:34px 0 28px;border-bottom:1px solid var(--line)}
-.eyebrow{font:12px Plex,monospace;color:var(--accent);letter-spacing:.04em}
-h1{margin:10px 0 4px;font-size:clamp(44px,7vw,84px);font-weight:400;letter-spacing:-.05em;line-height:1}
-h1 .dot{color:var(--accent)}
-.role{margin:0 0 16px;font-size:clamp(19px,2vw,24px);color:#dfe9e2;letter-spacing:-.02em}
-.lede{max-width:760px;margin:0 0 20px;font:17px/1.65 system-ui,sans-serif;color:var(--body)}
-.stack{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
-.stack li{padding:3px 9px;border:1px solid var(--line);border-radius:2px;font:11px Plex,monospace;color:#d6e3da}
-.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin:26px 0 0;background:var(--line);border:1px solid var(--line)}
-.metric{padding:16px 18px;background:var(--bg)}
-.metric b{display:block;font:500 clamp(24px,2.6vw,34px)/1.1 Space,Arial,sans-serif;letter-spacing:-.03em;color:var(--c,var(--ink))}
-.metric span{display:block;margin-top:6px;font:12px/1.5 system-ui,sans-serif;color:var(--body)}
-.keywords{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:6px;padding:12px 0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-.keywords a{display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 15%,transparent);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);color:var(--c);font:600 11px Plex,monospace}
-.keywords a:hover{background:color-mix(in srgb,var(--c) 28%,transparent)}
-.items{display:grid;gap:14px;padding:22px 0 56px}
-.item{--c:var(--accent);position:relative;padding:20px 22px 20px 26px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--c);border-radius:3px}
-.item header{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px}
-.tag{padding:1px 8px;border-radius:2px;background:color-mix(in srgb,var(--c) 18%,transparent);border:1px solid color-mix(in srgb,var(--c) 70%,transparent);color:var(--c);font:600 10px/1.7 Plex,monospace;letter-spacing:.03em}
-.item h2{display:flex;align-items:center;gap:11px;width:100%;margin:2px 0 0;font:500 clamp(21px,2.2vw,27px)/1.25 Space,Arial,sans-serif;letter-spacing:-.03em;color:var(--ink)}
-.item h2 svg{flex:none;width:24px;height:24px;fill:none;stroke:var(--c);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--c) 45%,transparent))}
-.summary{margin:0 0 12px;font:16px/1.65 system-ui,sans-serif;color:#e1ebe4}
-.steps{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:12px;margin:0}
-.steps>div{padding:12px 14px;border:1px solid var(--line);border-radius:2px;background:#0b111d}
-.steps dt{margin-bottom:6px;font:600 10px Plex,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
-.steps dd{margin:0;font:14px/1.6 system-ui,sans-serif;color:var(--body)}
-.steps ul{margin:0;padding-left:17px}
-.steps li+li{margin-top:4px}
-.steps b{color:#f3f8f4;font-weight:600}
-pre.flow{margin:12px 0 0;padding:12px 14px;overflow-x:auto;border:1px dashed color-mix(in srgb,var(--c) 45%,transparent);border-radius:2px;font:12px/1.5 Plex,Consolas,monospace;color:#e9f1ec;background:#0a0f19}
-.note{margin:0 0 40px;font:12px/1.7 system-ui,sans-serif;color:var(--muted)}
-footer{padding:26px 0 40px;border-top:1px solid var(--line);font:12px Plex,monospace;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-footer a:hover{color:var(--accent)}
-@media(max-width:860px){.steps{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:520px){.item{padding:16px 14px 16px 18px}.lede{font-size:15px}.summary{font-size:15px}.metric{padding:12px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style>
+<script>(()=>{let l,t;try{l=localStorage.getItem("lang");t=localStorage.getItem("theme")}catch(e){}const d=document.documentElement;d.lang=l==="en"?"en":"ko";d.dataset.theme=t==="light"?"light":"dark"})()</script>
+<link rel="stylesheet" href="detail.css">
+<script src="../../prefs.js" defer></script>
+<script src="diagrams.js" defer></script>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <a class="back" href="../../#journey"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg>hyunsu.lee / timeline</a>
-    <a class="resume" href="../../assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener">Résumé PDF</a>
+    <a class="back" href="../../#journey"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg><span class="t" lang="en">hyunsu.lee / timeline</span><span class="t" lang="ko">hyunsu.lee / 타임라인</span></a>
+    <div class="top-right"><a class="resume" href="../../assets/Hyunsu-Lee-Resume.pdf" target="_blank" rel="noopener"><span class="t" lang="en">Résumé PDF</span><span class="t" lang="ko">이력서 PDF</span></a><div class="prefs" role="group" aria-label="Display settings"><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-set-lang="ko">KOR</button><button type="button" data-set-lang="en">ENG</button></div><button type="button" class="theme-switch" data-toggle-theme aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button></div></div>
   </div>
-
   <section class="hero" aria-labelledby="title">
-    <div class="eyebrow">Experience · 2026.07 — Present</div>
+    <div class="eyebrow"><span class="t" lang="en">Experience · 2026.07 — 2026.12 (expected)</span><span class="t" lang="ko">경력 · 2026.07 — 2026.12 (종료 예정)</span></div>
     <h1 id="title">NoxGlobal<span class="dot">.</span></h1>
-    <p class="role">IT Team Intern</p>
-    <p class="lede">Developed and operated the infrastructure for a production manufacturing execution system (MES).</p>
-    <ul class="stack" aria-label="Stack">
-      <li>Python</li><li>Django 5</li><li>PostgreSQL</li><li>MSSQL</li><li>IIS · ARR</li><li>Gitea Actions</li><li>Hyper-V</li><li>Airflow</li><li>FastAPI</li><li>React</li>
-    </ul>
-    <div class="metrics">
-      <div class="metric" style="--c:var(--perf)"><b>400 → 95 ms</b><span>Average API latency (~76% lower)</span></div>
-      <div class="metric" style="--c:var(--perf)"><b>57% → 30%</b><span>Daily average CPU</span></div>
-      <div class="metric" style="--c:var(--perf)"><b>−86%</b><span>Template rendering time, up to</span></div>
-      <div class="metric" style="--c:var(--deploy)"><b>~10 s</b><span>PR checks with caching</span></div>
-    </div>
+    <p class="role"><span class="t" lang="en">IT Team Intern</span><span class="t" lang="ko">IT팀 인턴</span></p>
+    <p class="lede"><span class="t" lang="en">Handled both development of the factory manufacturing execution system (MES) and its deployment and operations infrastructure.</span><span class="t" lang="ko">공장 생산관리 시스템(MES) 개발과 배포·운영 인프라를 함께 담당.</span></p>
+    <ul class="stack" aria-label="Stack"><li>Python · Django 5</li><li>PostgreSQL · MSSQL · MariaDB</li><li>IIS · Apache</li><li>Linux (CentOS)</li><li>Gitea Actions</li><li>Hyper-V · Naver Cloud</li><li>Airflow</li></ul>
   </section>
-
-  <nav class="keywords" aria-label="Keywords">
-    <a href="#performance" style="--c:var(--perf)">Performance</a>
-    <a href="#incident" style="--c:var(--incident)">Incident Response</a>
-    <a href="#tracing" style="--c:var(--monitor)">Monitoring</a>
-    <a href="#deploy" style="--c:var(--deploy)">Zero-downtime Deploy</a>
-    <a href="#cicd" style="--c:var(--deploy)">CI/CD</a>
-    <a href="#migration" style="--c:var(--migrate)">DB Migration</a>
-    <a href="#data" style="--c:var(--data)">Data · AI Access</a>
-    <a href="#anomaly" style="--c:var(--data)">Anomaly Detection</a>
-    <a href="#security" style="--c:var(--security)">Security</a>
-  </nav>
-
+  <nav class="keywords" aria-label="Keywords"><a href="#performance" style="--c:var(--perf)">Performance</a><a href="#incident" style="--c:var(--incident)">Incident Response</a><a href="#monitoring" style="--c:var(--monitor)">Monitoring</a><a href="#deploy" style="--c:var(--deploy)">Zero-downtime Deploy</a><a href="#cicd" style="--c:var(--deploy)">CI/CD</a><a href="#migration" style="--c:var(--migrate)">DB Migration</a><a href="#anomaly" style="--c:var(--data)">Anomaly Detection</a><a href="#security" style="--c:var(--security)">Security</a><a href="#communication" style="--c:var(--comm)">Communication</a></nav>
   <main class="items">
     <article class="item" id="performance" style="--c:var(--perf)">
-      <header><span class="tag">Performance</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 4.5-6"/></svg>Production performance</h2></header>
-      <p class="summary">Cut average API latency from ~400 ms to 95 ms (~76%) and daily average CPU from 57% to 30%.</p>
-      <dl class="steps" style="--n:1"><div><dt>What I did</dt><dd><ul>
-        <li>Query tuning: resolved N+1 queries and narrowed query scope</li>
-        <li>Reused DB connections (persistent connections), removing per-request connection setup cost</li>
-        <li>Applied Django's cached template loader, cutting template rendering time by up to 86%</li>
-        <li>Converted synchronous queries to asynchronous processing, minimizing perceived latency</li>
-        <li>Tuned FastCGI worker recycling and served static files directly from IIS, reducing worker load</li>
-      </ul></dd></div></dl>
+      <header><span class="tag">Performance</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 4.5-6"/></svg><span class="t" lang="en">Server &amp; DB performance</span><span class="t" lang="ko">서버 및 DB 성능 최적화</span></h2></header>
+      <ul><li><span class="t" lang="en">Resolved N+1 queries and optimized query scope and indexes to remove DB lookup bottlenecks</span><span class="t" lang="ko">N+1 쿼리 해소 및 조회 범위·인덱스 최적화로 DB 조회 병목 개선</span></li><li><span class="t" lang="en">Applied DB persistent connections, removing per-request connection setup overhead</span><span class="t" lang="ko">DB Persistent Connection 적용으로 요청당 연결 수립 오버헤드 제거</span></li><li><span class="t" lang="en">Django template caching, FastCGI worker recycling tuning and static files served directly by IIS reduced server load</span><span class="t" lang="ko">Django 템플릿 캐싱 및 FastCGI 워커 재활용 주기 조정, IIS 정적 파일 직접 서빙으로 서버 처리 부하 감소</span></li></ul>
     </article>
-
     <article class="item" id="incident" style="--c:var(--incident)">
-      <header><span class="tag">Incident Response</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19z"/><path d="M12 10v4.5M12 17.5v.01"/></svg>Gateway incident root cause</h2></header>
-      <p class="summary">Screens repeatedly froze for about 20 seconds and then failed in the early morning. Correlating logs across layers traced the failure to the network gateway, not the server or the switch.</p>
-      <dl class="steps"><div><dt>Problem</dt><dd>Worker backlog and failed response delivery were mixed together during the incident, so IIS logs alone could not tell a server-side cause from a network-side one.</dd></div>
-        <div><dt>What I did</dt><dd><ul>
-          <li>Matched the same requests 1:1 across the front proxy and application IIS logs</li>
-          <li>12 of 15 slow requests finished in the app within 1 s while the proxy took over 5 s (one: 0.03 s vs ~19 s), with connection-abort, transmit-timeout and peer-reset errors</li>
-          <li>Added a connection log recording MES · ERP · SCM reachability every 2 seconds</li>
-        </ul></dd></div>
-        <div><dt>Result</dt><dd>SCM traffic, which shares the switch but bypasses the gateway, stayed healthy during later incidents, ruling out the switch and pinpointing the <b>gateway</b>.</dd></div></dl>
+      <header><span class="tag">Incident Response</span><span class="tag">Request Tracing</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19z"/><path d="M12 10v4.5M12 17.5v.01"/></svg><span class="t" lang="en">Incident response &amp; root-cause analysis</span><span class="t" lang="ko">서버 장애 대응·원인 분석</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Analyzed the request flow and communication between firewall, reverse proxy, backend processes and DB server, and responded to incidents by correlating logs across layers.</span><span class="t" lang="ko">방화벽·리버스 프록시·백엔드 프로세스·DB 서버로 이어지는 요청 흐름과 컴포넌트 간 통신 구조를 분석하고, 계층별 로그 상관 분석으로 장애에 대응.</span></p><ul><li><span class="t" lang="en">Per-request tracing (Django middleware · DB hooks) split processing time into DB, external DB and application segments to identify bottlenecks and worker saturation</span><span class="t" lang="ko">요청 단위 트레이싱(Django 미들웨어·DB 훅)으로 처리 시간을 DB·외부 DB 연동·애플리케이션 구간으로 분해해 병목·워커 포화 식별</span></li><li><span class="t" lang="en">Synced and cached ERP-dependent data (month-end lookups) into an MES table every minute, isolating the external dependency so MES keeps running when the ERP link drops</span><span class="t" lang="ko">ERP 의존 데이터(월마감 조회)를 MES 내부 테이블에 1분 주기로 동기화·캐시해, ERP 연동이 끊겨도 MES 운영에 영향이 없도록 외부 의존성 격리</span></li></ul><figure class="diagram"><figcaption><span class="t" lang="en">Per-request tracing</span><span class="t" lang="ko">요청 단위 트레이싱</span></figcaption><iframe class="stack-frame" src="diagrams/tracing.html" title="Per-request tracing diagram" loading="lazy"></iframe><p class="diagram-note"><span class="t" lang="en">The middleware times every request and DB hooks split query time per database; slow requests go to per-process log files, a watch thread catches requests that stall, and the server-status tab shows it all.</span><span class="t" lang="ko">미들웨어가 요청마다 시간을 재고 DB 훅이 DB별 쿼리 시간을 나눕니다. 느린 요청은 프로세스별 로그 파일에 남고, 감시 스레드가 멈춘 요청을 잡아내며, 서버상태 탭에서 한눈에 봅니다.</span></p></figure>
     </article>
-
-    <article class="item" id="tracing" style="--c:var(--monitor)">
-      <header><span class="tag">Monitoring</span><span class="tag">Request Tracing</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12h4.2l2.3-6.5 4.5 13 2.4-6.5h5.6"/></svg>Per-request diagnostics</h2></header>
-      <p class="summary">Split each request's processing time across MES DB, external DBs and the application to pinpoint bottlenecks and worker saturation.</p>
-      <dl class="steps"><div><dt>Problem</dt><dd>MES runs on a few single-request workers. When ERP or SCM slowed down, waiting workers piled up and unrelated MES requests stalled too, but nothing showed which request held a worker or where its time went. Requests that hung or died were never logged at all.</dd></div>
-        <div><dt>What I did</dt><dd><ul>
-          <li>Django middleware + DB hooks bucketed query time per database; the rest is application time</li>
-          <li>Logged only requests over a threshold, per process, to files rather than the busy DB</li>
-          <li>A watch thread recorded in-flight requests past 5 s once, with the code location they were stuck at</li>
-        </ul></dd></div>
-        <div><dt>Result</dt><dd>Slow and stalled requests, and which requests occupied workers at that moment, became visible in the server-status tab, making dependency bottlenecks and worker saturation traceable.</dd></div></dl>
-    </article>
-
     <article class="item" id="monitoring" style="--c:var(--monitor)">
-      <header><span class="tag">Monitoring</span><span class="tag">Resilience</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4M7 12l3-3 2 2 4-4"/></svg>Admin portal, server monitoring &amp; ERP fallback</h2></header>
-      <dl class="steps" style="--n:2"><div><dt>Monitoring</dt><dd>Applied role-based access control (RBAC) to the admin portal and built a real-time dashboard for resource, latency, DB and deployment status.</dd></div>
-        <div><dt>ERP fallback</dt><dd>Cached ERP month-end data in a local MES table with a 1-minute sync, keeping MES up during ERP outages.</dd></div></dl>
+      <header><span class="tag">Monitoring</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4M7 12l3-3 2 2 4-4"/></svg><span class="t" lang="en">Admin pages &amp; server monitoring</span><span class="t" lang="ko">MES 관리자 페이지 개선, 서버 모니터링 개발</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Applied role-based access control (RBAC) to the admin pages and built a real-time dashboard for resources, response latency, DB and deployment status.</span><span class="t" lang="ko">어드민 페이지 역할 기반 접근 제어(RBAC) 적용, 리소스·응답 지연·DB·배포 상태 실시간 모니터링 대시보드 구축.</span></p>
     </article>
-
     <article class="item" id="deploy" style="--c:var(--deploy)">
-      <header><span class="tag">Zero-downtime Deploy</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11l-3-3M20 17H9l3 3"/></svg>Blue-green deployment</h2></header>
-      <p class="summary">Switched BLUE/GREEN slots behind an IIS reverse proxy (ARR).</p>
-      <dl class="steps" style="--n:2"><div><dt>Safety</dt><dd>Automatic rollback when post-deploy smoke tests fail.</dd></div>
-        <div><dt>Users</dt><dd>Auto-saved and restored screen state on deploy, so users never lose work.</dd></div></dl>
-      <pre class="flow" aria-label="Blue-green flow">deploy ─▶ idle slot (GREEN) ─▶ smoke test ─┬─▶ pass ─▶ ARR switches traffic
-                                             └─▶ fail ─▶ automatic rollback (BLUE stays live)</pre>
+      <header><span class="tag">Zero-downtime Deploy</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11l-3-3M20 17H9l3 3"/></svg><span class="t" lang="en">IIS blue-green deployment</span><span class="t" lang="ko">IIS 블루그린 무중단 배포</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Zero-downtime deployment that switches BLUE/GREEN slots behind an IIS reverse proxy (ARR).</span><span class="t" lang="ko">IIS 리버스 프록시(ARR)로 BLUE/GREEN 슬롯을 전환하는 무중단 배포 구성.</span></p><figure class="diagram"><figcaption><span class="t" lang="en">Blue-green deployment</span><span class="t" lang="ko">블루그린 배포</span></figcaption><iframe class="stack-frame" src="diagrams/bluegreen.html" title="Blue-green deployment diagram" loading="lazy"></iframe><p class="diagram-note"><span class="t" lang="en">Gitea Actions deploys the new version to the standby slot, ARR then moves traffic to it, and a failure rolls traffic back to the old slot.</span><span class="t" lang="ko">Gitea Actions가 새 버전을 대기 슬롯에 배포하면 ARR이 트래픽을 그쪽으로 옮기고, 실패하면 이전 슬롯으로 되돌립니다.</span></p></figure>
     </article>
-
     <article class="item" id="cicd" style="--c:var(--deploy)">
-      <header><span class="tag">CI/CD</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5.5" r="2.4"/><circle cx="6" cy="18.5" r="2.4"/><circle cx="18" cy="18.5" r="2.4"/><path d="M6 7.9v8.2M18 16.1V9.5a3 3 0 0 0-3-3h-4.5"/><path d="m12.5 4-2.5 2.5L12.5 9"/></svg>CI/CD pipeline &amp; Hyper-V staging</h2></header>
-      <dl class="steps"><div><dt>Problem</dt><dd>Several outsourced projects were brought in-house at once, with no shared Git workflow or release process, so every deploy was tense.</dd></div>
-        <div><dt>What I did</dt><dd>Built MES/SCM CI/CD on self-hosted Gitea from scratch: PR checks, merge and branch policy, deploy and rollback, with a production-parity Hyper-V staging environment.</dd></div>
-        <div><dt>Result</dt><dd>The team follows one consistent procedure, changes reach production faster and more safely, and PR checks run in about <b>10 s</b> via caching.</dd></div></dl>
-      <pre class="flow" aria-label="Pipeline">PR ─▶ checks (~10 s) ─▶ merge policy ─▶ Hyper-V staging ─▶ production deploy ─▶ rollback if needed</pre>
+      <header><span class="tag">CI/CD</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5.5" r="2.4"/><circle cx="6" cy="18.5" r="2.4"/><circle cx="18" cy="18.5" r="2.4"/><path d="M6 7.9v8.2M18 16.1V9.5a3 3 0 0 0-3-3h-4.5"/><path d="m12.5 4-2.5 2.5L12.5 9"/></svg><span class="t" lang="en">CI/CD pipeline &amp; Hyper-V staging</span><span class="t" lang="ko">CI/CD 파이프라인, Hyper-V 스테이징 환경 구축·운영</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Built PR-check, production-deploy and automatic-rollback workflows for in-house services such as MES and SCM on on-prem Gitea with self-hosted runners, and built and ran a production-parity staging environment (IIS + PostgreSQL on Hyper-V) wired into the pipeline.</span><span class="t" lang="ko">온프레미스 Gitea·self-hosted runner로 MES·SCM 등 사내 서비스의 PR 검사·운영 배포·자동 롤백 워크플로를 구성하고, 운영 동일 구성(IIS+PostgreSQL)의 스테이징 환경(Hyper-V)을 구축·운영하며 파이프라인에 연결.</span></p><figure class="diagram"><figcaption><span class="t" lang="en">CI/CD pipeline</span><span class="t" lang="ko">CI/CD 파이프라인</span></figcaption><iframe class="stack-frame" src="diagrams/cicd.html" title="CI/CD pipeline diagram" loading="lazy"></iframe><p class="diagram-note"><span class="t" lang="en">Pull request to production through PR checks and Hyper-V staging; DB migrations apply on release and failures roll back automatically.</span><span class="t" lang="ko">PR 검사와 Hyper-V 스테이징을 거쳐 운영에 배포되고, 릴리즈 때 DB 마이그레이션이 적용되며 실패하면 자동으로 롤백합니다.</span></p></figure>
     </article>
-
+    <article class="item" id="ci-speed" style="--c:var(--deploy)">
+      <header><span class="tag">CI/CD</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span class="t" lang="en">CI pipeline optimization</span><span class="t" lang="ko">CI 파이프라인 최적화</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Cached dependencies, repositories and setup steps, profiled test bottlenecks, and ran jobs in parallel while cancelling duplicate runs, cutting PR checks from about 1 minute to about 10 seconds.</span><span class="t" lang="ko">의존성·저장소·준비 단계 캐싱과 테스트 병목 프로파일링, 병렬 실행·중복 실행 취소로 PR 검사 시간을 1분대 → 10초대로 단축.</span></p>
+    </article>
+    <article class="item" id="homepage" style="--c:var(--deploy)">
+      <header><span class="tag">CI/CD</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg><span class="t" lang="en">Company website CI/CD</span><span class="t" lang="ko">회사 홈페이지 CI/CD 구축·운영</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Built and ran the deployment CI/CD pipeline for the company website.</span><span class="t" lang="ko">회사 홈페이지 배포 CI/CD 파이프라인 구축·운영.</span></p>
+    </article>
     <article class="item" id="migration" style="--c:var(--migrate)">
-      <header><span class="tag">DB Migration</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg>Automated DB migrations</h2></header>
-      <p class="summary">Recorded schema, view, trigger and procedure changes as migrations in the test environment and applied them to production automatically on release.</p>
+      <header><span class="tag">DB Migration</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg><span class="t" lang="en">Automated DB migrations</span><span class="t" lang="ko">DB 마이그레이션 자동화</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Versioned schema, view, trigger and procedure changes and applied them to the production DB automatically on release. Tools: Django migrations · RunSQL · Flyway.</span><span class="t" lang="ko">스키마·뷰·트리거·프로시저 변경을 버전 관리하고, 운영 릴리즈 시 운영 DB에 자동 적용. 활용 기술: Django migrations · RunSQL · Flyway</span></p>
     </article>
-
-    <article class="item" id="data" style="--c:var(--data)">
-      <header><span class="tag">Data · AI Access</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>Data access layer for AI agents</h2></header>
-      <p class="summary">Designed a read-only query API (FastAPI) over production QR data so AI agents can inspect MES data directly, with server-side limits on query scope and cost.</p>
-    </article>
-
     <article class="item" id="anomaly" style="--c:var(--data)">
-      <header><span class="tag">Anomaly Detection</span><span class="tag">Data Pipeline</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5M8 11h2l1-2 1.5 4 1-2"/></svg>MES data anomaly detection</h2></header>
-      <p class="summary">Built a system (FastAPI, React) that finds missing or mismatched records across MES and ERP material input, QR and material usage records.</p>
-      <dl class="steps"><div><dt>Collect</dt><dd>Collected MES/ERP data through the MES API and Playwright and reconciled it by item and quantity.</dd></div>
-        <div><dt>Pipeline</dt><dd>Airflow batch pipeline with idempotency guarantees, preventing duplicate runs.</dd></div>
-        <div><dt>Surface</dt><dd>Dashboard of per-line miss rates and source snapshots, with email alerts.</dd></div></dl>
+      <header><span class="tag">Anomaly Detection</span><span class="tag">Data Pipeline</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5M8 11h2l1-2 1.5 4 1-2"/></svg><span class="t" lang="en">MES production-data anomaly detection</span><span class="t" lang="ko">MES 생산데이터 이상 탐지</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Built a check system (FastAPI · React) that automatically finds missing or mismatched records across MES and ERP input history, QR and actual material data.</span><span class="t" lang="ko">MES·ERP의 투입내역·QR·실자재 데이터에서 누락·불일치를 자동으로 찾는 검사 시스템 개발(FastAPI·React).</span></p><ul><li><span class="t" lang="en">Collected MES and ERP data through the MES API and Playwright and reconciled it by item and quantity</span><span class="t" lang="ko">MES API·Playwright로 MES·ERP 데이터를 수집해 품목·수량 기준으로 대조</span></li><li><span class="t" lang="en">Airflow batch pipeline with idempotency guarantees to prevent duplicate runs</span><span class="t" lang="ko">Airflow 배치 파이프라인, 멱등성(Idempotency) 보장으로 중복 실행 방지</span></li><li><span class="t" lang="en">Dashboard of per-line miss rates and the source at the time of each miss, with email alerts to owners</span><span class="t" lang="ko">라인별 누락률과 누락 시점 원본을 대시보드로 제공하고 담당자에게 메일 알림</span></li></ul>
     </article>
-
     <article class="item" id="security" style="--c:var(--security)">
-      <header><span class="tag">Security</span>
-        <h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 4.8 5.6v5.9c0 4.6 3 7.9 7.2 9.7 4.2-1.8 7.2-5.1 7.2-9.7V5.6z"/><path d="m8.8 11.9 2.2 2.2 4.3-4.3"/></svg>Security hardening</h2></header>
-      <dl class="steps" style="--n:2"><div><dt>Legacy web app</dt><dd>Diagnosed SSRF and file-upload flaws, and blocked web-shell and internal-network access through URL allowlisting and disabling script execution in the upload directory.</dd></div>
-        <div><dt>Access policy</dt><dd>Analyzed public threat-intelligence trends, reported remote-access risks, and helped enforce admin MFA and source-IP restrictions.</dd></div></dl>
+      <header><span class="tag">Security</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 4.8 5.6v5.9c0 4.6 3 7.9 7.2 9.7 4.2-1.8 7.2-5.1 7.2-9.7V5.6z"/><path d="m8.8 11.9 2.2 2.2 4.3-4.3"/></svg><span class="t" lang="en">Legacy PHP vulnerability fixes</span><span class="t" lang="ko">레거시 PHP 서비스 취약점 진단·조치</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Diagnosed SSRF and file-upload vulnerabilities and closed web-shell and internal-network paths with a URL allowlist and by blocking PHP execution in the upload directory.</span><span class="t" lang="ko">SSRF·파일 업로드 취약점을 진단해 URL 화이트리스트·업로드 디렉터리 PHP 실행 차단으로 웹셸·내부망 접근 경로 차단.</span></p>
+    </article>
+    <article class="item" id="threat-intel" style="--c:var(--security)">
+      <header><span class="tag">Security</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12 18.5 6"/></svg><span class="t" lang="en">Threat-intelligence-driven policy</span><span class="t" lang="ko">보안 위협 인텔리전스 기반 정책 개선</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Analyzed CISA threat trends, reported access-control risks in the company remote-access environment, and helped strengthen policy with admin MFA and source-IP restrictions.</span><span class="t" lang="ko">CISA 위협 동향을 분석해 사내 원격 접속 환경의 접근통제 위험을 보고하고, 관리자 MFA 적용·접속 IP 제한 등 정책 강화에 기여.</span></p>
+    </article>
+    <article class="item" id="communication" style="--c:var(--comm)">
+      <header><span class="tag">Communication</span><h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5h16v11.5H9.5L4 20.5z"/><path d="M8 9h8M8 12.5h5"/></svg><span class="t" lang="en">Working with the factory floor</span><span class="t" lang="ko">현업 커뮤니케이션·요구사항 정리</span></h2></header>
+      <p class="summary"><span class="t" lang="en">Trained factory staff and handled their requests, and documented on-site requirements for the development team.</span><span class="t" lang="ko">공장 근무자 교육·민원 대응, 현장 요구사항을 문서로 정리해 개발팀에 전달.</span></p>
     </article>
   </main>
-
-  <p class="note">Internal hostnames, addresses, source code and production data are intentionally left out.</p>
-  <footer><span>© 2026 Hyunsu Lee</span><a href="../../#work">Back to experience</a><a href="mailto:hyunsuhahaha@gmail.com">hyunsuhahaha@gmail.com</a></footer>
+  <p class="note"><span class="t" lang="en">Internal hostnames, addresses, source code and production data are intentionally left out.</span><span class="t" lang="ko">사내 호스트명·주소·소스 코드·운영 데이터는 의도적으로 제외했습니다.</span></p>
+  <footer><span>© 2026 Hyunsu Lee</span><a href="../../#work"><span class="t" lang="en">Back to experience</span><span class="t" lang="ko">경력으로 돌아가기</span></a><a href="mailto:hyunsuhahaha@gmail.com">hyunsuhahaha@gmail.com</a></footer>
 </div>
 </body>
 </html>
