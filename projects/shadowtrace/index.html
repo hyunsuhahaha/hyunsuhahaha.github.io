@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="이현수 — ShadowTrace: 통합 펜테스팅·조사 기록 관리 플랫폼. FastAPI, eBPF(BCC), SQLite, React.">
+<title>ShadowTrace — Hyunsu Lee</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script>(()=>{let l,t;try{l=localStorage.getItem("lang");t=localStorage.getItem("theme")}catch(e){}const d=document.documentElement;d.lang=l==="ko"?"ko":"en";d.dataset.theme=t==="light"?"light":"dark"})()</script>
+<style>html[lang="ko"] .t[lang="en"],html[lang="en"] .t[lang="ko"]{display:none}</style>
+<link rel="stylesheet" href="../../assets/detail.css?v=20261113a">
+<script src="../../prefs.js?v=20261113a" defer></script>
+<script src="../../assets/detail.js?v=20261113a" defer></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../../#journey"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg><span class="t" lang="en">Back to timeline</span><span class="t" lang="ko">타임라인으로</span></a>
+    <div class="top-right"><a class="btn" href="https://github.com/hyunsuhahaha/ShadowTrace" target="_blank" rel="noopener noreferrer">GitHub <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><div class="prefs" role="group" aria-label="Display settings"><div class="lang-switch" role="group" aria-label="Language"><button type="button" data-set-lang="ko">KOR</button><button type="button" data-set-lang="en">ENG</button></div><button type="button" class="theme-switch" data-toggle-theme aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button></div></div>
+  </div>
+  <header class="hero">
+    <p class="eyebrow"><span class="t" lang="en">Personal project</span><span class="t" lang="ko">개인 프로젝트</span></p>
+    <h1>ShadowTrace</h1>
+    <p class="role"><span class="t" lang="en">An integrated pentest and investigation record platform</span><span class="t" lang="ko">통합 펜테스팅·조사 기록 관리 플랫폼</span></p>
+    <p class="lede"><span class="t" lang="en">A local passive tracking app that collects the investigation activity done on Kali and links commands, targets and evidence into a graph.</span><span class="t" lang="ko">Kali에서 진행한 조사 활동을 수집하고, 명령·대상·증거를 그래프로 연결하는 로컬 패시브 트래킹 앱.</span></p>
+    <dl class="facts"><div class=""><dt><span class="t" lang="en">Type</span><span class="t" lang="ko">유형</span></dt><dd><span class="t" lang="en">Personal project</span><span class="t" lang="ko">개인 프로젝트</span></dd></div><div class=""><dt><span class="t" lang="en">Period</span><span class="t" lang="ko">기간</span></dt><dd>2026.08 — 2026.09</dd></div><div class="wide"><dt><span class="t" lang="en">Stack</span><span class="t" lang="ko">기술</span></dt><dd>Python · FastAPI · eBPF (BCC) · SQLite · React · Vite · sigma.js · Nmap · ffuf · NetExec · Impacket</dd></div><div class="full"><dt><span class="t" lang="en">Links</span><span class="t" lang="ko">링크</span></dt><dd><a href="https://github.com/hyunsuhahaha/ShadowTrace" target="_blank" rel="noopener noreferrer">GitHub</a></dd></div></dl>
+  </header>
+  <div class="layout">
+    <nav class="toc" aria-label="Contents"><p><span class="t" lang="en">Contents</span><span class="t" lang="ko">목차</span></p><ol><li><a href="#architecture"><span>01</span><span><span class="t" lang="en">Architecture</span><span class="t" lang="ko">구조</span></span></a></li><li><a href="#graph"><span>02</span><span><span class="t" lang="en">Progress Graph</span><span class="t" lang="ko">Progress Graph</span></span></a></li><li><a href="#recon"><span>03</span><span><span class="t" lang="en">Recon &amp; web</span><span class="t" lang="ko">정찰·웹</span></span></a></li><li><a href="#ad"><span>04</span><span><span class="t" lang="en">Auth &amp; AD</span><span class="t" lang="ko">인증·AD</span></span></a></li><li><a href="#poc"><span>05</span><span><span class="t" lang="en">PoC &amp; post-access</span><span class="t" lang="ko">PoC·접근 후</span></span></a></li><li><a href="#credentials"><span>06</span><span><span class="t" lang="en">Credentials</span><span class="t" lang="ko">자격증명</span></span></a></li><li><a href="#ebpf"><span>07</span><span><span class="t" lang="en">eBPF tracing</span><span class="t" lang="ko">eBPF 추적</span></span></a></li><li><a href="#reports"><span>08</span><span><span class="t" lang="en">Evidence &amp; reports</span><span class="t" lang="ko">증거·보고서</span></span></a></li></ol></nav>
+    <main>
+    <section class="item" id="architecture">
+      <div class="item-head"><span class="num">01</span><div class="tags"><span class="tag gray">Architecture</span></div></div>
+      <h2><span class="t" lang="en">How it is put together</span><span class="t" lang="ko">구조</span></h2><figure class="figure"><figcaption><span><span class="t" lang="en">ShadowTrace architecture</span><span class="t" lang="ko">ShadowTrace 구조</span></span><span>stack-diagram</span></figcaption><iframe class="stack-frame" src="diagrams/architecture.html" title="ShadowTrace architecture diagram" loading="lazy"></iframe><p class="note"><span class="t" lang="en">An eBPF observer watches the normal Kali terminal, the activity is rebuilt into sessions and commands, and FastAPI stores it with tool results and evidence for the React graph and reports.</span><span class="t" lang="ko">eBPF observer가 평소 쓰는 Kali 터미널을 관찰하고, 활동을 세션·명령으로 재구성한 뒤 FastAPI가 도구 실행 결과·증거와 함께 저장해 React 그래프와 보고서로 이어집니다.</span></p></figure>
+    </section>
+    <section class="item" id="graph">
+      <div class="item-head"><span class="num">02</span><div class="tags"><span class="tag blue">Graph</span></div></div>
+      <h2><span class="t" lang="en">Progress Graph</span><span class="t" lang="ko">Progress Graph</span></h2><p class="summary"><span class="t" lang="en">Targets, tool runs, credentials and checklist stages are connected in one graph.</span><span class="t" lang="ko">대상·도구 실행·자격증명·점검 단계를 하나의 그래프로 연결.</span></p><figure class="figure"><figcaption><span class="window"><i></i><i></i><i></i></span><span><span class="t" lang="en">Progress Graph</span><span class="t" lang="ko">Progress Graph</span></span></figcaption><img src="progress-graph.png" alt="ShadowTrace Progress Graph during a scan: open ports, NetExec WinRM checks, a Responder listener and a recovered Administrator credential linked to the target, with the Nmap session output on the right" width="762" height="482" loading="lazy"><p class="note"><span class="t" lang="en">Captured in a lab environment.</span><span class="t" lang="ko">실습 환경에서 촬영.</span></p></figure>
+    </section>
+    <section class="item" id="recon">
+      <div class="item-head"><span class="num">03</span><div class="tags"><span class="tag yellow">Recon</span></div></div>
+      <h2><span class="t" lang="en">Recon &amp; web testing</span><span class="t" lang="ko">정찰·웹 테스트</span></h2><p class="summary"><span class="t" lang="en">Nmap service discovery and feroxbuster/ffuf-based directory, virtual-host and parameter fuzzing. HTTP request editing, payload variation, response comparison and proxy capture to verify web behaviour.</span><span class="t" lang="ko">Nmap 서비스 탐색과 feroxbuster·ffuf 기반 디렉토리·가상호스트·파라미터 퍼징 지원. HTTP 요청 편집·페이로드 변형·응답 비교와 프록시 캡처로 웹 동작 검증.</span></p>
+    </section>
+    <section class="item" id="ad">
+      <div class="item-head"><span class="num">04</span><div class="tags"><span class="tag red">Active Directory</span></div></div>
+      <h2><span class="t" lang="en">Authentication &amp; AD checks</span><span class="t" lang="ko">인증·AD 점검</span></h2><p class="summary"><span class="t" lang="en">NetExec-based per-protocol authentication checks and SMB share discovery. Manages the results and evidence of domain checks such as Kerberos user enumeration, AS-REP roasting and Kerberoasting, and constrained delegation (S4U2Self/S4U2Proxy).</span><span class="t" lang="ko">NetExec 기반 프로토콜별 인증 확인과 SMB 공유 탐색 지원. Kerberos 사용자 열거, AS-REP·Kerberoasting, 제한된 위임(S4U2Self/S4U2Proxy) 등 도메인 점검의 실행 결과·증거 관리.</span></p>
+    </section>
+    <section class="item" id="poc">
+      <div class="item-head"><span class="num">05</span><div class="tags"><span class="tag red">Exploitation</span></div></div>
+      <h2><span class="t" lang="en">PoC validation &amp; post-access investigation</span><span class="t" lang="ko">PoC 검증·접근 후 조사</span></h2><p class="summary"><span class="t" lang="en">Manages everything from SearchSploit candidates to the original PoC, working copies, change history and run results. Supports post-access investigation with SSH, WMI and WinRM remote work, LinPEAS analysis and SUID checks.</span><span class="t" lang="ko">SearchSploit 후보 검색부터 PoC 원본·작업 사본·수정 이력·실행 결과 관리. SSH·WMI·WinRM 원격 작업과 LinPEAS 분석·SUID 점검으로 접근 후 조사 지원.</span></p>
+    </section>
+    <section class="item" id="credentials">
+      <div class="item-head"><span class="num">06</span><div class="tags"><span class="tag yellow">Credentials</span></div></div>
+      <h2><span class="t" lang="en">Credential &amp; hash management</span><span class="t" lang="ko">자격증명·해시 관리</span></h2><p class="summary"><span class="t" lang="en">Records where each obtained account came from and links it to follow-up work. Folds Hashcat and John cracking and DPAPI and LSASS analysis results into the investigation record.</span><span class="t" lang="ko">획득한 계정의 출처를 기록하고 후속 작업에 연결. Hashcat·John 크래킹과 DPAPI·LSASS 분석 등 자격증명 처리 결과를 조사 기록에 통합.</span></p>
+    </section>
+    <section class="item" id="ebpf">
+      <div class="item-head"><span class="num">07</span><div class="tags"><span class="tag green">Activity Tracking</span></div></div>
+      <h2><span class="t" lang="en">eBPF-based execution-flow reconstruction</span><span class="t" lang="ko">eBPF 기반 실행 흐름 복원</span></h2><p class="summary"><span class="t" lang="en">Collects process, TTY I/O, socket and file events, and rebuilds the command flow from process lineage, session and time. Records event loss and confidence, and keeps the raw record when attribution is unclear.</span><span class="t" lang="ko">프로세스·TTY 입출력·소켓·파일 이벤트를 수집하고 프로세스 계보·세션·시각을 기준으로 명령 흐름 재구성. 이벤트 손실·신뢰도를 기록하고 귀속이 불명확한 활동은 원본 보존.</span></p>
+    </section>
+    <section class="item" id="reports">
+      <div class="item-head"><span class="num">08</span><div class="tags"><span class="tag gray">Evidence</span></div></div>
+      <h2><span class="t" lang="en">Investigation paths &amp; reports</span><span class="t" lang="ko">조사 경로·보고서 연결</span></h2><p class="summary"><span class="t" lang="en">Connects targets, runs, credentials, evidence and findings in the Progress Graph and tracks check progress with runbooks. Snapshots evidence sources, SHA-256 hashes and the chosen paths, and exports reports such as PDF and DOCX.</span><span class="t" lang="ko">대상·실행·자격증명·증거·Finding을 Progress Graph로 연결하고 Runbook으로 점검 진행 관리. 증거 출처·SHA-256과 선택한 경로를 스냅샷으로 보관해 PDF·DOCX 등 보고서로 내보내기.</span></p>
+    </section>
+    </main>
+  </div>
+  
+  <footer><span>© 2026 Hyunsu Lee</span><a href="../../#journey"><span class="t" lang="en">Back to timeline</span><span class="t" lang="ko">타임라인으로</span></a><a href="mailto:hyunsuhahaha@gmail.com">hyunsuhahaha@gmail.com</a></footer>
+</div>
+</body>
+</html>
