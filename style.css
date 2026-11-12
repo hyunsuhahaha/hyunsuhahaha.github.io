@@ -232,3 +232,12 @@
 .context-tag[data-context="company"]{color:#6dffb0}
 .context-tag[data-context="oss"]{color:#c9a8ff}
 .bio h3{color:#f5faf6}.bio p{color:#d0ddd4}.bio dt{color:#a9bdb0}.bio-meta{color:#e8f3ec}
+/* NoxGlobal node links to its detail page. */
+.milestone p.work-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.milestone[data-side="left"] p.work-chips{justify-content:flex-end}
+.work-chip{padding:2px 8px;border-radius:999px;background:#7dffb01f;border:1px solid #7dffb066;color:#9dffc4;font:600 10px/1.6 Plex,monospace}
+.work-more{display:inline-flex;align-items:center;gap:4px;margin-top:9px;font:12px Plex,monospace;color:#9dffc4;border-bottom:1px solid #7dffb066}
+.work-more:hover{color:#f3f8f4}
+.node-title a:hover{color:#9dffc4}
+.bio h3 a{display:inline-flex;align-items:center;gap:6px}.bio h3 a:hover{color:#9dffc4}
+@media(max-width:700px){.milestone[data-side="left"] p.work-chips{justify-content:flex-start}}
