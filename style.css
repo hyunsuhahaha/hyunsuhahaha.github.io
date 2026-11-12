@@ -124,20 +124,111 @@
 @media(max-width:1000px) and (min-width:701px){.gemini-robot{left:276px;right:auto}}
 @media(max-width:700px){.robot{width:33.333333%;height:auto;aspect-ratio:176/168}.codex-robot{left:0}.claude-robot{left:33.333333%;right:auto}.gemini-robot{left:66.666666%;right:auto}}
 
-/* Study and project branches fork off the main timeline like a Git graph. */
-.branch-event{--branch:#aad7bd;--tone:var(--branch);min-height:150px}
+/* Study and project branches fork off the main timeline like a Git graph; rows stay dense. */
+.milestone{min-height:200px}
+.army-milestone{min-height:250px}
+.milestone .milestone-copy{padding:20px 0}
+.branch-event,.main-compact{min-height:0}
+.branch-event{--branch:#aad7bd;--tone:var(--branch)}
 .branch-event[data-branch="algorithm"]{--branch:#f1c95e}
 .branch-event[data-branch="certs"]{--branch:#99c8da}
 .branch-event[data-branch="security"]{--branch:#e58b7c}
 .branch-event[data-branch="ci-cd"]{--branch:#c5b38b}
 .branch-event[data-branch="infra"]{--branch:#a1d4ae}
 .branch-event[data-branch="open-source"]{--branch:#b3a5ce}
-.branch-event .milestone-copy{padding:18px 0 18px 34px}
-.branch-event[data-side="left"] .milestone-copy{padding:18px 34px 18px 0}
-.branch-tag{display:inline-block;margin:0 0 9px;padding:1px 7px;border:1px solid color-mix(in srgb,var(--branch) 45%,transparent);border-radius:2px;color:var(--branch);font:10px/1.6 Plex,monospace;letter-spacing:.03em}
-.branch-event .milestone-date{margin-bottom:6px}
-.branch-event h3.latin-title{font-size:clamp(19px,1.75vw,25px);margin-bottom:4px}
-.branch-event h3 a{transition:color .25s}
-.branch-event h3 a:hover,.branch-event h3 a:focus-visible{color:var(--branch)}
+.milestone.branch-event .milestone-copy{padding:9px 0 9px 34px}
+.milestone.branch-event[data-side="left"] .milestone-copy{padding:9px 34px 9px 0}
+.milestone.main-compact .milestone-copy{padding:16px 0}
+.node-meta{display:flex;gap:10px;align-items:center;margin-bottom:5px;font:10px/1.6 Plex,monospace;color:#9aafa4}
+.milestone[data-side="left"] .node-meta,.milestone[data-side="left"] h3.node-title{justify-content:flex-end}
+.branch-tag{display:inline-block;padding:0 7px;border:1px solid color-mix(in srgb,var(--branch) 45%,transparent);border-radius:2px;color:var(--branch);font:10px/1.6 Plex,monospace;letter-spacing:.03em}
+.milestone h3.node-title{display:flex;align-items:center;gap:10px;margin:0 0 2px;font:400 clamp(18px,1.55vw,22px)/1.3 Space,Arial,sans-serif;letter-spacing:-.03em;color:#cbd8cf}
+.milestone.main-compact h3.node-title{font-size:clamp(22px,2.2vw,30px);margin-bottom:6px}
+.node-title a{transition:color .25s}
+.node-title a:hover,.node-title a:focus-visible{color:var(--branch)}
+.node-icon{flex:none;width:20px;height:20px;fill:none;stroke:var(--icon,var(--branch,var(--tone)));stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.main-compact .node-icon{width:24px;height:24px}
+.milestone.branch-event p{font-size:12px;color:#9fb1a6}
+.pr-chip{display:inline-block;margin-top:7px;padding:1px 8px;border-radius:999px;background:color-mix(in srgb,var(--branch) 15%,transparent);color:var(--branch);font:10px/1.7 Plex,monospace}
+.milestone.is-current .node-meta time{color:var(--tone)}
 .milestone p.coursework{margin-top:10px;font:11px/1.8 Plex,monospace;color:#b7c9bd;letter-spacing:.01em}
-@media(max-width:700px){.branch-event{min-height:128px}.branch-event .milestone-copy,.branch-event[data-side="left"] .milestone-copy{padding:16px 0}.branch-event h3.latin-title{font-size:22px}}
+@media(max-width:700px){.milestone{min-height:160px}.milestone.with-emblem{min-height:190px}.army-milestone{min-height:250px!important}.milestone.branch-event,.milestone.main-compact{min-height:0}
+.milestone.branch-event .milestone-copy,.milestone.branch-event[data-side="left"] .milestone-copy{padding:8px 0}
+.milestone[data-side="left"] .node-meta,.milestone[data-side="left"] h3.node-title{justify-content:flex-start}
+.milestone h3.node-title{font-size:19px}.milestone.main-compact h3.node-title{font-size:24px}}
+/* Experience: readable rows instead of tiny captions. */
+.work{padding-top:96px;padding-bottom:80px}
+.resume-link{display:inline-flex;gap:10px;align-items:center;padding:9px 14px;border:1px solid var(--line);border-radius:3px;font:12px Plex,monospace;color:#cfe3d5;transition:border-color .25s,color .25s}
+.resume-link .arrow{width:13px;height:13px}
+.resume-link:hover{border-color:var(--accent);color:var(--accent)}
+.bio{margin:0;border-top:1px solid var(--line)}
+.bio-row{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:24px;align-items:baseline;padding:30px 0;border-bottom:1px solid var(--line)}
+.bio dt{font:11px Plex,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bio dd{margin:0}
+.bio h3{margin:0 0 6px;font:400 clamp(24px,2.4vw,32px)/1.2 Space,Arial,sans-serif;letter-spacing:-.03em;color:var(--ink)}
+.bio p{margin:0;font:15px/1.6 system-ui,sans-serif;color:#b6c7bc}
+.bio-meta{font:14px Plex,monospace;color:#cfe3d5;white-space:nowrap}
+@media(max-width:700px){.work{padding-top:64px;padding-bottom:56px}.bio-row{grid-template-columns:1fr;gap:8px;padding:24px 0}.bio h3{font-size:24px}.bio p{font-size:14px}.bio-meta{font-size:13px}}
+.context-tag{font:10px/1.6 Plex,monospace;color:#d6e2da;padding-left:10px;border-left:1px solid var(--line)}
+.context-tag[data-context="personal"]{color:#a9c7ff}
+.context-tag[data-context="team"]{color:#ffd59a}
+.context-tag[data-context="company"]{color:#9ff0c0}
+.context-tag[data-context="oss"]{color:#cdbfff}
+
+.node-meta{flex-wrap:wrap;row-gap:4px}.branch-tag,.context-tag,.node-meta time{flex:none;white-space:nowrap}
+/* Early milestones pass quickly: smaller emblems, shorter rows. */
+.milestone.with-emblem{min-height:170px}
+.milestone.army-milestone{min-height:190px}
+.school-emblem{width:112px;height:112px}
+.army-emblem{width:84px;height:105px}
+.flag-emblem{width:84px;height:56px}
+.ascii-rifle{font-size:5px}
+.army-art,.field-marks{gap:10px}
+.milestone.with-emblem .milestone-copy{padding:12px 0}
+@media(max-width:700px){.milestone.with-emblem{min-height:150px}.army-milestone{min-height:200px!important}.school-emblem{width:76px;height:76px}.army-emblem{width:66px;height:82px}.flag-emblem{width:66px;height:44px}.ascii-rifle{font-size:4px}}
+/* Tighter rhythm overall; sparse rows take the least space. */
+.journey{padding-top:72px;padding-bottom:36px}
+.journey-heading{margin-bottom:28px}
+.milestone{min-height:0}
+.milestone.with-emblem{min-height:128px}
+.milestone.army-milestone{min-height:150px}
+.school-emblem{width:96px;height:96px}
+.army-emblem{width:72px;height:90px}
+.flag-emblem{width:72px;height:48px}
+.milestone.with-emblem .milestone-copy{padding:6px 0}
+.milestone.main-compact .milestone-copy{padding:8px 0}
+.milestone.branch-event .milestone-copy{padding-top:5px;padding-bottom:5px}
+.milestone h3.latin-title{font-size:clamp(21px,2vw,28px)}
+.milestone-date{margin-bottom:6px}
+.milestone p.coursework{margin-top:4px}
+.timeline-next{margin-top:18px}
+.work{padding-top:56px;padding-bottom:48px}
+.work .section-heading{margin-bottom:20px}
+.bio-row{padding:18px 0}
+@media(max-width:700px){.journey{padding-top:48px;padding-bottom:28px}.journey-heading{margin-bottom:20px}
+.milestone.with-emblem{min-height:110px}.army-milestone{min-height:150px!important}
+.school-emblem{width:64px;height:64px}.army-emblem{width:56px;height:70px}.flag-emblem{width:56px;height:37px}
+.milestone.branch-event .milestone-copy{padding-top:4px;padding-bottom:4px}
+.work{padding-top:44px;padding-bottom:36px}.bio-row{padding:16px 0}}
+/* Stronger contrast: vivid branch colours, bright titles, readable body text. */
+.branch-event[data-branch="algorithm"]{--branch:#ffcf3f}
+.branch-event[data-branch="certs"]{--branch:#5cc8ff}
+.branch-event[data-branch="security"]{--branch:#ff6f5e}
+.branch-event[data-branch="ci-cd"]{--branch:#ff9b4a}
+.branch-event[data-branch="infra"]{--branch:#4fe08a}
+.branch-event[data-branch="open-source"]{--branch:#b88cff}
+.milestone h3,.milestone h3.node-title{color:#f3f8f4}
+.milestone p,.milestone.branch-event p{color:#cbd8cf}
+.milestone p.coursework{color:#e0ebe3}
+.milestone-date,.node-meta,.node-meta time{color:#c6d6cb}
+.branch-tag{background:color-mix(in srgb,var(--branch) 18%,transparent);border-color:color-mix(in srgb,var(--branch) 70%,transparent);font-weight:600}
+.node-icon{stroke-width:2;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--icon,var(--branch,var(--tone))) 45%,transparent))}
+.main-compact .node-icon{--icon:#7dffb0}
+.milestone[data-tone="gold"] .node-icon{--icon:#ffd166}
+.pr-chip{background:color-mix(in srgb,var(--branch) 24%,transparent);color:#e6dcff}
+.context-tag{font-weight:600}
+.context-tag[data-context="personal"]{color:#8fc1ff}
+.context-tag[data-context="team"]{color:#ffc46b}
+.context-tag[data-context="company"]{color:#6dffb0}
+.context-tag[data-context="oss"]{color:#c9a8ff}
+.bio h3{color:#f5faf6}.bio p{color:#d0ddd4}.bio dt{color:#a9bdb0}.bio-meta{color:#e8f3ec}

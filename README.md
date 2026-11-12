@@ -2,7 +2,7 @@
 
 [hyunsuhahaha.github.io](https://hyunsuhahaha.github.io/)
 
-Static HTML/CSS/JavaScript portfolio: an animated ASCII technology tree, chronological journey, public project links and three tiny AI workers.
+Static HTML/CSS/JavaScript portfolio: an animated ASCII technology tree, chronological journey with study and project branches, and three tiny AI workers.
 
 ## Preview
 
@@ -22,7 +22,7 @@ node check-companions.cjs
 
 ## Structure
 
-- `index.html`, `style.css`: identity, journey, projects and contact.
+- `index.html`, `style.css`: identity, journey, experience, education and contact.
 - `tree.js`: rotating ASCII tree and seventeen technology fruit; names appear on hover/focus.
 - `timeline.js`, `emblems.js`: chronological milestones, ASCII symbols and electrical accents.
 - `companions.js`: GPT/Codex, Claude and Gemini typing, stashing, resolving conflicts and pushing little commits to the tree. These are visual events; no Git commands execute.
