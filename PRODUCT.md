@@ -15,7 +15,7 @@ The ASCII tree leads into a chronological journey, selected public repositories 
 
 ## Constraints
 
-- Project rows link directly to GitHub; no long achievement panels.
+- Projects live as timeline branch nodes that link directly to GitHub; no long achievement panels.
 - Seventeen technology fruit rotate continuously; hover/focus reveals names.
 - Keep the arrangement irregular; separate only crowded positions in 3D.
 - GPT/Codex, Claude and Gemini sit together on the left. All developer-event captions are English and decorative.

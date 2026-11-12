@@ -23,12 +23,12 @@
   // Study and project branches. slot: lane beside the trunk (+ right, - left); forkAt: index of the
   // main milestone a branch leaves from (otherwise it forks just above its first event).
   const branches={
-    algorithm:{color:'#f1c95e',slot:1,forkAt:0},
-    certs:{color:'#99c8da',slot:-1},
-    security:{color:'#e58b7c',slot:2,ongoing:true},
-    'ci-cd':{color:'#c5b38b',slot:1,ongoing:true},
-    infra:{color:'#a1d4ae',slot:-1,ongoing:true},
-    'open-source':{color:'#b3a5ce',slot:-2,ongoing:true}};
+    algorithm:{color:'#ffcf3f',slot:1,forkAt:0},
+    certs:{color:'#5cc8ff',slot:-1},
+    security:{color:'#ff6f5e',slot:2,ongoing:true},
+    'ci-cd':{color:'#ff9b4a',slot:1,ongoing:true},
+    infra:{color:'#4fe08a',slot:-1,ongoing:true},
+    'open-source':{color:'#b88cff',slot:-2,ongoing:true,upstream:true}};
   entries.forEach(entry=>{const b=branches[entry.dataset.branch];if(b)entry.dataset.side=b.slot<0?'left':'right';});
   let lanes=[];
   function layout() {
@@ -57,8 +57,8 @@
       const own=nodes.filter(n=>n.branch===name);
       if(!own.length) return null;
       const x=own[0].x, first=own[0].y, last=own[own.length-1].y;
-      const forkY=b.forkAt!=null&&nodes[b.forkAt] ? nodes[b.forkAt].y : first-70;
-      return {x,color:b.color,forkY,bendY:forkY+Math.min(46,Math.abs(x-axis)*1.1+12),last,ongoing:!!b.ongoing};
+      const forkY=b.forkAt!=null&&nodes[b.forkAt] ? nodes[b.forkAt].y : first-48;
+      return {x,color:b.color,forkY,bendY:forkY+Math.min(36,Math.abs(x-axis)*1.1+10),last,ongoing:!!b.ongoing,upstream:b.upstream?own:null};
     }).filter(Boolean);
     draw();
   }
@@ -125,6 +125,12 @@
         const tail=y>lane.last;
         const fade=tail ? Math.max(.12,.5-(y-lane.last)/600) : y<=focus ? .8 : .42;
         glyph(tail ? ':' : '|',lane.x,y,lane.color,fade);
+      }
+      // Contributions merged upstream: each one rejoins the trunk with a merge arrow.
+      if(lane.upstream) for(const n of lane.upstream) {
+        const drop=Math.abs(lane.x-axis)+14, merged=n.y<=focus;
+        line([lane.x,n.y+10],[axis,n.y+drop],lane.color,merged ? .9 : .5);
+        glyph(merged ? '@' : 'o',axis,n.y+drop,merged ? '#e4dcff' : lane.color,merged ? 1 : .6);
       }
     }
     nodes.forEach((n,i)=>{
