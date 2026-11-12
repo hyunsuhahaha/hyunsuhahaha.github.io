@@ -1,4 +1,4 @@
-// node portfolio-local/check-companions.cjs
+// node check-companions.cjs
 const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
 let frames=[],painted=0,packets=0;
 const ctx=new Proxy({}, {get(target,key){if(key in target)return target[key];return (...args)=>{if(key==='fillRect')assert.ok(args.every(Number.isFinite));if(key==='fillText'&&args[0]==='[+]')packets++;painted++;};},set(t,k,v){t[k]=v;return true;}});

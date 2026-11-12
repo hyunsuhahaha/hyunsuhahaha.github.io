@@ -14,7 +14,7 @@ const fruits=[
   {
     "name": "Python",
     "tier": 0,
-    "branch": 1,
+    "branch": 4,
     "tone": "#ffd644",
     "url": "https://github.com/hyunsuhahaha/gitea-auto-reviewer",
     "art": [
@@ -29,7 +29,7 @@ const fruits=[
   {
     "name": "C++",
     "tier": 1,
-    "branch": 1,
+    "branch": 0,
     "tone": "#659eff",
     "url": "https://github.com/hyunsuhahaha",
     "art": [
@@ -43,7 +43,7 @@ const fruits=[
   {
     "name": "Java",
     "tier": 2,
-    "branch": 1,
+    "branch": 2,
     "tone": "#ff8e38",
     "url": "https://github.com/SoftBank-team-lily",
     "art": [
@@ -58,7 +58,7 @@ const fruits=[
   {
     "name": "Go",
     "tier": 2,
-    "branch": 5,
+    "branch": 4,
     "tone": "#30d6ff",
     "url": "https://github.com/hyunsuhahaha/public-api-monitor",
     "art": [
@@ -73,7 +73,7 @@ const fruits=[
   {
     "name": "Django",
     "tier": 3,
-    "branch": 1,
+    "branch": 3,
     "tone": "#32df8b",
     "url": "https://github.com/hyunsuhahaha/gitea-auto-reviewer",
     "art": [
@@ -88,7 +88,7 @@ const fruits=[
   {
     "name": "FastAPI",
     "tier": 3,
-    "branch": 0,
+    "branch": 5,
     "tone": "#00e0ba",
     "url": "https://github.com/hyunsuhahaha",
     "art": [
@@ -103,7 +103,7 @@ const fruits=[
   {
     "name": "Spring",
     "tier": 3,
-    "branch": 5,
+    "branch": 6,
     "tone": "#8ce33f",
     "url": "https://github.com/SoftBank-team-lily",
     "art": [
@@ -118,7 +118,7 @@ const fruits=[
   {
     "name": "Docker",
     "tier": 4,
-    "branch": 1,
+    "branch": 0,
     "tone": "#20bfff",
     "url": "https://github.com/SoftBank-team-lily",
     "art": [
@@ -133,7 +133,7 @@ const fruits=[
   {
     "name": "Kubernetes",
     "tier": 4,
-    "branch": 5,
+    "branch": 1,
     "tone": "#6997ff",
     "url": "https://github.com/SoftBank-team-lily",
     "art": [
@@ -162,7 +162,7 @@ const fruits=[
   {
     "name": "AWS",
     "tier": 5,
-    "branch": 0,
+    "branch": 3,
     "tone": "#ffb52e",
     "url": "https://github.com/SoftBank-team-lily",
     "art": [
@@ -176,7 +176,7 @@ const fruits=[
   {
     "name": "Cloudflare",
     "tier": 5,
-    "branch": 4,
+    "branch": 1,
     "tone": "#ff8c2b",
     "url": "https://github.com/SoftBank-team-lily",
     "art": [
@@ -191,7 +191,7 @@ const fruits=[
   {
     "name": "Terraform",
     "tier": 5,
-    "branch": 6,
+    "branch": 2,
     "tone": "#b379ff",
     "url": "https://github.com/SoftBank-team-lily",
     "art": [
@@ -221,7 +221,7 @@ const fruits=[
   {
     "name": "Linux",
     "tier": 6,
-    "branch": 5,
+    "branch": 6,
     "tone": "#fff3b0",
     "url": "https://github.com/hyunsuhahaha",
     "art": [
@@ -236,7 +236,7 @@ const fruits=[
   {
     "name": "Git",
     "tier": 6,
-    "branch": 3,
+    "branch": 5,
     "tone": "#ff684e",
     "url": "https://github.com/SoftBank-team-lily",
     "art": [
@@ -251,7 +251,7 @@ const fruits=[
   {
     "name": "Gitea",
     "tier": 7,
-    "branch": 0,
+    "branch": 8,
     "tone": "#a3e343",
     "url": "https://github.com/hyunsuhahaha/gitea-auto-reviewer",
     "art": [

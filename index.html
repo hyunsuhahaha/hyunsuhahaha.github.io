@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080d18">
-<meta name="description" content="이현수 — Backend & Infrastructure. Lily, pamon, gitea-auto-reviewer, and OpenTelemetry contributions.">
+<meta name="description" content="이현수 — Backend & Infrastructure. Lily, public-api-monitor, gitea-auto-reviewer, and OpenTelemetry contributions.">
 <title>Hyunsu Lee — Backend & Infrastructure</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preload" href="assets/SpaceGrotesk.ttf" as="font" type="font/ttf" crossorigin>
@@ -49,11 +49,11 @@
     <canvas id="timeline-art" aria-hidden="true"></canvas>
     <div class="section-heading journey-heading"><h2 id="journey-title">Along the way<span class="punctuation">.</span></h2><span class="section-note">2022 — 2026</span></div>
     <ol class="timeline-list">
-      <li class="milestone with-emblem" data-tone="mint"><div class="milestone-art"><canvas class="ascii-emblem school-emblem" data-emblem="dongguk" width="240" height="240" aria-hidden="true"></canvas></div><div class="milestone-copy">
+      <li data-side="right" class="milestone with-emblem" data-tone="mint"><div class="milestone-art"><canvas class="ascii-emblem school-emblem" data-emblem="dongguk" width="240" height="240" aria-hidden="true"></canvas></div><div class="milestone-copy">
         <time class="milestone-date" datetime="2022">2022</time>
-        <h3 class="latin-title">Dongguk<br>University</h3><p>컴퓨터·AI학부 입학</p>
+        <h3 class="latin-title">Dongguk<br>University</h3><p>컴퓨터·AI학부 입학</p><p class="coursework">C Programming · Discrete Math · Calculus · Linear Algebra · Algorithms</p>
       </div></li>
-      <li class="milestone with-emblem army-milestone" data-tone="blue"><div class="milestone-art army-art"><canvas class="ascii-emblem army-emblem" data-emblem="roka" width="192" height="240" aria-hidden="true"></canvas><div class="field-marks"><canvas class="ascii-emblem flag-emblem" data-emblem="flag" width="180" height="120" aria-hidden="true"></canvas><pre class="ascii-rifle" aria-hidden="true">       __
+      <li data-side="left" class="milestone with-emblem army-milestone" data-tone="blue"><div class="milestone-art army-art"><canvas class="ascii-emblem army-emblem" data-emblem="roka" width="192" height="240" aria-hidden="true"></canvas><div class="field-marks"><canvas class="ascii-emblem flag-emblem" data-emblem="flag" width="180" height="120" aria-hidden="true"></canvas><pre class="ascii-rifle" aria-hidden="true">       __
   ____/==|_________________,
  |____.==|_:::::::::::::::::>
    \  /_-/ \___/
@@ -62,21 +62,82 @@
         <div class="milestone-date"><time datetime="2023-02">2023.02</time><span class="date-dash">—</span><time datetime="2024-08">2024.08</time></div>
         <h3 class="latin-title">Republic of<br>Korea Army</h3><p>통신병 복무</p>
       </div></li>
-      <li class="milestone with-emblem" data-tone="mint"><div class="milestone-art"><canvas class="ascii-emblem school-emblem" data-emblem="dongguk" width="240" height="240" aria-hidden="true"></canvas></div><div class="milestone-copy">
+      <li data-side="right" class="milestone with-emblem" data-tone="mint"><div class="milestone-art"><canvas class="ascii-emblem school-emblem" data-emblem="dongguk" width="240" height="240" aria-hidden="true"></canvas></div><div class="milestone-copy">
         <time class="milestone-date" datetime="2025-03">2025.03</time>
         <h3 class="latin-title">Dongguk<br>University</h3><p>복학 · 컴퓨터·AI학부</p>
       </div></li>
-      <li class="milestone" data-tone="gold"><div class="milestone-copy">
+      <li class="milestone branch-event" data-branch="algorithm"><div class="milestone-copy">
+        <span class="branch-tag">algorithm</span>
+        <time class="milestone-date" datetime="2025-04">2025.04</time>
+        <h3 class="latin-title">BOJ Gold</h3><p>백준 Gold 달성</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="security"><div class="milestone-copy">
+        <span class="branch-tag">security</span>
+        <time class="milestone-date" datetime="2025-08">2025.08</time>
+        <h3 class="latin-title">PortSwigger</h3><p>Web Security Academy 실습</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="security"><div class="milestone-copy">
+        <span class="branch-tag">security</span>
+        <h3 class="latin-title">Hack The Box</h3><p>머신 실습</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="certs"><div class="milestone-copy">
+        <span class="branch-tag">certs</span>
         <time class="milestone-date" datetime="2025-09-19">2025.09.19</time>
         <h3 class="latin-title">SQLD</h3><p>SQL 개발자 자격 취득</p>
       </div></li>
-      <li class="milestone" data-tone="gold"><div class="milestone-copy">
+      <li class="milestone branch-event" data-branch="algorithm"><div class="milestone-copy">
+        <span class="branch-tag">algorithm</span>
+        <time class="milestone-date" datetime="2026-02">2026.02</time>
+        <h3 class="latin-title">BOJ Platinum</h3><p>백준 Platinum 달성</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="certs"><div class="milestone-copy">
+        <span class="branch-tag">certs</span>
         <time class="milestone-date" datetime="2026-02-17">2026.02.17</time>
         <h3 class="latin-title">AWS Certified<br>Cloud Practitioner</h3><p>자격 취득</p>
       </div></li>
-      <li class="milestone" data-tone="mint"><div class="milestone-copy">
+      <li data-side="left" class="milestone" data-tone="mint"><div class="milestone-copy">
         <time class="milestone-date" datetime="2026-07">2026.07</time>
         <h3 class="latin-title">NoxGlobal</h3><p>IT Team Intern</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="ci-cd"><div class="milestone-copy">
+        <span class="branch-tag">ci-cd</span>
+        <time class="milestone-date" datetime="2026-08">2026.08</time>
+        <h3 class="latin-title"><a href="https://github.com/hyunsuhahaha/gitea-auto-reviewer" target="_blank" rel="noopener noreferrer">gitea-auto-reviewer</a></h3><p>AI-assisted code review</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="security"><div class="milestone-copy">
+        <span class="branch-tag">security</span>
+        <time class="milestone-date" datetime="2026-08">2026.08</time>
+        <h3 class="latin-title"><a href="https://github.com/hyunsuhahaha/ShadowTrace" target="_blank" rel="noopener noreferrer">ShadowTrace</a></h3><p>Passive pentest activity recorder</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="infra"><div class="milestone-copy">
+        <span class="branch-tag">infra</span>
+        <time class="milestone-date" datetime="2026-09">2026.09</time>
+        <h3 class="latin-title"><a href="https://github.com/SoftBank-team-lily" target="_blank" rel="noopener noreferrer">SoftBank Hackathon<br>Preliminary</a></h3><p>Team Lily · hybrid deployment across AWS, GCP and on-prem</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="ci-cd"><div class="milestone-copy">
+        <span class="branch-tag">ci-cd</span>
+        <time class="milestone-date" datetime="2026-10">2026.10</time>
+        <h3 class="latin-title"><a href="https://github.com/dongguk-creative-fusion-2026" target="_blank" rel="noopener noreferrer">PR Guard</a></h3><p>AI 코드 PR 검증 계층</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="infra"><div class="milestone-copy">
+        <span class="branch-tag">infra</span>
+        <time class="milestone-date" datetime="2026-10">2026.10</time>
+        <h3 class="latin-title"><a href="https://github.com/hyunsuhahaha/public-api-monitor" target="_blank" rel="noopener noreferrer">public-api-monitor</a></h3><p>API reliability &amp; observability</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="infra"><div class="milestone-copy">
+        <span class="branch-tag">infra</span>
+        <time class="milestone-date" datetime="2026-11">2026.11</time>
+        <h3 class="latin-title"><a href="https://github.com/SoftBank-2026-Hackathon-Foxtrot" target="_blank" rel="noopener noreferrer">SoftBank Hackathon<br>Final</a></h3><p>Team Foxtrot · zero-downtime migration of stateful services across clouds</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="open-source"><div class="milestone-copy">
+        <span class="branch-tag">open-source</span>
+        <time class="milestone-date" datetime="2026-11">2026.11</time>
+        <h3 class="latin-title"><a href="https://github.com/open-telemetry/opentelemetry-kotlin/pull/1542" target="_blank" rel="noopener noreferrer">OpenTelemetry Kotlin</a></h3><p>Multiple SpanProcessor support</p>
+      </div></li>
+      <li class="milestone branch-event" data-branch="open-source"><div class="milestone-copy">
+        <span class="branch-tag">open-source</span>
+        <time class="milestone-date" datetime="2026-11">2026.11</time>
+        <h3 class="latin-title"><a href="https://github.com/open-telemetry/opentelemetry-android/pull/2227" target="_blank" rel="noopener noreferrer">OpenTelemetry Android</a></h3><p>Local &amp; CI coverage configuration</p>
       </div></li>
     </ol>
     <a class="timeline-next" href="#work">On to the work<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
@@ -90,7 +151,7 @@
       </a>
       <a class="project" href="https://github.com/hyunsuhahaha/public-api-monitor" target="_blank" rel="noopener noreferrer" style="--project:#85bdcc">
         <svg class="branch-mark" viewBox="0 0 44 52" aria-hidden="true"><path d="M12 45V8m0 27c0-11 20-5 20-19V8"/><circle cx="12" cy="8" r="4"/><circle cx="12" cy="45" r="4"/><circle cx="32" cy="8" r="4"/></svg>
-        <div class="project-name"><h3>pamon</h3><span>API reliability &amp; observability</span></div><span class="project-tech">Go / GCP / SQLite</span><span class="project-link">GitHub<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span>
+        <div class="project-name"><h3>public-api-monitor</h3><span>API reliability &amp; observability</span></div><span class="project-tech">Go / GCP / SQLite</span><span class="project-link">GitHub<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span>
       </a>
       <a class="project" href="https://github.com/hyunsuhahaha/gitea-auto-reviewer" target="_blank" rel="noopener noreferrer" style="--project:#c5b38b">
         <svg class="branch-mark" viewBox="0 0 44 52" aria-hidden="true"><path d="M12 45V8m0 27c0-11 20-5 20-19V8"/><circle cx="12" cy="8" r="4"/><circle cx="12" cy="45" r="4"/><circle cx="32" cy="8" r="4"/></svg>

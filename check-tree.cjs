@@ -1,4 +1,4 @@
-// node portfolio-local/check-tree.cjs
+// node check-tree.cjs
 const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
 for(const reduced of [false,true]) {
  const links=[],events={};let glyphs=0;

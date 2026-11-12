@@ -18,8 +18,8 @@
 .timeline-list{list-style:none;padding:0;margin:0}
 .milestone{--tone:#aad7bd;display:grid;grid-template-columns:1fr 1fr;column-gap:200px;align-items:center;min-height:255px;position:relative}
 .milestone[data-tone="blue"]{--tone:#99c8da}.milestone[data-tone="gold"]{--tone:#d2bd91}
-.milestone:nth-child(odd) .milestone-copy{grid-column:2}
-.milestone:nth-child(even) .milestone-copy{grid-column:1;text-align:right}
+.milestone .milestone-copy{grid-column:2}
+.milestone[data-side="left"] .milestone-copy{grid-column:1;text-align:right}
 .milestone-copy{padding:30px 0;min-width:0}
 .milestone-date{display:block;color:#9aafa4;font:12px/1.9 Plex,monospace;letter-spacing:.025em;margin:0 0 15px;transition:color .35s}
 .date-dash{padding:0 10px;color:#6d8879}
@@ -33,11 +33,11 @@
 .timeline-next .arrow{width:14px;height:14px;transition:transform .25s}
 .timeline-next:hover .arrow{transform:translateY(4px)}
 @media(max-width:1000px) and (min-width:701px){.milestone{column-gap:150px}.milestone-date{font-size:10px}.date-dash{padding:0 6px}.milestone h3{font-size:22px}}
-@media(max-width:700px){.journey{padding-top:68px;padding-bottom:39px}.journey-heading{margin-bottom:36px}.timeline-list{padding-left:54px}.milestone{display:block;min-height:225px}.milestone-copy{padding:40px 0}.milestone:nth-child(even) .milestone-copy{text-align:left}.milestone-date{font-size:11px;margin-bottom:13px}.milestone h3{font-size:23px}.milestone h3.latin-title{font-size:29px}.milestone p{font-size:12px}.timeline-next{margin:22px 0 0 54px;justify-content:flex-start}.header nav{gap:16px}.header nav a{font-size:9px}}
+@media(max-width:700px){.journey{padding-top:68px;padding-bottom:39px}.journey-heading{margin-bottom:36px}.timeline-list{padding-left:86px}.milestone{display:block;min-height:225px}.milestone-copy{padding:40px 0}.milestone[data-side="left"] .milestone-copy{text-align:left}.milestone-date{font-size:11px;margin-bottom:13px}.milestone h3{font-size:23px}.milestone h3.latin-title{font-size:29px}.milestone p{font-size:12px}.timeline-next{margin:22px 0 0 86px;justify-content:flex-start}.header nav{gap:16px}.header nav a{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.milestone-date,.milestone h3{transition:none}}
 .milestone-art{position:absolute;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.82;transition:opacity .4s}
-.milestone:nth-child(odd) .milestone-art{left:24%}
-.milestone:nth-child(even) .milestone-art{left:76%}
+.milestone .milestone-art{left:24%}
+.milestone[data-side="left"] .milestone-art{left:76%}
 .milestone.is-current .milestone-art{opacity:1}
 .ascii-emblem{display:block}
 .school-emblem{width:144px;height:144px}
@@ -123,3 +123,21 @@
 .gemini-robot{left:calc(var(--gutter) + 320px);right:auto;--robot-color:#97bbff}
 @media(max-width:1000px) and (min-width:701px){.gemini-robot{left:276px;right:auto}}
 @media(max-width:700px){.robot{width:33.333333%;height:auto;aspect-ratio:176/168}.codex-robot{left:0}.claude-robot{left:33.333333%;right:auto}.gemini-robot{left:66.666666%;right:auto}}
+
+/* Study and project branches fork off the main timeline like a Git graph. */
+.branch-event{--branch:#aad7bd;--tone:var(--branch);min-height:150px}
+.branch-event[data-branch="algorithm"]{--branch:#f1c95e}
+.branch-event[data-branch="certs"]{--branch:#99c8da}
+.branch-event[data-branch="security"]{--branch:#e58b7c}
+.branch-event[data-branch="ci-cd"]{--branch:#c5b38b}
+.branch-event[data-branch="infra"]{--branch:#a1d4ae}
+.branch-event[data-branch="open-source"]{--branch:#b3a5ce}
+.branch-event .milestone-copy{padding:18px 0 18px 34px}
+.branch-event[data-side="left"] .milestone-copy{padding:18px 34px 18px 0}
+.branch-tag{display:inline-block;margin:0 0 9px;padding:1px 7px;border:1px solid color-mix(in srgb,var(--branch) 45%,transparent);border-radius:2px;color:var(--branch);font:10px/1.6 Plex,monospace;letter-spacing:.03em}
+.branch-event .milestone-date{margin-bottom:6px}
+.branch-event h3.latin-title{font-size:clamp(19px,1.75vw,25px);margin-bottom:4px}
+.branch-event h3 a{transition:color .25s}
+.branch-event h3 a:hover,.branch-event h3 a:focus-visible{color:var(--branch)}
+.milestone p.coursework{margin-top:10px;font:11px/1.8 Plex,monospace;color:#b7c9bd;letter-spacing:.01em}
+@media(max-width:700px){.branch-event{min-height:128px}.branch-event .milestone-copy,.branch-event[data-side="left"] .milestone-copy{padding:16px 0}.branch-event h3.latin-title{font-size:22px}}
